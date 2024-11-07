@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "packageManager": "npm@10.8.2",
   "dependencies": {
