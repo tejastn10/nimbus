@@ -43,3 +43,6 @@ rules:
     - error
     - tab # Enforce indentation with tabs
     - SwitchCase: 1
+
+  # Disables the rule for 'any' type usage
+  "@typescript-eslint/no-explicit-any": off 
