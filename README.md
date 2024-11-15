@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nimbus
+
+**Nimbus** is a personal portfolio website built using [Next.js](https://nextjs.org), designed to showcase projects, skills, and experience in an elegant and interactive way. This project draws inspiration from the amazing [Magic UI Portfolio Template](https://portfolio-magicui.vercel.app/) and incorporates custom enhancements for a unique look and feel.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ensure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (v20 or later)
+- npm, Yarn, pnpm, or Bun as your package manager
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Development Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Clone the repository and install dependencies.
+- Start the development server.
 
-## Learn More
+Visit <http://localhost:3000> in your browser to see your portfolio in action.
 
-To learn more about Next.js, take a look at the following resources:
+### Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Dynamic Content: Seamlessly displays information like projects, skills, and blog posts.
+- Custom Animations: Uses modern animations to enhance the user experience.
+- Responsive Design: Fully optimized for all screen sizes and devices.
+- Theming: Built-in light and dark mode toggle.
+- Optimized Fonts: Includes Geist, loaded and optimized via next/font.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Inspiration
 
-## Deploy on Vercel
+This project was heavily inspired by the fantastic Magic UI Portfolio Template, which provided the foundation for the design and code structure.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Learn More
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To learn more about the technologies used in this project, check out:
+
+- [Next.js Documentation](https://nextjs.org/docs) – Learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) – Interactive Next.js tutorial.
+- Magic UI Portfolio Template – The original inspiration behind this project.
+
+### Deployment
+
+Nimbus is designed to be deployed effortlessly on Vercel.
+You can deploy it by clicking the button below:
+
+For more deployment options, check out the Next.js [Deployment Documentation](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
