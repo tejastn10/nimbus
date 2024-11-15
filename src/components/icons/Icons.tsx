@@ -25,6 +25,7 @@ import {
 
 import {
 	RxChatBubble,
+	RxChevronRight,
 	RxCodesandboxLogo,
 	RxGithubLogo,
 	RxHome,
@@ -42,6 +43,7 @@ const Icons = {
 	sun: (props?: IconProps) => <RxSun {...props} />,
 	moon: (props?: IconProps) => <RxMoon {...props} />,
 	link: (props?: IconProps) => <RxLink2 {...props} />,
+	chevron: (props?: IconProps) => <RxChevronRight {...props} />,
 
 	// ? Navbar
 	home: (props?: IconProps) => <RxHome {...props} />,
