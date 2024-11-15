@@ -31,12 +31,16 @@ import {
 	RxLayers,
 	RxLink2,
 	RxLinkedinLogo,
+	RxMoon,
+	RxSun,
 	RxTwitterLogo,
 } from "react-icons/rx";
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
-export const Icons = {
+const Icons = {
+	sun: (props?: IconProps) => <RxSun {...props} />,
+	moon: (props?: IconProps) => <RxMoon {...props} />,
 	link: (props?: IconProps) => <RxLink2 {...props} />,
 
 	// ? Navbar
@@ -81,3 +85,5 @@ export const Icons = {
 	aws: (props?: IconProps) => <SiAmazonwebservices {...props} />,
 	actions: (props?: IconProps) => <SiGithubactions {...props} />,
 };
+
+export { Icons };
