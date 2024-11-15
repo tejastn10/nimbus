@@ -1,101 +1,214 @@
-import Image from "next/image";
+import { FC } from "react";
 
-export default function Home() {
+import Link from "next/link";
+import Markdown from "react-markdown";
+
+import { Marquee } from "@/components/animated/Marquee";
+
+import { CourseCard } from "@/containers/CourseCard";
+import { ResumeCard } from "@/containers/ResumeCard";
+import { ProjectCard } from "@/containers/ProjectCard";
+
+import { Icons } from "@/components/icons/Icons";
+
+import { BlurFade } from "@/components/animated/BlurFade";
+import { BlurFadeText } from "@/components/animated/BlurFadeText";
+
+import { Badge } from "@/components/ui/Badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+
+import { DATA } from "@/data/resume";
+import { BLUR_FADE_DELAY } from "@/constants/ui";
+
+const Home: FC = () => {
 	return (
-		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-			<main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-				<Image
-					className="dark:invert"
-					src="/next.svg"
-					alt="Next.js logo"
-					width={180}
-					height={38}
-					priority
-				/>
-				<ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-					<li className="mb-2">
-            Get started by editing{" "}
-						<code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-						</code>
-            .
-					</li>
-					<li>Save and see your changes instantly.</li>
-				</ol>
-
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<a
-						className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image
-							className="dark:invert"
-							src="/vercel.svg"
-							alt="Vercel logomark"
-							width={20}
-							height={20}
-						/>
-            Deploy now
-					</a>
-					<a
-						className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-            Read our docs
-					</a>
+		<main className="flex flex-col min-h-[100dvh] space-y-10">
+			<section id="hero">
+				<div className="mx-auto w-full max-w-2xl space-y-8">
+					<div className="gap-2 flex justify-between">
+						<div className="flex-col flex flex-1 space-y-1.5">
+							<BlurFadeText
+								delay={BLUR_FADE_DELAY}
+								className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+								yOffset={8}
+								text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+							/>
+							<BlurFadeText
+								className="max-w-[600px] md:text-xl"
+								delay={BLUR_FADE_DELAY}
+								text={DATA.description}
+							/>
+						</div>
+						<BlurFade delay={BLUR_FADE_DELAY}>
+							<Avatar className="size-32 border">
+								<AvatarImage
+									alt={DATA.name}
+									src={DATA.avatarUrl}
+									className="cursor-pointer transition-transform duration-200 hover:scale-105 hover:grayscale-0 p-0"
+								/>
+								<AvatarFallback>{DATA.initials}</AvatarFallback>
+							</Avatar>
+						</BlurFade>
+					</div>
 				</div>
-			</main>
-			<footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/file.svg"
-						alt="File icon"
-						width={16}
-						height={16}
-					/>
-          Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/window.svg"
-						alt="Window icon"
-						width={16}
-						height={16}
-					/>
-          Examples
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="/globe.svg"
-						alt="Globe icon"
-						width={16}
-						height={16}
-					/>
-          Go to nextjs.org →
-				</a>
-			</footer>
-		</div>
+			</section>
+
+			<section id="about">
+				<BlurFade delay={BLUR_FADE_DELAY * 3}>
+					<h2 className="text-xl font-bold">About</h2>
+				</BlurFade>
+				<BlurFade delay={BLUR_FADE_DELAY * 4}>
+					<Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+						{DATA.summary}
+					</Markdown>
+				</BlurFade>
+			</section>
+
+			<section id="work">
+				<div className="flex min-h-0 flex-col gap-y-3">
+					<BlurFade delay={BLUR_FADE_DELAY * 5}>
+						<h2 className="text-xl font-bold">Work Experience</h2>
+					</BlurFade>
+					{DATA.work.map((work, index) => (
+						<BlurFade key={work.company + index} delay={BLUR_FADE_DELAY * 6 + index * 0.05}>
+							<ResumeCard
+								key={work.company + index}
+								logoUrl={work.logoUrl}
+								location={work.location}
+								altText={work.company}
+								company={work.company}
+								href={work.href}
+								period={`${work.start} - ${work.end ?? "Present"}`}
+								roles={work.roles}
+							/>
+						</BlurFade>
+					))}
+				</div>
+			</section>
+
+			<section id="skills" className="relative overflow-hidden">
+				<div className="flex min-h-0 flex-col gap-y-3">
+					<BlurFade delay={BLUR_FADE_DELAY * 9}>
+						<h2 className="text-xl font-bold">Skills</h2>
+					</BlurFade>
+
+					{DATA.skills.map((skill, index) => (
+						<div key={index} className="relative">
+							<Marquee reverse={index % 2 === 0} className="[--duration:50s]">
+								{skill.map((s, i) => (
+									<BlurFade key={i} delay={BLUR_FADE_DELAY * 10 + i * 0.05}>
+										<Badge key={s.name}>
+											{s.icon}
+											<span className="ml-2">{s.name}</span>{" "}
+										</Badge>
+									</BlurFade>
+								))}
+							</Marquee>
+
+							{/* Shadow Effect on the left and right */}
+							<div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+							<div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section id="projects">
+				<div className="space-y-12 w-full py-12">
+					<BlurFade delay={BLUR_FADE_DELAY * 11}>
+						<div className="flex flex-col items-center justify-center space-y-4 text-center">
+							<div className="space-y-2">
+								<Badge className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+									{Icons.projects()}
+									<span className="ml-2">My Projects</span>
+								</Badge>
+								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl pt-2">
+									Check out my latest work
+								</h2>
+								<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
+									I&apos;ve worked on a variety of projects, from simple websites to complex web
+									applications. Here are a few of my favorites.
+								</p>
+							</div>
+						</div>
+					</BlurFade>
+					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto">
+						{DATA.projects.map((project, id) => (
+							<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
+								<ProjectCard
+									href={project.href}
+									key={project.title}
+									title={project.title}
+									description={project.description}
+									dates={project.dates}
+									tags={project.technologies}
+									image={project.image}
+									video={project.video}
+									links={project.links}
+								/>
+							</BlurFade>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section id="education">
+				<div className="flex min-h-0 flex-col gap-y-3">
+					<BlurFade delay={BLUR_FADE_DELAY * 7}>
+						<h2 className="text-xl font-bold">Education</h2>
+					</BlurFade>
+					{DATA.education.map((education, index) => (
+						<BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + index * 0.05}>
+							<CourseCard
+								key={education.school}
+								href={education.href}
+								logoUrl={education.logoUrl}
+								altText={education.school}
+								title={education.school}
+								subtitle={education.degree}
+								period={`${education.start} - ${education.end}`}
+							/>
+						</BlurFade>
+					))}
+				</div>
+			</section>
+
+			<section id="contact">
+				<div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
+					<BlurFade delay={BLUR_FADE_DELAY * 16}>
+						<div className="space-y-3">
+							<Badge className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+								{Icons.contact()}
+								<span className="ml-2">Contact</span>
+							</Badge>
+							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get in Touch</h2>
+							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
+								Although I don’t tweet much, Twitter is a quick way to connect! Just shoot me a
+								message{" "}
+								<Link
+									href={DATA.contact.social.Twitter.url}
+									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
+								>
+									directly on Twitter
+								</Link>
+								, and I’ll respond whenever I can. I will ignore all soliciting.
+							</p>
+							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
+								Not a fan of social media? No problem! Feel free to reach out via{" "}
+								<Link
+									href={`mailto:${DATA.contact.email}`}
+									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
+								>
+									email
+								</Link>
+								.
+							</p>
+						</div>
+					</BlurFade>
+				</div>
+			</section>
+		</main>
 	);
-}
+};
+
+export default Home;
