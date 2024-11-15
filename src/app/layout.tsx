@@ -91,7 +91,7 @@ export default function RootLayout({
 						]}
 						className={combineClasses(
 							"[mask-image:radial-gradient(200px_circle_at_center,white,transparent)]",
-							"fixed inset-0 z-0 h-[15%] w-full skew-y-12"
+							"fixed inset-0 z-0 h-[25%] w-full skew-y-12"
 						)}
 					/>
 					<GridPattern
