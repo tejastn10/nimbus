@@ -9,9 +9,7 @@ import { getBlogPosts, getPost } from "@/data/blog";
 import { formatDate } from "@/utils/date";
 
 type BlogProps = {
-	params: {
-		slug: string;
-	};
+	params: Promise<{ slug: string }>;
 };
 
 export const generateStaticParams = async (): Promise<
@@ -23,14 +21,8 @@ export const generateStaticParams = async (): Promise<
 	return posts.map((post) => ({ slug: post.slug }));
 };
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: {
-		slug: string;
-	};
-}): Promise<Metadata | undefined> => {
-	const { slug } = await params;
+export const generateMetadata = async ({ params }: BlogProps): Promise<Metadata | undefined> => {
+	const slug = (await params).slug;
 	const post = await getPost(slug);
 
 	if (!post) {
@@ -65,7 +57,7 @@ export const generateMetadata = async ({
 };
 
 const Blog: FC<BlogProps> = async ({ params }) => {
-	const { slug } = await params;
+	const slug = (await params).slug;
 	const post = await getPost(slug);
 
 	if (!post) {
