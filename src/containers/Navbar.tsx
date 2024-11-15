@@ -2,13 +2,13 @@ import { FC } from "react";
 
 import Link from "next/link";
 
-import { ThemeToggle } from "../components/theme/ThemeToggle";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-import { Dock, DockIcon } from "../components/animated/Dock";
+import { Dock, DockIcon } from "@/components/animated/Dock";
 
-import { Separator } from "../components/ui/Separator";
-import { buttonVariants } from "../components/ui/Button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../components/ui/Tooltip";
+import { Separator } from "@/components/ui/Separator";
+import { buttonVariants } from "@/components/ui/Button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
 
 import { DATA } from "@/data/resume";
 
