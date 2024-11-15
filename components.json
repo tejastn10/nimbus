@@ -12,6 +12,7 @@
 	},
 	"aliases": {
 		"components": "@/components",
+		"containers": "@/containers",
 		"constants": "@/constants",
 		"utils": "@/utils",
 		"data": "@/data"
