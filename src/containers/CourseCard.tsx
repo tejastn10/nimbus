@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
-import { ChevronRightIcon } from "@radix-ui/react-icons";
+import { Icons } from "@/components/icons/Icons";
 
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader } from "@/components/ui/Card";
@@ -67,7 +67,7 @@ const CourseCard: FC<CourseCardProps> = ({
 										))}
 									</span>
 								)}
-								<ChevronRightIcon
+								<Icons.chevron
 									className={combineClasses(
 										"size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
 										isExpanded ? "rotate-90" : "rotate-0"
