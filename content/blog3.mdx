@@ -1,0 +1,161 @@
+---
+title: "Setup Development Environment with Docker for Monorepo 🐳"
+publishedAt: "2021-04-18"
+description:
+  "A comprehensive guide on setting up a development environment with Docker for a monorepo
+  structure. Understand how to containerize applications, manage dependencies, and streamline the
+  development process for large-scale projects."
+---
+
+Docker is a set of the platform as service products that use OS-level virtualization to deliver
+software in packages called containers. Containers are isolated from one another and bundle their
+own software, libraries, and configuration files; they can communicate with each other through
+well-defined channels.
+
+In version control systems, a monorepo is a software development strategy where code for many
+projects is stored in the same repository.
+
+---
+
+### Why set up a Development Environment?
+
+While developing a Full-Stack app we come across many things which we have to configure and are
+necessary for building that application. Moreover, we might be working in a team or it may be an
+Open-Source Project which has many contributors. As we consider these things we can definitely see,
+the old excuse "It was working fine on my machine...". One can also implement the development setup
+on their portfolio projects to showcase that they can implement their knowledge about Docker and
+also familiarizing themselves with it.
+
+Most of us know that we want a fast development and build process to tackle this. We set up a
+development environment for our project using Docker to develop seamlessly without any OS-level
+errors.
+
+The practice here is one way you can implement Docker. There might be many ways that might suit your
+scenario, so try to research more and try implementing them with the trial and error method, and
+remember implementing them would definitely help in the long term.
+
+### Step 1: Know your Project
+
+For the demo, we are using my own Project which consists of React frontend and Nodejs Backend.
+
+Link to repo → [https://github.com/tejastn10/ShoeShoppee](https://github.com/tejastn10/ShoeShoppee)
+
+### Step 2: Add dev Dockerfiles to the project
+
+💡 NOTE: If you're using Vs-Code it provides so much help in creating and managing Dockerfiles for
+your environment. I'll provide a link showcasing how you can utilize Vs-Code to its full abilities
+and add docker configuration for your platform. Vs-Code adds all that is required such as
+dockerignore files and even debug configuration if specified.
+
+Link to video →
+[Supercharge Your Docker Development with VS Code](https://www.youtube.com/watch?v=BfzpN6drbJc)
+
+**Frontend Dockerfile** The frontend Dockerfile is located in the _frontend/web_ folder.
+
+```docker
+FROM node:alpine
+
+WORKDIR "/app"
+
+RUN yarn global add typescript
+RUN yarn global add less
+
+COPY ./package.json ./
+COPY ./yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+RUN lessc --js ./src/styles/theme.less ./src/styles/theme.css
+
+CMD [ "yarn", "start" ]
+```
+
+**Backend Dockerfile** The backend Dockerfile is located in _backend_ folder.
+
+```docker
+FROM node:alpine
+
+WORKDIR "/app"
+
+RUN yarn global add typescript
+
+COPY ./package.json ./
+COPY ./yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+CMD [ "yarn", "server" ]
+```
+
+**Nginx Dockerfile**
+
+The nginx Dockerfile is located in _nginx_ folder.
+
+```docker
+FROM nginx
+
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+```
+
+These files are named _Dockerfile.dev_ for specifying that these are for development purposes only.
+
+### Step 3: Add dev Docker-compose file to the project
+
+The root folder contains the compose file adding all the services specified in the respective Docker
+files. In my project, the development docker-compose file is _docker-compose.debug.yml_
+
+```YAML
+version: "3.4"
+
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3000:80
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - JWT_SECRET=clocked
+      - MONGO_URI
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend/web
+    volumes:
+      - /app/node_modules
+      - /app/src/styles
+      - ./frontend/web:/app
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_DEVELOPMENT_API_ENDPOINT=/devURL
+```
+
+### Step 4: Starting the project with docker-compose up
+
+Now all that remains is to build and run the compose file and voila your setup is complete.
+
+```bash
+docker-compose -f ./docker-compose.debug.yml up --build
+```
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z1vdnzlkk6nmcy53rr7j.jpg)
+
+---
+
+This article assumes prior knowledge about Docker, not much but familiarity with the tech is
+sufficient. Do tell me how you would implement yours and also provide me where I can improve my
+configuration.

@@ -1,0 +1,145 @@
+---
+title: "Setting up Express Server 📡 with TypeScript"
+publishedAt: "2021-01-30"
+description:
+  "A step-by-step guide on setting up a robust Express server using TypeScript. Learn how to
+  configure TypeScript with Express, handle requests, and set up a development environment for
+  building scalable backend applications."
+---
+
+Express.js is a web application framework that is built on top of Node.js. It provides a minimal
+interface with all the tools required to build a web application. Express.js adds flexibility to an
+application with a huge range of modules available on npm that you can directly plug into Express as
+per requirement.
+
+### Step 1: Create a **.gitignore** file
+
+Add _node_modules/_ and _.env_ in it as we don't want node modules to be pushed to GitHub and also
+our secret keys to be publicly available.
+
+```markdown
+node_modules/ .env
+```
+
+### Step 2: Add dependencies
+
+You may use **yarn** or **npm** (I am using yarn here).
+
+yarn add <dependencies> for dependencies
+
+yarn add -D <dependencies> for dev dependencies
+
+NOTE: We might add more later on... and discuss them as we move along. Also, the version may be
+newer for you or some of the packages may be deprecated in the future. Also as we are using
+typescript we require _type-definitions (@types)_ of all dependencies we have added
+
+The dependencies shown below are the basic ones I think are required for the server to be up and
+running.
+
+```JSON
+"dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.9",
+    "@types/express": "^4.17.9",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+```
+
+### Step 3: Create tsconfig.json file and add the following
+
+Configuring TypeScript
+
+You might want to look at the official documentation providing more insights for configuring
+TypeScript and study more parameters available and use according to your needs.
+
+```JSON
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es6" /* Specify ECMAScript target version. */,
+    "module": "commonjs" /* Specify module code generation. */,
+    "sourceMap": false /* Generates corresponding '.map' file. */,
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "rootDir": "./src" /* Specify the root directory of input files. */,
+
+    /* Strict Type-Checking Options */
+    "strict": true /* Enable all strict type-checking options. */,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node" /* Specify module resolution strategy. */,
+    "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+    "paths": {
+      "*": ["node_modules/", "src/types/*"]
+    } ,
+    "esModuleInterop": true ,
+
+    /* Advanced Options */
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+"exclude": ["src/types/*.ts", "node_modules", ".vscode"]
+}
+```
+
+### Step 4: Create the main file
+
+Create an _src_ folder in your directory and add an _app.ts_ file with the following contents to get
+your express server up and running.
+
+Relative Path: _src/app.ts_
+
+```tsx
+import express, { Application, json, Request, Response } from "express";
+import "colors";
+import cors from "cors";
+import { config } from "dotenv";
+
+config();
+
+const app: Application = express();
+
+app.use(cors());
+app.use(json());
+
+const PORT: string | number = process.env.PORT || 5000;
+const ENV: string = process.env.NODE_ENV || "development";
+
+app.get("/", (_req: Request, res: Response) => {
+	return res.send("API Running...");
+});
+
+app.listen(PORT, () =>
+	console.log(
+		` 📡 Backend server: `.inverse.yellow.bold + ` Running in ${ENV} mode on port ${PORT}`
+	)
+);
+```
+
+### Step 5: Setting up running scripts
+
+Add the following to the _package.json_ file
+
+```JSON
+"scripts": {
+    "watch-ts": "tsc -w",
+    "server": "nodemon dist/app.js",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"blue.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run server\" "
+  }
+```
+
+Now run "_yarn run dev_ " to start our server and voila we have our server up and running.
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/hd131ohohpzmsp8e9npd.png)
+
+You should see this as your output in the terminal and _dist/_ directory should appear in your
+project containing all the JavaScript code with ES6 syntax.
+
+Also, there's a [ts-node](https://www.npmjs.com/package/ts-node) package that runs node server using
+TypeScript files without any need to generate any JavaScript files.

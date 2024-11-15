@@ -1,0 +1,124 @@
+---
+title: "Making Terminal Awesome!!✨🤩"
+publishedAt: "2021-02-07"
+description:
+  "Explore ways to level up your terminal with customizations, themes, and powerful tools. Learn how
+  to enhance productivity and streamline your development workflow with terminal utilities and
+  configuration tips."
+---
+
+I started using Linux almost a year ago as my main OS which provided a great experience. The
+terminal provided a lot more freedom from windows cmd or power-shell, which prompted me to do some
+digging about the terminal so that I can use it to its full extent.
+
+Then I stumbled upon ZSH (Z-shell) which is based on BASH and has the same features as BASH plus
+some interesting plugins and theme options.
+
+So here's my setup for ZSH.
+
+## Installing ZSH
+
+Make sure that you have curl and git installed if not then just install them.
+
+```bash
+sudo apt-get install curl git
+```
+
+Later install ZSH
+
+```bash
+sudo apt-get install zsh
+```
+
+### Adding OhMyZSH
+
+You can search for it or enter the following command.
+
+```bash
+sh -c "$(curl -fsSL [https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh](https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh))"
+```
+
+This will add OhMyZSH.
+
+There will be a prompt asking to make it default terminal press enter there.
+
+## Making it the way you want...
+
+So the default ZSH theme is good but I know most of them used `agnoster` as their theme.
+
+Moreover, it requires some special fonts to work properly. So let's install them.
+
+```bash
+sudo apt-get install fonts-powerline
+```
+
+Later add the theme to the _zshrc_ file.
+
+```bash
+nano ~/.zshrc
+```
+
+**`ZSH_THEME="agnoster"`**
+
+Then save the file and close the editor and source the file
+
+```bash
+source ~/.zshrc
+```
+
+And Voila! the theme and fonts should be applied to the terminal now.
+
+NOTE: If the fonts are not yet seen then try logging out and back in or better restart your PC. I
+did face issues with it too.
+
+You can even set it to random which will show you various themes every time you close and open a new
+terminal and the one you like you can just set it as your default.
+
+### Plugins
+
+The plugins offered by OhMyZSH are great in helping as they provide wonderful aliases.
+
+NOTE: If adding a lot of plugins they do slow the startup of the shell. But there's a fix for that
+too called `instant prompt`
+
+You can find all the plugins at the link below:
+
+[https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+
+My two favorite are these:
+
+- zsh-autosuggestions
+- zsh-syntax-highlighting
+
+You can install them with these or referring to the documentation.
+
+```bash
+sudo git clone [https://github.com/zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+```bash
+sudo git clone [https://github.com/zsh-users/zsh-syntax-highlighting.git](https://github.com/zsh-users/zsh-syntax-highlighting.git) ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+and then adding it to the zshrc file
+
+```bash
+plugins=(
+# Git
+git
+# ZSH
+zsh-autosuggestions
+zsh-syntax-highlighting
+)
+```
+
+and sourcing it.
+
+As it has been a year I have tweaked it much more.
+
+Now I use the `powerlevel10k` theme which is super cool. you can check it out too they have an
+initial setup that shows all the customization they have provided so go ahead and experiment and
+choose whichever you like. Moreover, WSL too supports it.
+
+So this is my current terminal and I 😉 want to see yours too.
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/v8zkaak4t7dnqw9kdzcv.png)
