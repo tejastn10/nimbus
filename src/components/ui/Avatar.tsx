@@ -42,7 +42,7 @@ const AvatarFallback = forwardRef<
 	<Fallback
 		ref={ref}
 		className={combineClasses(
-			"flex h-full w-full items-center justify-center rounded-full bg-muted",
+			"flex h-full w-full items-center justify-center rounded-md bg-muted",
 			className
 		)}
 		{...props}

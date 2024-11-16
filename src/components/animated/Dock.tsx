@@ -34,7 +34,7 @@ type DockProps = VariantProps<typeof dockVariants> & {
 	children: React.ReactNode;
 };
 
-const dockVariants = cva("mx-auto w-max h-full p-2 flex items-end rounded-full border");
+const dockVariants = cva("mx-auto w-max h-full p-2 flex items-end rounded-md border");
 
 const Dock = forwardRef<HTMLDivElement, DockProps>(
 	(
@@ -105,7 +105,7 @@ const DockIcon = ({
 			ref={ref}
 			style={{ width }}
 			className={combineClasses(
-				"flex aspect-square cursor-pointer items-center justify-center rounded-full",
+				"flex aspect-square cursor-pointer items-center justify-center rounded-md",
 				className
 			)}
 			{...props}
