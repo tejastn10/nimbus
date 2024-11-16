@@ -16,7 +16,7 @@ const ThemeToggle: FC = () => {
 			variant="ghost"
 			type="button"
 			size="icon"
-			className="px-2"
+			className="px-2 size-12"
 			onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 		>
 			<Icons.sun className="h-[1.2rem] w-[1.2rem] text-neutral-800 dark:hidden dark:text-neutral-200" />
