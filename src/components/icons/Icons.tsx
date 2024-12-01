@@ -34,8 +34,9 @@ import {
 	RxLinkedinLogo,
 	RxMoon,
 	RxSun,
-	RxTwitterLogo,
 } from "react-icons/rx";
+
+import { RiTwitterXLine } from "react-icons/ri";
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -50,7 +51,7 @@ const Icons = {
 	blog: (props?: IconProps) => <RxLayers {...props} />,
 	medium: (props?: IconProps) => <SiMedium {...props} />,
 	github: (props?: IconProps) => <RxGithubLogo {...props} />,
-	twitter: (props?: IconProps) => <RxTwitterLogo {...props} />,
+	twitter: (props?: IconProps) => <RiTwitterXLine {...props} />,
 	linkedin: (props?: IconProps) => <RxLinkedinLogo {...props} />,
 
 	// ? Home Page
