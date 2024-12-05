@@ -150,7 +150,7 @@ export const DATA = {
 		{
 			title: "Nimbus",
 			href: "https://github.com/tejastn10/nimbus",
-			dates: "December 2024 - Present",
+			dates: "October 2024 - Present",
 			active: true,
 			description:
 				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
