@@ -125,6 +125,52 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Argus",
+			href: "https://github.com/tejastn10/argus",
+			dates: "November 2024 - December 2024",
+			active: true,
+			description:
+				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
+			technologies: ["Go", "Docker"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/argus",
+					icon: Icons.github(),
+				},
+				{
+					type: "Registry",
+					href: "https://hub.docker.com/r/tejastn10/argus",
+					icon: Icons.docker(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
+			title: "Nimbus",
+			href: "https://github.com/tejastn10/nimbus",
+			dates: "December 2024 - Present",
+			active: true,
+			description:
+				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
+			technologies: ["Next.js", "TypeScript", "shadcn", "TailwindCSS", "Vercel"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/nimbus",
+					icon: Icons.github(),
+				},
+				{
+					type: "Website",
+					href: "https://nimbus-ten.vercel.app",
+					icon: Icons.link(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
 			title: "Turbo-repo Template",
 			href: "https://github.com/tejastn10/verdant",
 			dates: "July 2024 - August 2024",
