@@ -5,8 +5,10 @@ import { notFound } from "next/navigation";
 
 import { DATA } from "@/data/resume";
 import { getBlogPosts, getPost } from "@/data/blog";
+import { BlurFade } from "@/components/animated/BlurFade";
 
 import { formatDate } from "@/utils/date";
+import { BLUR_FADE_DELAY } from "@/constants/ui";
 
 type BlogProps = {
 	params: Promise<{ slug: string }>;
@@ -88,22 +90,33 @@ const Blog: FC<BlogProps> = async ({ params }) => {
 					}),
 				}}
 			/>
-			<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
-				{post.metadata.title}
-			</h1>
-			<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
 
-			<div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-				<Suspense fallback={<p className="h-5" />}>
-					<p className="text-xs text-neutral-400 dark:text-neutral-400">
-						{formatDate(post.metadata.publishedAt)}
-					</p>
-				</Suspense>
-			</div>
-			<article
-				className="prose dark:prose-invert leading-[1.5]"
-				dangerouslySetInnerHTML={{ __html: post.source }}
-			/>
+			<BlurFade delay={BLUR_FADE_DELAY}>
+				<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
+					{post.metadata.title}
+				</h1>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 2}>
+				<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 3}>
+				<div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+					<Suspense fallback={<p className="h-5" />}>
+						<p className="text-xs text-neutral-400 dark:text-neutral-400">
+							{formatDate(post.metadata.publishedAt)}
+						</p>
+					</Suspense>
+				</div>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 4}>
+				<article
+					className="prose dark:prose-invert leading-[1.5]"
+					dangerouslySetInnerHTML={{ __html: post.source }}
+				/>
+			</BlurFade>
 		</section>
 	);
 };
