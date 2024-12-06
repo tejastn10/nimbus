@@ -57,7 +57,7 @@ const Navbar: FC = () => {
 									</Link>
 								</TooltipTrigger>
 								<TooltipContent>
-									<p>{name}</p>
+									<p className="capitalize">{name}</p>
 								</TooltipContent>
 							</Tooltip>
 						</DockIcon>
