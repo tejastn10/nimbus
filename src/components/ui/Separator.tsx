@@ -1,12 +1,12 @@
 "use client";
 
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
 
 import { Root } from "@radix-ui/react-separator";
 
 import { combineClasses } from "@/utils/tailwind";
 
-const Separator = forwardRef<ElementRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
+const Separator = forwardRef<ComponentRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
 	({ className, orientation = "horizontal", decorative = true, ...props }, ref) => (
 		<Root
 			ref={ref}

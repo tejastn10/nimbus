@@ -1,6 +1,6 @@
 "use-client";
 
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
 
 import { Content, Provider, Root, Trigger } from "@radix-ui/react-tooltip";
 
@@ -13,7 +13,7 @@ const TooltipProvider = Provider;
 const TooltipTrigger = Trigger;
 
 const TooltipContent = forwardRef<
-	ElementRef<typeof Content>,
+	ComponentRef<typeof Content>,
 	ComponentPropsWithoutRef<typeof Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
 	<Content
