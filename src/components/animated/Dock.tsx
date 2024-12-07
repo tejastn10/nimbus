@@ -9,7 +9,7 @@ import {
 	useRef,
 } from "react";
 
-import { motion, MotionValue, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
 
 import { cva, type VariantProps } from "class-variance-authority";
 

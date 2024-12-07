@@ -2,7 +2,7 @@
 
 import { FC, useMemo } from "react";
 
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "motion/react";
 
 import { combineClasses } from "@/utils/tailwind";
 

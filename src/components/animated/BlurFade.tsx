@@ -2,7 +2,7 @@
 
 import { FC, ReactNode, useRef } from "react";
 
-import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
+import { AnimatePresence, motion, useInView, Variants } from "motion/react";
 
 type BlurFadeProps = {
 	blur?: string;
