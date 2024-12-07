@@ -2,7 +2,9 @@
 
 import { FC, ReactNode, useRef } from "react";
 
-import { AnimatePresence, motion, useInView, Variants } from "motion/react";
+import { AnimatePresence, useInView, Variants } from "motion/react";
+
+import { MotionDiv } from "../motion";
 
 type BlurFadeProps = {
 	blur?: string;
@@ -43,7 +45,7 @@ const BlurFade: FC<BlurFadeProps> = ({
 
 	return (
 		<AnimatePresence>
-			<motion.div
+			<MotionDiv
 				ref={ref}
 				exit="hidden"
 				initial="hidden"
@@ -57,7 +59,7 @@ const BlurFade: FC<BlurFadeProps> = ({
 				className={className}
 			>
 				{children}
-			</motion.div>
+			</MotionDiv>
 		</AnimatePresence>
 	);
 };
