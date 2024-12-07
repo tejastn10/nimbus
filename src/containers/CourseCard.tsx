@@ -4,11 +4,10 @@ import React, { FC } from "react";
 
 import Link from "next/link";
 
-import { motion } from "motion/react";
-
 import { Icons } from "@/components/icons/Icons";
 
 import { Badge } from "@/components/ui/Badge";
+import { MotionDiv } from "@/components/motion";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
@@ -81,7 +80,7 @@ const CourseCard: FC<CourseCardProps> = ({
 						{subtitle && <div className="font-sans text-xs">{subtitle}</div>}
 					</CardHeader>
 					{description && (
-						<motion.div
+						<MotionDiv
 							initial={{ opacity: 0, height: 0 }}
 							animate={{
 								opacity: isExpanded ? 1 : 0,
@@ -95,7 +94,7 @@ const CourseCard: FC<CourseCardProps> = ({
 							className="mt-2 text-xs sm:text-sm"
 						>
 							{description}
-						</motion.div>
+						</MotionDiv>
 					)}
 				</div>
 			</Card>
