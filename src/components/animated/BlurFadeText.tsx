@@ -2,7 +2,9 @@
 
 import { FC, useMemo } from "react";
 
-import { AnimatePresence, Variants, motion } from "motion/react";
+import { AnimatePresence, Variants } from "motion/react";
+
+import { MotionSpan } from "../motion";
 
 import { combineClasses } from "@/utils/tailwind";
 
@@ -38,7 +40,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 			<div className="flex">
 				<AnimatePresence>
 					{characters.map((char, index) => (
-						<motion.span
+						<MotionSpan
 							key={index}
 							exit="hidden"
 							initial="hidden"
@@ -53,7 +55,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 							style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
 						>
 							{char}
-						</motion.span>
+						</MotionSpan>
 					))}
 				</AnimatePresence>
 			</div>
@@ -63,7 +65,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 	return (
 		<div className="flex">
 			<AnimatePresence>
-				<motion.span
+				<MotionSpan
 					exit="hidden"
 					initial="hidden"
 					animate="visible"
@@ -76,7 +78,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 					className={combineClasses("inline-block", className)}
 				>
 					{text}
-				</motion.span>
+				</MotionSpan>
 			</AnimatePresence>
 		</div>
 	);
