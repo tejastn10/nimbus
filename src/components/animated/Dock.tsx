@@ -9,9 +9,11 @@ import {
 	useRef,
 } from "react";
 
-import { motion, MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
+import { MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
 
 import { cva, type VariantProps } from "class-variance-authority";
+
+import { MotionDiv } from "../motion";
 
 import { combineClasses } from "@/utils/tailwind";
 
@@ -63,7 +65,7 @@ const Dock = forwardRef<HTMLDivElement, DockProps>(
 		};
 
 		return (
-			<motion.div
+			<MotionDiv
 				ref={ref}
 				onMouseMove={(e: { pageX: number }) => mousex.set(e.pageX)}
 				onMouseLeave={() => mousex.set(Infinity)}
@@ -71,7 +73,7 @@ const Dock = forwardRef<HTMLDivElement, DockProps>(
 				className={combineClasses(dockVariants({ className }))}
 			>
 				{renderChildren()}
-			</motion.div>
+			</MotionDiv>
 		);
 	}
 );
@@ -101,9 +103,9 @@ const DockIcon = ({
 	});
 
 	return (
-		<motion.div
+		<MotionDiv
 			ref={ref}
-			style={{ width }}
+			style={{ width: width.get() }}
 			className={combineClasses(
 				"flex aspect-square cursor-pointer items-center justify-center rounded-md",
 				className
@@ -111,7 +113,7 @@ const DockIcon = ({
 			{...props}
 		>
 			{children}
-		</motion.div>
+		</MotionDiv>
 	);
 };
 DockIcon.displayName = "DockIcon";
