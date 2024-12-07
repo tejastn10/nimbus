@@ -4,14 +4,12 @@ import React, { FC } from "react";
 
 import Link from "next/link";
 
-import { motion } from "motion/react";
-
 import { Icons } from "@/components/icons/Icons";
 
-import { BlurFade } from "@/components/animated/BlurFade";
-
+import { MotionDiv } from "@/components/motion";
 import { RoleCard } from "@/components/ui/RoleCard";
 import { Card, CardHeader } from "@/components/ui/Card";
+import { BlurFade } from "@/components/animated/BlurFade";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
@@ -84,7 +82,7 @@ const ResumeCard: FC<ResumeCardProps> = ({
 					</CardHeader>
 
 					{roles.length > 0 && (
-						<motion.div
+						<MotionDiv
 							initial={{ opacity: 0, height: 0 }}
 							animate={{
 								opacity: isExpanded ? 1 : 0,
@@ -108,7 +106,7 @@ const ResumeCard: FC<ResumeCardProps> = ({
 									</BlurFade>
 								))}
 							</ul>
-						</motion.div>
+						</MotionDiv>
 					)}
 				</div>
 			</Card>
