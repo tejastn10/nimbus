@@ -65,7 +65,7 @@ const Dock = forwardRef<HTMLDivElement, DockProps>(
 		return (
 			<motion.div
 				ref={ref}
-				onMouseMove={(e) => mousex.set(e.pageX)}
+				onMouseMove={(e: { pageX: number }) => mousex.set(e.pageX)}
 				onMouseLeave={() => mousex.set(Infinity)}
 				{...props}
 				className={combineClasses(dockVariants({ className }))}
