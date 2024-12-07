@@ -27,9 +27,12 @@ const BlurFade: FC<BlurFadeProps> = ({
 	inView = false,
 	inViewMargin = "-50px",
 }) => {
-	const ref = useRef(null);
+	const ref = useRef<HTMLDivElement | null>(null);
 
-	const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any });
+	const inViewResult = useInView(ref as React.RefObject<Element>, {
+		once: true,
+		margin: inViewMargin as any,
+	});
 	const isInView = !inView || inViewResult;
 
 	const defaultVariants: Variants = {
