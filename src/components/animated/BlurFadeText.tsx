@@ -13,10 +13,7 @@ type BlurFadeTextProps = {
 	duration?: number;
 	characterDelay?: number;
 	animateByCharacter?: boolean;
-	variant?: {
-		hidden: { y: number };
-		visible: { y: number };
-	};
+	variant?: Variants;
 	className?: string;
 };
 

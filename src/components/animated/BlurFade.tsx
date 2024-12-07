@@ -11,10 +11,7 @@ type BlurFadeProps = {
 	inView?: boolean;
 	duration?: number;
 	inViewMargin?: string;
-	variant?: {
-		hidden: { y: number };
-		visible: { y: number };
-	};
+	variant?: Variants;
 	className?: string;
 	children: ReactNode;
 };
