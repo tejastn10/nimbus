@@ -105,7 +105,7 @@ const DockIcon = ({
 	return (
 		<MotionDiv
 			ref={ref}
-			style={{ width: width.get() }}
+			style={{ width: width as unknown as number }}
 			className={combineClasses(
 				"flex aspect-square cursor-pointer items-center justify-center rounded-md",
 				className
