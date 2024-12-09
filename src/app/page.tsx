@@ -186,6 +186,8 @@ const Home: FC = () => {
 								Although I don’t tweet much, Twitter is a quick way to connect! Just shoot me a
 								message{" "}
 								<Link
+									target="_blank"
+									rel="noopener noreferrer"
 									href={DATA.contact.social.Twitter.url}
 									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
 								>

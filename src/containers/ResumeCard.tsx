@@ -50,7 +50,13 @@ const ResumeCard: FC<ResumeCardProps> = ({
 	};
 
 	return (
-		<Link href={href || "#"} className="block cursor-pointer" onClick={handleClick}>
+		<Link
+			target="_blank"
+			href={href || "#"}
+			rel="noopener noreferrer"
+			className="block cursor-pointer"
+			onClick={handleClick}
+		>
 			<Card className="flex">
 				<div className="flex-none">
 					<Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">

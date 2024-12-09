@@ -45,7 +45,12 @@ const ProjectCard: FC<ProjectProps> = ({
 				"flex flex-col p-2 overflow-hidden border ease-out h-full hover:shadow-lg hover:scale-105 transition-all duration-300"
 			}
 		>
-			<Link href={href || "#"} className={combineClasses("block cursor-pointer", className)}>
+			<Link
+				target="_blank"
+				href={href || "#"}
+				rel="noopener noreferrer"
+				className={combineClasses("block cursor-pointer", className)}
+			>
 				{video && (
 					<video
 						src={video}
@@ -93,7 +98,7 @@ const ProjectCard: FC<ProjectProps> = ({
 				{links && links.length > 0 && (
 					<div className="flex flex-row flex-wrap items-start gap-1">
 						{links?.map((link, idx) => (
-							<Link href={link?.href} key={idx} target="_blank">
+							<Link key={idx} href={link?.href} target="_blank" rel="noopener noreferrer">
 								<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
 									{link.icon}
 									{link.type}

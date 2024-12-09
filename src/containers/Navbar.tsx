@@ -47,7 +47,9 @@ const Navbar: FC = () => {
 							<Tooltip>
 								<TooltipTrigger asChild>
 									<Link
+										target="_blank"
 										href={social.url}
+										rel="noopener noreferrer"
 										className={combineClasses(
 											buttonVariants({ variant: "ghost", size: "icon" }),
 											"size-12"
