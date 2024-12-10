@@ -1,4 +1,4 @@
-import { FC, Suspense } from "react";
+import { Suspense } from "react";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -58,7 +58,7 @@ export const generateMetadata = async ({ params }: BlogProps): Promise<Metadata 
 	};
 };
 
-const Blog: FC<BlogProps> = async ({ params }) => {
+const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 	const slug = (await params).slug;
 	const post = await getPost(slug);
 

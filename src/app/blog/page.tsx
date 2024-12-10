@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import Link from "next/link";
 
 import { BlurFade } from "@/components/animated/BlurFade";
@@ -13,7 +11,7 @@ export const metadata = {
 	description: "My thoughts on software development, life, and more.",
 };
 
-const BlogPage: FC = async () => {
+const BlogPage = async (): Promise<JSX.Element> => {
 	const posts = await getBlogPosts();
 
 	return (
