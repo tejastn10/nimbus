@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 import Link from "next/link";
 
 import { BlurFade } from "@/components/animated/BlurFade";

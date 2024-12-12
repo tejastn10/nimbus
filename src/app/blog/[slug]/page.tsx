@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { JSX, Suspense } from "react";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
