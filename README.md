@@ -8,7 +8,7 @@
 
 Ensure you have the following installed:
 
-- Node.js (v20 or later)
+- Node.js (v22 or later)
 - npm, Yarn, pnpm, or Bun as your package manager
 
 ### Development Setup
