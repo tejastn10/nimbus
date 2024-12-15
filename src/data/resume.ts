@@ -194,6 +194,11 @@ export const DATA = {
 					href: "https://github.com/tejastn10/verdant",
 					icon: Icons.github(),
 				},
+				{
+					type: "Template",
+					href: "",
+					icon: Icons.template(),
+				},
 			],
 			image: "",
 			video: "",
