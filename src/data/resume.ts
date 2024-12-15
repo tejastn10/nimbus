@@ -171,7 +171,7 @@ export const DATA = {
 			video: "",
 		},
 		{
-			title: "Turbo-repo Template",
+			title: "Verdant",
 			href: "https://github.com/tejastn10/verdant",
 			dates: "July 2024 - August 2024",
 			active: true,
@@ -199,7 +199,7 @@ export const DATA = {
 			video: "",
 		},
 		{
-			title: "Shoe Shoppee",
+			title: "ShoeShoppee",
 			href: "https://github.com/tejastn10/ShoeShoppee",
 			dates: "February 2021 - March 2021",
 			active: false,
