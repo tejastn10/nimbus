@@ -21,6 +21,7 @@ import {
 	SiRedis,
 	SiTypescript,
 	SiVercel,
+	SiFig,
 } from "react-icons/si";
 
 import {
@@ -36,7 +37,7 @@ import {
 	RxSun,
 } from "react-icons/rx";
 
-import { RiTwitterXLine } from "react-icons/ri";
+import { RiTwitterXLine, RiDatabase2Line } from "react-icons/ri";
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -87,6 +88,10 @@ const Icons = {
 	vercel: (props?: IconProps) => <SiVercel {...props} />,
 	aws: (props?: IconProps) => <SiAmazonwebservices {...props} />,
 	actions: (props?: IconProps) => <SiGithubactions {...props} />,
+
+	// * Tools
+	template: (props?: IconProps) => <SiFig {...props} />,
+	database: (props?: IconProps) => <RiDatabase2Line {...props} />,
 };
 
 export { Icons };
