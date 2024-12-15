@@ -97,14 +97,21 @@ const ProjectCard: FC<ProjectProps> = ({
 			<CardFooter className="px-2 pb-2 pt-6">
 				{links && links.length > 0 && (
 					<div className="flex flex-row flex-wrap items-start gap-1">
-						{links?.map((link, idx) => (
-							<Link key={idx} href={link?.href} target="_blank" rel="noopener noreferrer">
-								<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+						{links?.map((link, idx) => {
+							return link?.href ? (
+								<Link key={idx} href={link?.href} target="_blank" rel="noopener noreferrer">
+									<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+										{link.icon}
+										{link.type}
+									</Badge>
+								</Link>
+							) : (
+								<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]" noHover>
 									{link.icon}
 									{link.type}
 								</Badge>
-							</Link>
-						))}
+							);
+						})}
 					</div>
 				)}
 			</CardFooter>
