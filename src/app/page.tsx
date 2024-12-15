@@ -118,7 +118,10 @@ const Home: FC = () => {
 					<BlurFade delay={BLUR_FADE_DELAY * 11}>
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<div className="space-y-2">
-								<Badge className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+								<Badge
+									noHover
+									className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm"
+								>
 									{Icons.projects()}
 									<span className="ml-2">My Projects</span>
 								</Badge>
@@ -177,7 +180,10 @@ const Home: FC = () => {
 				<div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
 					<BlurFade delay={BLUR_FADE_DELAY * 16}>
 						<div className="space-y-3">
-							<Badge className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+							<Badge
+								noHover
+								className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm"
+							>
 								{Icons.contact()}
 								<span className="ml-2">Contact</span>
 							</Badge>
