@@ -189,27 +189,28 @@ const Home: FC = () => {
 							</Badge>
 							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get in Touch</h2>
 							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-								Although I don’t tweet much, Twitter is a quick way to connect! Just shoot me a
-								message{" "}
+								If you’d like to connect, Twitter is an efficient way to reach me. Feel free to send
+								me a message{" "}
 								<Link
 									target="_blank"
 									rel="noopener noreferrer"
 									href={DATA.contact.social.Twitter.url}
 									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
 								>
-									directly on Twitter
+									here
 								</Link>
-								, and I’ll respond whenever I can. I will ignore all soliciting.
+								, and I will respond as soon as possible. Please note that unsolicited messages will
+								not receive a response.
 							</p>
 							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-								Not a fan of social media? No problem! Feel free to reach out via{" "}
+								Prefer email communication? You can also reach out to me via{" "}
 								<Link
 									href={`mailto:${DATA.contact.email}`}
 									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
 								>
 									email
 								</Link>
-								.
+								, and I’ll get back to you promptly.
 							</p>
 						</div>
 					</BlurFade>
