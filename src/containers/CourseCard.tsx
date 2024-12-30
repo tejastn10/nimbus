@@ -83,7 +83,7 @@ const CourseCard: FC<CourseCardProps> = ({
 								{period}
 							</div>
 						</div>
-						{subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+						{subtitle && <div className="font-outfit text-xs">{subtitle}</div>}
 					</CardHeader>
 					{description && (
 						<MotionDiv

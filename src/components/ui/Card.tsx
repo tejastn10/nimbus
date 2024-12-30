@@ -46,7 +46,7 @@ const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
 	({ className, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={combineClasses("text-pretty font-sans text-sm text-muted-foreground", className)}
+			className={combineClasses("text-pretty font-outfit text-sm text-muted-foreground", className)}
 			{...props}
 		/>
 	)
