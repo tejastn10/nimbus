@@ -1,4 +1,4 @@
-const formatDate = (date: string): string => {
+const formatDate = (date: string, onlyDate?: boolean): string => {
 	// ! Return error if the date is invalid
 	if (!date) {
 		return "Invalid date";
@@ -21,6 +21,11 @@ const formatDate = (date: string): string => {
 		day: "numeric",
 		year: "numeric",
 	}).format(targetDate);
+
+	// ? Return only the date if the onlyDate flag is set
+	if (onlyDate) {
+		return fullDate;
+	}
 
 	// * Determine the appropriate label based on the difference in time
 	if (daysAgo < 1) {
