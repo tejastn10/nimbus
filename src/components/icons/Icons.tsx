@@ -22,6 +22,7 @@ import {
 	SiTypescript,
 	SiVercel,
 	SiFig,
+	SiGnubash,
 } from "react-icons/si";
 
 import {
@@ -66,6 +67,7 @@ const Icons = {
 	python: (props?: IconProps) => <SiPython {...props} />,
 	dart: (props?: IconProps) => <SiDart {...props} />,
 	go: (props?: IconProps) => <SiGo {...props} />,
+	bash: (props?: IconProps) => <SiGnubash {...props} />,
 
 	// * Frameworks
 	node: (props?: IconProps) => <SiNodedotjs {...props} />,
@@ -94,4 +96,18 @@ const Icons = {
 	database: (props?: IconProps) => <RiDatabase2Line {...props} />,
 };
 
-export { Icons };
+const languageIcons = {
+	JavaScript: Icons.javascript,
+	TypeScript: Icons.typescript,
+	Python: Icons.python,
+	Dart: Icons.dart,
+	Go: Icons.go,
+	Bash: Icons.bash,
+	Docker: Icons.docker,
+};
+
+const getLanguageIcon = (language: keyof typeof languageIcons): React.ElementType => {
+	return languageIcons[language] || null;
+};
+
+export { Icons, getLanguageIcon };
