@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 
 import { Navbar } from "@/containers/Navbar";
 
@@ -15,9 +15,9 @@ import { DATA } from "@/data/resume";
 
 import { combineClasses } from "@/utils/tailwind";
 
-const inter = Inter({
+const outfit = Outfit({
 	subsets: ["latin"],
-	variable: "--font-sans",
+	variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -65,8 +65,8 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={combineClasses(
-					"min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-					inter.variable
+					"min-h-screen bg-background font-outfit antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
+					outfit.variable
 				)}
 			>
 				<ThemeProvider attribute="class" defaultTheme="dark">
