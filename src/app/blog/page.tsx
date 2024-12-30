@@ -3,30 +3,70 @@ import { JSX } from "react";
 import Link from "next/link";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
 import { getBlogPosts } from "@/data/blog";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 
+import { getLanguageIcon } from "@/components/icons/Icons";
+
+import { formatDate } from "@/utils/date";
+
 export const metadata = {
 	title: "Blog",
-	description: "My thoughts on software development, life, and more.",
+	description:
+		"Welcome to my blog! Here, you will find my thoughts on software development, life, and anything else that comes to mind.",
 };
 
 const BlogPage = async (): Promise<JSX.Element> => {
 	const posts = await getBlogPosts();
+	const recentPosts: BentoCardProps[] = posts
+		.sort(
+			(a, b) =>
+				new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+		)
+		.map((post, index) => ({
+			name: post.metadata.title,
+			className:
+				index % 2 === 0
+					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
+					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
+			Icon: getLanguageIcon(post.metadata.about),
+			description: formatDate(post.metadata.publishedAt),
+			href: `/blog/${post.slug}`,
+			cta: "Read More",
+		}))
+		.slice(0, 2);
 
 	return (
 		<section>
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<h1 className="font-bold text-6xl mb-8 tracking-tighter">Blog</h1>
+				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
+				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 7}>
+			<BlurFade delay={BLUR_FADE_DELAY * 2}>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Recent Posts</h2>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 4}>
+				<BentoGrid className="auto-rows-[14rem]">
+					{recentPosts.map((post) => (
+						<BentoCard key={post.name} {...post} />
+					))}
+				</BentoGrid>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 6}>
 				<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 14}>
+			<BlurFade delay={BLUR_FADE_DELAY * 8}>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">All Posts</h2>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 12}>
 				{posts
 					.sort((a, b) => {
 						if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
