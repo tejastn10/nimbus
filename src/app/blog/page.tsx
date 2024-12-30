@@ -33,7 +33,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
 					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
 			Icon: getLanguageIcon(post.metadata.about),
-			description: formatDate(post.metadata.publishedAt),
+			description: formatDate(post.metadata.publishedAt, true),
 			href: `/blog/${post.slug}`,
 			cta: "Read More",
 		}))
