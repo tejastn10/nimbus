@@ -29,7 +29,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 		.map((post, index) => ({
 			name: post.metadata.title,
 			className:
-				index % 2 === 0
+				index % 4 === 0 || index % 4 === 3
 					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
 					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
 			Icon: getLanguageIcon(post.metadata.about),
@@ -37,7 +37,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			href: `/blog/${post.slug}`,
 			cta: "Read More",
 		}))
-		.slice(0, 2);
+		.slice(0, 4);
 
 	return (
 		<section>
