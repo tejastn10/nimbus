@@ -125,13 +125,31 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Halcyon",
+			href: "https://github.com/tejastn10/halcyon",
+			dates: "December 2024 - January 2025",
+			active: true,
+			description:
+				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly",
+			technologies: ["Go", "Cobra", "Github Actions"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/halcyon",
+					icon: Icons.github(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
 			title: "Argus",
 			href: "https://github.com/tejastn10/argus",
 			dates: "November 2024 - December 2024",
 			active: true,
 			description:
 				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
-			technologies: ["Go", "Docker"],
+			technologies: ["Go", "Github Actions", "Docker"],
 			links: [
 				{
 					type: "Source",
@@ -142,6 +160,11 @@ export const DATA = {
 					type: "Registry",
 					href: "https://hub.docker.com/r/tejastn10/argus",
 					icon: Icons.docker(),
+				},
+				{
+					type: "Registry",
+					href: "https://github.com/tejastn10/argus/pkgs/container/argus",
+					icon: Icons.container(),
 				},
 			],
 			image: "",
@@ -165,6 +188,33 @@ export const DATA = {
 					type: "Website",
 					href: "https://nimbus-ten.vercel.app",
 					icon: Icons.link(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
+			title: "ShoeShoppee",
+			href: "https://github.com/tejastn10/ShoeShoppee",
+			dates: "February 2021 - March 2021",
+			active: false,
+			description:
+				"An e-commerce website for shoes with a sleek black and white theme, showcasing animated UI components for a visually engaging shopping experience.",
+			technologies: [
+				"NodeJs",
+				"TypeScript",
+				"React",
+				"Express",
+				"Ant Design",
+				"MongoDB",
+				"Docker",
+				"Nginx",
+			],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/ShoeShoppee",
+					icon: Icons.github(),
 				},
 			],
 			image: "",
@@ -204,27 +254,23 @@ export const DATA = {
 			video: "",
 		},
 		{
-			title: "ShoeShoppee",
-			href: "https://github.com/tejastn10/ShoeShoppee",
-			dates: "February 2021 - March 2021",
-			active: false,
+			title: "Eden",
+			href: "https://github.com/tejastn10/eden",
+			dates: "June 2024 - July 2024",
+			active: true,
 			description:
-				"An e-commerce website for shoes with a sleek black and white theme, showcasing animated UI components for a visually engaging shopping experience.",
-			technologies: [
-				"NodeJs",
-				"TypeScript",
-				"React",
-				"Express",
-				"Ant Design",
-				"MongoDB",
-				"Docker",
-				"Nginx",
-			],
+				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
+			technologies: ["TypeScript", "React", "ViteJS", "ESLint", "Prettier", "Husky", "Commitlint"],
 			links: [
 				{
 					type: "Source",
-					href: "https://github.com/tejastn10/ShoeShoppee",
+					href: "https://github.com/tejastn10/eden",
 					icon: Icons.github(),
+				},
+				{
+					type: "Template",
+					href: "",
+					icon: Icons.template(),
 				},
 			],
 			image: "",
