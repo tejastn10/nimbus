@@ -40,6 +40,8 @@ import {
 
 import { RiTwitterXLine, RiDatabase2Line } from "react-icons/ri";
 
+import { GoContainer } from "react-icons/go";
+
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
 const Icons = {
@@ -86,6 +88,7 @@ const Icons = {
 	firebase: (props?: IconProps) => <SiFirebase {...props} />,
 
 	// * Cloud
+	container: (props?: IconProps) => <GoContainer {...props} />,
 	docker: (props?: IconProps) => <SiDocker {...props} />,
 	vercel: (props?: IconProps) => <SiVercel {...props} />,
 	aws: (props?: IconProps) => <SiAmazonwebservices {...props} />,
