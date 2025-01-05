@@ -125,10 +125,28 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Verve",
+			href: "https://github.com/tejastn10/verve",
+			dates: "January 2025",
+			featured: false,
+			description:
+				"An AI-driven Twitter bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
+			technologies: ["Python", "Tweepy", "Hugging Face", "GPT-2", "Poetry"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/verve",
+					icon: Icons.github(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
 			title: "Halcyon",
 			href: "https://github.com/tejastn10/halcyon",
 			dates: "December 2024 - January 2025",
-			active: true,
+			featured: true,
 			description:
 				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly",
 			technologies: ["Go", "Cobra", "Github Actions"],
@@ -146,7 +164,7 @@ export const DATA = {
 			title: "Argus",
 			href: "https://github.com/tejastn10/argus",
 			dates: "November 2024 - December 2024",
-			active: true,
+			featured: true,
 			description:
 				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
 			technologies: ["Go", "Github Actions", "Docker"],
@@ -174,7 +192,7 @@ export const DATA = {
 			title: "Nimbus",
 			href: "https://github.com/tejastn10/nimbus",
 			dates: "October 2024 - Present",
-			active: true,
+			featured: false,
 			description:
 				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
 			technologies: ["Next.js", "TypeScript", "shadcn", "TailwindCSS", "Vercel"],
@@ -197,7 +215,7 @@ export const DATA = {
 			title: "ShoeShoppee",
 			href: "https://github.com/tejastn10/ShoeShoppee",
 			dates: "February 2021 - March 2021",
-			active: false,
+			featured: false,
 			description:
 				"An e-commerce website for shoes with a sleek black and white theme, showcasing animated UI components for a visually engaging shopping experience.",
 			technologies: [
@@ -224,13 +242,13 @@ export const DATA = {
 			title: "Verdant",
 			href: "https://github.com/tejastn10/verdant",
 			dates: "July 2024 - August 2024",
-			active: true,
+			featured: true,
 			description:
 				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It’s flexible enough to add what you need, but expect it to be a work in progress!",
 			technologies: [
+				"Turborepo",
 				"NodeJs",
 				"TypeScript",
-				"Turborepo",
 				"React",
 				"NestJS",
 				"ViteJS",
@@ -257,7 +275,7 @@ export const DATA = {
 			title: "Eden",
 			href: "https://github.com/tejastn10/eden",
 			dates: "June 2024 - July 2024",
-			active: true,
+			featured: true,
 			description:
 				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
 			technologies: ["TypeScript", "React", "ViteJS", "ESLint", "Prettier", "Husky", "Commitlint"],
