@@ -23,6 +23,7 @@ import {
 	SiVercel,
 	SiFig,
 	SiGnubash,
+	SiTurborepo,
 } from "react-icons/si";
 
 import {
@@ -80,6 +81,7 @@ const Icons = {
 	nextjs: (props?: IconProps) => <SiNextdotjs {...props} />,
 	flutter: (props?: IconProps) => <SiFlutter {...props} />,
 	jest: (props?: IconProps) => <SiJest {...props} />,
+	turborepo: (props?: IconProps) => <SiTurborepo {...props} />,
 
 	// * Database
 	postgres: (props?: IconProps) => <SiPostgresql {...props} />,
@@ -107,6 +109,7 @@ const languageIcons = {
 	Go: Icons.go,
 	Bash: Icons.bash,
 	Docker: Icons.docker,
+	Turborepo: Icons.turborepo,
 };
 
 const getLanguageIcon = (language: keyof typeof languageIcons): React.ElementType => {
