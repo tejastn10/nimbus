@@ -50,6 +50,7 @@ export const metadata: Metadata = {
 	twitter: {
 		title: `${DATA.name}`,
 		card: "summary_large_image",
+		site: DATA.contact.social.Twitter.url,
 	},
 	verification: {
 		google: "",
