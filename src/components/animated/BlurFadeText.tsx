@@ -6,7 +6,7 @@ import { AnimatePresence, Variants } from "motion/react";
 
 import { MotionSpan } from "../motion";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type BlurFadeTextProps = {
 	text: string;
@@ -51,7 +51,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 								delay: delay + index * characterDelay,
 								ease: "easeOut",
 							}}
-							className={combineClasses("inline-block", className)}
+							className={cx("inline-block", className)}
 							style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
 						>
 							{char}
@@ -75,7 +75,7 @@ const BlurFadeText: FC<BlurFadeTextProps> = ({
 						yoyo: Infinity,
 						ease: "easeOut",
 					}}
-					className={combineClasses("inline-block", className)}
+					className={cx("inline-block", className)}
 				>
 					{text}
 				</MotionSpan>

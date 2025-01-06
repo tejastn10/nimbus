@@ -4,16 +4,13 @@ import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
 
 import { Root, Image, Fallback } from "@radix-ui/react-avatar";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 const Avatar = forwardRef<ComponentRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
 	({ className, ...props }, ref) => (
 		<Root
 			ref={ref}
-			className={combineClasses(
-				"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-md",
-				className
-			)}
+			className={cx("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-md", className)}
 			{...props}
 		/>
 	)
@@ -25,7 +22,7 @@ const AvatarImage = forwardRef<ComponentRef<typeof Image>, ComponentPropsWithout
 		<Image
 			ref={ref}
 			alt={alt}
-			className={combineClasses(
+			className={cx(
 				"aspect-square h-full w-full object-contain grayscale transition-all duration-300 p-2",
 				className
 			)}
@@ -41,10 +38,7 @@ const AvatarFallback = forwardRef<
 >(({ className, ...props }, ref) => (
 	<Fallback
 		ref={ref}
-		className={combineClasses(
-			"flex h-full w-full items-center justify-center rounded-md bg-muted",
-			className
-		)}
+		className={cx("flex h-full w-full items-center justify-center rounded-md bg-muted", className)}
 		{...props}
 	/>
 ));

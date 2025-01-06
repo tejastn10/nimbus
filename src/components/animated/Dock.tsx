@@ -15,7 +15,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { MotionDiv } from "../motion";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 import { DEFAULT_DISTANCE, DEFAULT_MAGNIFICATION } from "@/constants/ui";
 
@@ -70,7 +70,7 @@ const Dock = forwardRef<HTMLDivElement, DockProps>(
 				onMouseMove={(e: { pageX: number }) => mousex.set(e.pageX)}
 				onMouseLeave={() => mousex.set(Infinity)}
 				{...props}
-				className={combineClasses(dockVariants({ className }))}
+				className={cx(dockVariants({ className }))}
 			>
 				{renderChildren()}
 			</MotionDiv>
@@ -106,7 +106,7 @@ const DockIcon = ({
 		<MotionDiv
 			ref={ref}
 			style={{ width: width as unknown as number }}
-			className={combineClasses(
+			className={cx(
 				"flex aspect-square cursor-pointer items-center justify-center rounded-md",
 				className
 			)}

@@ -11,7 +11,7 @@ import { MotionDiv } from "@/components/motion";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type CourseCardProps = {
 	href?: string;
@@ -73,7 +73,7 @@ const CourseCard: FC<CourseCardProps> = ({
 									</span>
 								)}
 								<Icons.chevron
-									className={combineClasses(
+									className={cx(
 										"size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
 										isExpanded ? "rotate-90" : "rotate-0"
 									)}

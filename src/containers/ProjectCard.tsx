@@ -8,7 +8,7 @@ import Markdown from "react-markdown";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type ProjectProps = {
 	title: string;
@@ -49,7 +49,7 @@ const ProjectCard: FC<ProjectProps> = ({
 				target="_blank"
 				href={href || "#"}
 				rel="noopener noreferrer"
-				className={combineClasses("block cursor-pointer", className)}
+				className={cx("block cursor-pointer", className)}
 			>
 				{video && (
 					<video

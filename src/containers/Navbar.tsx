@@ -12,7 +12,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip
 
 import { DATA } from "@/data/resume";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 const Navbar: FC = () => {
 	return (
@@ -25,10 +25,7 @@ const Navbar: FC = () => {
 							<TooltipTrigger asChild>
 								<Link
 									href={item.href}
-									className={combineClasses(
-										buttonVariants({ variant: "ghost", size: "icon" }),
-										"size-12"
-									)}
+									className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
 								>
 									<item.icon className="size-4" />
 								</Link>
@@ -50,10 +47,7 @@ const Navbar: FC = () => {
 										target="_blank"
 										href={social.url}
 										rel="noopener noreferrer"
-										className={combineClasses(
-											buttonVariants({ variant: "ghost", size: "icon" }),
-											"size-12"
-										)}
+										className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
 									>
 										<social.icon className="size-4" />
 									</Link>

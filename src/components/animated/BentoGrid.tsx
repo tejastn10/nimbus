@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 
 import { Icons } from "../icons/Icons";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type BentoGridProps = {
 	children: ReactNode;
@@ -22,7 +22,7 @@ type BentoCardProps = {
 
 const BentoGrid: FC<BentoGridProps> = ({ children, className }) => {
 	return (
-		<div className={combineClasses("grid w-full auto-rows-[22rem] grid-cols-3 gap-2", className)}>
+		<div className={cx("grid w-full auto-rows-[22rem] grid-cols-3 gap-2", className)}>
 			{children}
 		</div>
 	);
@@ -31,7 +31,7 @@ const BentoGrid: FC<BentoGridProps> = ({ children, className }) => {
 const BentoCard: FC<BentoCardProps> = ({ name, className, Icon, description, href, cta }) => (
 	<div
 		key={name}
-		className={combineClasses(
+		className={cx(
 			"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
 			// light styles
 			"bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
@@ -49,7 +49,7 @@ const BentoCard: FC<BentoCardProps> = ({ name, className, Icon, description, hre
 		</div>
 
 		<div
-			className={combineClasses(
+			className={cx(
 				"pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
 			)}
 		>

@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type ResumeCardProps = {
 	logoUrl: string;
@@ -70,7 +70,7 @@ const ResumeCard: FC<ResumeCardProps> = ({
 							<h3 className="inline-flex items-center justify-center font-bold leading-none text-md sm:text-md">
 								{company}
 								<Icons.chevron
-									className={combineClasses(
+									className={cx(
 										"size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
 										isExpanded ? "rotate-90" : "rotate-0"
 									)}

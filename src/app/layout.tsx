@@ -13,7 +13,7 @@ import { TooltipProvider } from "@/components/ui/Tooltip";
 
 import { DATA } from "@/data/resume";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 const outfit = Outfit({
 	subsets: ["latin"],
@@ -64,7 +64,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={combineClasses(
+				className={cx(
 					"min-h-screen bg-background font-outfit antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
 					outfit.variable
 				)}
@@ -89,7 +89,7 @@ export default function RootLayout({
 							[12, 15],
 							[15, 10],
 						]}
-						className={combineClasses(
+						className={cx(
 							"[mask-image:radial-gradient(200px_circle_at_center,white,transparent)]",
 							"fixed inset-0 z-0 h-[25%] w-full skew-y-12"
 						)}
@@ -109,7 +109,7 @@ export default function RootLayout({
 							[24, 30],
 							[30, 20],
 						]}
-						className={combineClasses(
+						className={cx(
 							"[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
 							"fixed inset-0 z-0 h-[210%] w-full skew-y-12"
 						)}

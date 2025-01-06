@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
 
 import { Root } from "@radix-ui/react-separator";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 const Separator = forwardRef<ComponentRef<typeof Root>, ComponentPropsWithoutRef<typeof Root>>(
 	({ className, orientation = "horizontal", decorative = true, ...props }, ref) => (
@@ -12,7 +12,7 @@ const Separator = forwardRef<ComponentRef<typeof Root>, ComponentPropsWithoutRef
 			ref={ref}
 			decorative={decorative}
 			orientation={orientation}
-			className={combineClasses(
+			className={cx(
 				"shrink-0 bg-border",
 				orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
 				className

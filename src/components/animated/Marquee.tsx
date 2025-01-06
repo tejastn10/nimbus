@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type MarqueeProps = {
 	repeat?: number;
@@ -23,7 +23,7 @@ const Marquee: FC<MarqueeProps> = ({
 	return (
 		<div
 			{...props}
-			className={combineClasses(
+			className={cx(
 				"group flex overflow-hidden p-1 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
 				{
 					"flex-row": !vertical,
@@ -37,7 +37,7 @@ const Marquee: FC<MarqueeProps> = ({
 				.map((_, i) => (
 					<div
 						key={i}
-						className={combineClasses("flex shrink-0 justify-around [gap:var(--gap)]", {
+						className={cx("flex shrink-0 justify-around [gap:var(--gap)]", {
 							"animate-marquee flex-row": !vertical,
 							"animate-marquee-vertical flex-col": vertical,
 							"group-hover:[animation-play-state:paused]": pauseOnHover,

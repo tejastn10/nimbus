@@ -1,6 +1,6 @@
 import { FC, useId } from "react";
 
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type GridPatternProps = {
 	x?: number;
@@ -28,7 +28,7 @@ const GridPattern: FC<GridPatternProps> = ({
 	return (
 		<svg
 			aria-hidden="true"
-			className={combineClasses(
+			className={cx(
 				"pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
 				className
 			)}

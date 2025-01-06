@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { combineClasses } from "@/utils/tailwind";
+import { cx } from "@/utils/tailwind";
 
 type BadgeProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof badgeVariants> & {
@@ -28,7 +28,7 @@ const badgeVariants = cva(
 
 const Badge: FC<BadgeProps> = ({ className, variant, noHover, ...props }) => {
 	// If noHover is true, completely remove hover styles by applying `no-hover` class dynamically
-	const computedClassName = combineClasses(
+	const computedClassName = cx(
 		badgeVariants({ variant }),
 		noHover
 			? "hover:!bg-[initial] hover:!text-[inherit] hover:!shadow-none hover:!border-[inherit] pointer-events-none" // Fully override hover styles
