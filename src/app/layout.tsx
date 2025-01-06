@@ -18,6 +18,7 @@ import { cx } from "@/utils/tailwind";
 const outfit = Outfit({
 	subsets: ["latin"],
 	variable: "--font-outfit",
+	display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -62,7 +63,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning className={outfit.variable}>
 			<body
 				className={cx(
 					"min-h-screen bg-background font-outfit antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
