@@ -136,21 +136,23 @@ const Home: FC = () => {
 						</div>
 					</BlurFade>
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto">
-						{DATA.projects.map((project, id) => (
-							<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
-								<ProjectCard
-									href={project.href}
-									key={project.title}
-									title={project.title}
-									description={project.description}
-									dates={project.dates}
-									tags={project.technologies}
-									image={project.image}
-									video={project.video}
-									links={project.links}
-								/>
-							</BlurFade>
-						))}
+						{DATA.projects
+							.filter((project) => project.featured)
+							.map((project, id) => (
+								<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
+									<ProjectCard
+										href={project.href}
+										key={project.title}
+										title={project.title}
+										description={project.description}
+										dates={project.dates}
+										tags={project.technologies}
+										image={project.image}
+										video={project.video}
+										links={project.links}
+									/>
+								</BlurFade>
+							))}
 					</div>
 				</div>
 			</section>
