@@ -8,6 +8,7 @@ import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/Bent
 import { getBlogPosts } from "@/data/blog";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
+import { POST_SLICE_NUMBER } from "@/constants/values";
 
 import { getLanguageIcon } from "@/components/icons/Icons";
 
@@ -37,7 +38,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			href: `/blog/${post.slug}`,
 			cta: "Read More",
 		}))
-		.slice(0, 4);
+		.slice(0, POST_SLICE_NUMBER);
 
 	return (
 		<section>
@@ -63,11 +64,12 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">All Posts</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Remaining Posts</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 12}>
 				{posts
+					.slice(POST_SLICE_NUMBER)
 					.sort((a, b) => {
 						if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
 							return -1;
