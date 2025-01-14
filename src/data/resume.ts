@@ -71,10 +71,10 @@ export const DATA = {
 					end: undefined,
 					description: [
 						"Automated image exports in AWS Lambda, ensuring integrity and efficiency. Designed BullMQ-based queues for real-time data updates and reliable processing of the image export",
-						"Configured CI/CD with GitHub Actions, improving deployment and productivity.",
 						"Developed Rocketium’s core video editor (similar to Adobe After Effects) with advanced features like precise timeline manipulation, keyframe movements, and layer snapping, enabling scalable video production.",
 						"Addressed 800 vulnerabilities, achieving SOC2 compliance and system security.",
-						"Implemented unified logging and resolved critical on-call issues for reliability.",
+						"Implemented a scalable version history system for handling large datasets, leveraging AWS S3 and Lambda. Optimized storage and transfer with Google’s Brotli compression for high performance and efficiency.",
+						"Developed a Brand Safety feature for GIFs and videos using AWS Step Functions and Lambda. Enabled frame-by-frame analysis with Google Vision for precise content moderation.",
 					],
 				},
 				{
@@ -83,9 +83,11 @@ export const DATA = {
 					end: "July 2022",
 					description: [
 						"Engineered custom data filters, optimizing analysis for Creative Analytics used by Airtel, ADA, Rappi.",
+						"Configured CI/CD with GitHub Actions, improving deployment and productivity.",
 						"Enhanced front-end algorithms, supporting heavy asset processing and large datasets.",
 						"Transitioned data calculations to back-end, boosting platform speed and efficiency.",
 						"Built a new animation engine with WAAPI and upgraded video editor UI for seamless user interaction.",
+						"Implemented unified logging and resolved critical on-call issues for reliability.",
 					],
 				},
 			],
