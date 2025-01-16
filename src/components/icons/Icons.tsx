@@ -101,7 +101,7 @@ const Icons = {
 	database: (props?: IconProps) => <RiDatabase2Line {...props} />,
 };
 
-const languageIcons = {
+const logos = {
 	JavaScript: Icons.javascript,
 	TypeScript: Icons.typescript,
 	Python: Icons.python,
@@ -113,8 +113,8 @@ const languageIcons = {
 	NestJS: Icons.nestjs,
 };
 
-const getLanguageIcon = (language: keyof typeof languageIcons): React.ElementType => {
-	return languageIcons[language] || null;
+const getLogo = (language: keyof typeof logos): React.ElementType => {
+	return logos[language] || null;
 };
 
-export { Icons, getLanguageIcon };
+export { Icons, getLogo };
