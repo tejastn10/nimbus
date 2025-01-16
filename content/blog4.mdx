@@ -1,0 +1,159 @@
+---
+title: "Understanding CORS and Setting it up with NestJS + Fastify 🚀"
+publishedAt: "2025-01-16"
+description:
+  "A guide to understanding CORS and how to configure it in a NestJS application using the Fastify
+  adapter. Learn how to enable secure communication between your frontend and backend."
+about: NestJS
+---
+
+CORS, or Cross-Origin Resource Sharing, is a mechanism that allows a server to indicate any origins
+(domain, scheme, or port) other than its own from which a browser should permit loading resources.
+Without CORS, modern browsers would block cross-origin requests for security reasons, preventing
+malicious behavior.
+
+---
+
+### Why is CORS Necessary?
+
+When building modern web applications, the frontend and backend often run on different domains or
+ports, especially during development. For example:
+
+- **Frontend**: `http://localhost:3000`
+- **Backend**: `http://localhost:5000`
+
+By default, browsers block requests from the frontend to the backend due to the **Same-Origin
+Policy**. This is where CORS comes in—it acts as a controlled way to bypass the same-origin
+restriction, enabling secure communication.
+
+A typical CORS scenario involves the frontend making an API call to the backend, and the backend
+explicitly allowing such requests by including certain headers in its response.
+
+---
+
+### Configuring CORS in NestJS with Fastify
+
+While enabling CORS in a NestJS application using Express is straightforward, using Fastify requires
+a slightly different approach. When I was working on a project, I decided to switch from Vite’s
+proxy server to enabling CORS on my Fastify server, both as a learning opportunity and for better
+alignment with production setups. However, I found the documentation and available articles on
+enabling CORS for Fastify in NestJS to be sparse.
+
+Here’s how I tackled it.
+
+### Step 1: Define CORS Options
+
+To keep things clean and reusable, I created a dedicated `cors.options.ts` file for my CORS
+configuration. Here's what it looks like:
+
+```typescript
+import { type CorsOptions } from "@nestjs/common/interfaces/external/cors-options.interface";
+
+const CorsOptions: CorsOptions = {
+	origin: [
+		// ? Development environment
+		"http://localhost:3000",
+		// * Add Production and Staging URLs here
+	],
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	allowedHeaders: "Content-Type, Authorization",
+	credentials: true,
+	maxAge: 86400,
+};
+
+export { CorsOptions };
+```
+
+### Step 2: Use CORS Options in the Main Application
+
+In the `main.ts` file, I configured the Fastify server to use these options:
+
+```typescript
+import { NestFactory } from "@nestjs/core";
+import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
+import helmet from "@fastify/helmet";
+
+import { CorsOptions } from "./options/cors.options";
+import { AppModule } from "./app.module";
+
+const bootstrap = async (): Promise<void> => {
+	const FastifyModule = new FastifyAdapter();
+
+	// Enabling things for Fastify server
+	FastifyModule.register(helmet); // Secure headers
+	FastifyModule.enableCors(CorsOptions); // Enable CORS with custom options
+
+	const app = await NestFactory.create<NestFastifyApplication>(AppModule, FastifyModule);
+
+	// Start the application
+	const PORT = 5000;
+	await app.listen(PORT, () => {
+		console.log(`Server is running on http://localhost:${PORT}`);
+	});
+};
+
+bootstrap();
+```
+
+#### Key Points to Note
+
+- **Origins**: I specified the allowed origins explicitly, such as `http://localhost:3000` for
+  development. Add production or staging URLs as needed.
+- **Methods**: Only specific HTTP methods like `GET`, `POST`, and `DELETE` are allowed.
+- **Credentials**: By setting `credentials: true`, the server allows cookies or authentication
+  tokens to be sent with requests.
+- **Modular Approach**: Placing the CORS options in a separate file helps maintain modularity and
+  makes it easier to modify configurations in the future.
+
+---
+
+### Axios Configuration for the Frontend
+
+Here is my `axiosConfig.ts` file, showing how I have configured Axios for the frontend:
+
+```typescript
+import axios, { AxiosRequestConfig } from "axios";
+
+import { ContentType, ResponseType, ResponseEncoding } from "../config/requestConfig";
+
+const baseURL = (import.meta.env.VITE_API_BASE_URL as string) ?? "http://localhost:5000";
+
+const axiosRequestConfig: AxiosRequestConfig = {
+	baseURL,
+	headers: {
+		"Content-Type": ContentType.JSON,
+	},
+	timeout: 330000,
+	withCredentials: true,
+	responseType: ResponseType.JSON,
+	responseEncoding: ResponseEncoding.UTF8,
+	maxContentLength: 50000,
+	validateStatus(status) {
+		return status >= 200 && status < 300;
+	},
+	maxRedirects: 5,
+};
+
+const AxiosInstance = axios.create(axiosRequestConfig);
+
+export { axiosRequestConfig, AxiosInstance };
+```
+
+### Learnings and Final Thoughts
+
+While configuring CORS for Fastify in NestJS, I initially used Express-specific solutions, which
+felt incorrect and hacky. After thorough research, I found the proper way to enable it using the
+enableCors method of the Fastify adapter.
+
+If you’re using my [**Verdant**](https://github.com/tejastn10/verdant) turborepo template, you can
+find an example of this CORS configuration there. The repo also demonstrates how to structure a
+modern monorepo using tools like **TurboRepo** and **Vite**.
+
+If you want to learn more about CORS, check out this
+[MDN article](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), which does a fantastic job of
+explaining the concept in detail.
+
+---
+
+CORS can seem tricky initially, but with the right approach, it’s straightforward to configure and
+ensures secure communication between your frontend and backend.
