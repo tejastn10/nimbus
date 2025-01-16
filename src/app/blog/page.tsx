@@ -36,7 +36,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			Icon: getLogo(post.metadata.about),
 			description: formatDate(post.metadata.publishedAt, true),
 			href: `/blog/${post.slug}`,
-			cta: "Read More",
+			cta: "Read",
 		}))
 		.slice(0, POST_SLICE_NUMBER);
 
