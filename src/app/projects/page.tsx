@@ -1,6 +1,6 @@
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 import { BlurFade } from "@/components/animated/BlurFade";
-import { getLanguageIcon } from "@/components/icons/Icons";
+import { getLogo } from "@/components/icons/Icons";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
 import { ProjectCard } from "@/containers/ProjectCard";
@@ -23,7 +23,7 @@ const ProjectsPage = (): JSX.Element => {
 				index % 4 === 0 || index % 4 === 3
 					? "col-span-3 lg:col-span-1 grayscale hover:grayscale-0"
 					: "col-span-3 lg:col-span-2 grayscale hover:grayscale-0",
-			Icon: getLanguageIcon(project.technologies[0] as any),
+			Icon: getLogo(project.technologies[0] as any),
 			description: index % 4 === 0 || index % 4 === 3 ? project.dates : project.description,
 			href: project.links[0].href,
 			cta: "View Project",

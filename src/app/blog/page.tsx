@@ -10,7 +10,7 @@ import { getBlogPosts } from "@/data/blog";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { POST_SLICE_NUMBER } from "@/constants/values";
 
-import { getLanguageIcon } from "@/components/icons/Icons";
+import { getLogo } from "@/components/icons/Icons";
 
 import { formatDate } from "@/utils/date";
 
@@ -33,7 +33,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 				index % 4 === 0 || index % 4 === 3
 					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
 					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
-			Icon: getLanguageIcon(post.metadata.about),
+			Icon: getLogo(post.metadata.about),
 			description: formatDate(post.metadata.publishedAt, true),
 			href: `/blog/${post.slug}`,
 			cta: "Read More",
