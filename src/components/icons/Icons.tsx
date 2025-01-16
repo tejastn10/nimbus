@@ -110,6 +110,7 @@ const languageIcons = {
 	Bash: Icons.bash,
 	Docker: Icons.docker,
 	Turborepo: Icons.turborepo,
+	NestJS: Icons.nestjs,
 };
 
 const getLanguageIcon = (language: keyof typeof languageIcons): React.ElementType => {
