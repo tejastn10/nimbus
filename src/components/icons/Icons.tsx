@@ -111,6 +111,7 @@ const logos = {
 	Docker: Icons.docker,
 	Turborepo: Icons.turborepo,
 	NestJS: Icons.nestjs,
+	GithubActions: Icons.actions,
 };
 
 const getLogo = (language: keyof typeof logos): React.ElementType => {
