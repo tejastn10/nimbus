@@ -72,7 +72,7 @@ export const DATA = {
 					description: [
 						"Automated image exports in AWS Lambda, ensuring integrity and efficiency. Designed BullMQ-based queues for real-time data updates and reliable processing of the image export",
 						"Developed Rocketium’s core video editor (similar to Adobe After Effects) with advanced features like precise timeline manipulation, keyframe movements, and layer snapping, enabling scalable video production.",
-						"Addressed 800 vulnerabilities, achieving SOC2 compliance and system security.",
+						"Addressed 800+ vulnerabilities, achieving SOC2 compliance and system security.",
 						"Implemented a scalable version history system for handling large datasets, leveraging AWS S3 and Lambda. Optimized storage and transfer with Google’s Brotli compression for high performance and efficiency.",
 						"Developed a Brand Safety feature for GIFs and videos using AWS Step Functions and Lambda. Enabled frame-by-frame analysis with Google Vision for precise content moderation.",
 					],
