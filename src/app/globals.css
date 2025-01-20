@@ -75,6 +75,22 @@
   }
 }
 
+/* Add this to your existing global.css */
+* {
+  cursor: none !important;
+}
+
+/* Optional: Disable custom cursor for touch devices */
+@media (hover: none) {
+  * {
+    cursor: auto !important;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+}
+
 h3 code {
   @apply !text-lg md:!text-xl;
 }
