@@ -92,6 +92,7 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 			/>
 
 			<BlurFade delay={BLUR_FADE_DELAY}>
+				<div className="h-2 w-12 rounded bg-gradient-to-r from-primary to-primary/60" />
 				<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
 					{post.metadata.title}
 				</h1>
