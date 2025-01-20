@@ -12,6 +12,8 @@ import { GridPattern } from "@/components/animated/GridPattern";
 
 import { TooltipProvider } from "@/components/ui/Tooltip";
 
+import { Cursor } from "@/components/animated/Cursor";
+
 import { DATA } from "@/data/resume";
 
 import { cx } from "@/utils/tailwind";
@@ -72,6 +74,7 @@ export default function RootLayout({
 					outfit.variable
 				)}
 			>
+				<Cursor />
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<TooltipProvider delayDuration={0}>
 						{children}
