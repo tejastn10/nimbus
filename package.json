@@ -46,7 +46,7 @@
 		"rehype-stringify": "^10.0.1",
 		"remark-parse": "^11.0.0",
 		"remark-rehype": "^11.1.1",
-		"shiki": "^1.27.2",
+		"shiki": "^1.29.1",
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7",
 		"unified": "^11.0.5"
