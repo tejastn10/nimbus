@@ -27,12 +27,9 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			(a, b) =>
 				new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
 		)
-		.map((post, index) => ({
+		.map((post) => ({
 			name: post.metadata.title,
-			className:
-				index % 4 === 0 || index % 4 === 3
-					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
-					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
+			className: "col-span-2 lg:col-span-2 grayscale hover:grayscale-0",
 			Icon: getLogo(post.metadata.about),
 			description: formatDate(post.metadata.publishedAt, true),
 			href: `/blog/${post.slug}`,
@@ -53,7 +50,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
-				<BentoGrid className="auto-rows-[14rem]">
+				<BentoGrid className="auto-rows-[14rem] grid-cols-4">
 					{recentPosts.map((post) => (
 						<BentoCard key={post.name} {...post} />
 					))}
