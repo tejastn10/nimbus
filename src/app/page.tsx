@@ -27,7 +27,7 @@ const Home: FC = () => {
 					<div className="gap-2 flex justify-between">
 						<div className="flex-col flex flex-1 space-y-1.5">
 							<BlurFade delay={BLUR_FADE_DELAY}>
-								<div className="h-2 w-12 rounded bg-gradient-to-r from-primary to-primary/60" />
+								<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
 								<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
 									{`Hi, I'm ${DATA.name.split(" ")[0]}`}
 								</h1>
@@ -101,8 +101,8 @@ const Home: FC = () => {
 							</Marquee>
 
 							{/* Shadow Effect on the left and right */}
-							<div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
-							<div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+							<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+							<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
 						</div>
 					))}
 				</div>
