@@ -41,7 +41,7 @@ const ProjectsPage = (): JSX.Element => {
 	return (
 		<section>
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<div className="h-2 w-12 rounded bg-gradient-to-r from-primary to-primary/60" />
+				<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
 				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
 				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
 			</BlurFade>
