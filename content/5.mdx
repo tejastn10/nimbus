@@ -1,0 +1,192 @@
+---
+title: "Mastering GitHub Actions Strategy Matrix: Deploy Smarter, Not Harder ⚙️"
+publishedAt: "2025-02-01"
+description:
+  "Learn how to use GitHub Actions strategy matrix to streamline deployments of Docker-based Lambdas
+  and Google Cloud Run services. Maximize efficiency, save time, and handle fail-fast behaviors
+  effectively."
+about: GithubActions
+---
+
+_Automating deployments is a crucial part of modern software development. Recently, while working on
+setting up GitHub Actions to deploy Docker-based AWS Lambdas, I came across the strategy matrix
+feature in GitHub Actions. This feature amazed me because it drastically reduces repetitive
+configurations when deploying multiple services or Lambdas._
+
+---
+
+### The Power of Strategy Matrix in GitHub Actions
+
+GitHub Actions provides a **strategy matrix**, a feature that allows developers to define multiple
+configurations for their jobs and execute them concurrently. This significantly reduces deployment
+times and improves efficiency, particularly when deploying multiple services or lambda functions.
+
+Using a matrix, you can dynamically define configurations like operating systems, Node.js versions,
+services, or lambda configurations and run jobs simultaneously. This eliminates repetitive code and
+manual overhead.
+
+---
+
+### Example: Deploying Multiple Docker-Based Lambdas
+
+Here’s how you can set up a GitHub Actions workflow to deploy multiple Docker-based AWS Lambda
+functions. The strategy matrix enables us to define each lambda’s details (e.g., name, Dockerfile
+path, and ECR repository) in a concise, reusable way.
+
+```yaml
+name: Deploy Docker-Based Lambdas
+on:
+  workflow_dispatch:
+    inputs:
+      alias:
+        description: "Select the alias for the Lambda function"
+        required: true
+        type: choice
+        options:
+          - DEV
+          - STAGING
+          - PRE-PROD
+
+jobs:
+  deploy-lambdas:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lambda:
+          - name: dockerLambda1
+            dockerfile: dockerfile
+            context: ./lambda/dockerLambda1
+            tag: dockerLambda1
+            ecr_repo: dockerLambda1
+            function_name: dockerLambda1
+          - name: dockerLambda2
+            dockerfile: dockerfile
+            context: ./lambda/dockerLambda2
+            tag: dockerLambda2
+            ecr_repo: dockerLambda2
+            function_name: dockerLambda2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # Rest of the code: AWS configuration, Docker build, ECR push, and Lambda deployment
+```
+
+In this workflow:
+
+- **`matrix.lambda`** defines configurations for each Lambda.
+- GitHub Actions runs a job for each matrix entry, reducing manual duplication.
+- You can dynamically set environment variables like aliases based on branches.
+
+---
+
+### Example: Deploying Multiple Docker Images to Google Cloud Run
+
+Similarly, the strategy matrix can be used for deploying multiple services to Google Cloud Run.
+Here's how the setup looks:
+
+```yaml
+name: Release all services
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        service: ["proctor", "screenshot", "stitch", "canvas-snap", "canvas-fuse"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Rest of the code: Google authentication, Docker build, push, and deployment
+```
+
+The matrix here dynamically configures each service, allowing seamless deployment.
+
+---
+
+### Advanced Strategy Matrix Features
+
+#### Fail-Fast Behavior
+
+By default, GitHub Actions cancels all running jobs in a matrix if any job fails. This is helpful
+for detecting issues early and saving resources. However, you can disable this behavior if you need
+all jobs to complete, regardless of failures.
+
+```yaml
+strategy:
+  fail-fast: false
+  matrix:
+      version: [16, 18, 20]
+steps:
+  - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.version }}
+```
+
+Setting `fail-fast: false` ensures all jobs complete, which is particularly useful for collecting a
+complete set of test results.
+
+#### Max Parallel Jobs
+
+For resource management, you can limit the number of matrix jobs running concurrently using the
+`max-parallel` key. This is especially useful with self-hosted runners or large matrices.
+
+```yaml
+strategy:
+  max-parallel: 2
+  matrix:
+      version: [16, 18, 20]
+steps:
+  - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.version }}
+```
+
+In this configuration, no more than two jobs will run simultaneously, even if more runners are
+available.
+
+> **Note:** Avoid using `max-parallel` with `runs-on` self-hosted runners, as it may lead to
+> suboptimal behavior.
+
+---
+
+#### Using the Matrix Context and Job Index
+
+The `matrix` context and `strategy.job-index` variable allow you to dynamically reference the
+current matrix configuration and job index. This is useful for identifying jobs or splitting tasks
+evenly.
+
+```yaml
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [18, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Display matrix and index
+        run: |
+          echo "Running on ${{ matrix.os }} with Node.js ${{ matrix.node }}"
+          echo "This is matrix job #${{ strategy.job-index }}"
+```
+
+Each job outputs its configuration (e.g., OS, Node.js version) and its zero-based index.
+
+---
+
+### Key Takeaways
+
+1. **Simplify Repetitive Work:** Use the strategy matrix to define multiple configurations for jobs,
+   reducing redundancy.
+2. **Optimize Resource Use:** Leverage `fail-fast`, `max-parallel`, and job indexing to balance
+   efficiency and resource consumption.
+3. **Powerful for Deployments:** Strategy matrix makes deploying multiple services or lambdas
+   seamless, whether to AWS, Google Cloud, or other platforms.
+
+By combining these advanced features, you can set up efficient and scalable workflows for a variety
+of CI/CD needs. For further reading, check the official GitHub documentation on the
+[strategy matrix](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow).
