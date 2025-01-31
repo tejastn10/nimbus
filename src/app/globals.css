@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
@@ -6,103 +6,89 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-outfit: var(--font-outfit);
+	--font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-outfit: var(--font-outfit);
 
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+	--color-border: hsl(var(--border));
+	--color-input: hsl(var(--input));
+	--color-ring: hsl(var(--ring));
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+	--color-primary: hsl(var(--primary));
+	--color-primary-foreground: hsl(var(--primary-foreground));
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+	--color-secondary: hsl(var(--secondary));
+	--color-secondary-foreground: hsl(var(--secondary-foreground));
 
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
+	--color-destructive: hsl(var(--destructive));
+	--color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+	--color-muted: hsl(var(--muted));
+	--color-muted-foreground: hsl(var(--muted-foreground));
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+	--color-accent: hsl(var(--accent));
+	--color-accent-foreground: hsl(var(--accent-foreground));
 
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+	--color-popover: hsl(var(--popover));
+	--color-popover-foreground: hsl(var(--popover-foreground));
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+	--color-card: hsl(var(--card));
+	--color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+	--radius-lg: var(--radius);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) - 4px);
 
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-meteor: meteor 5s linear infinite;
-  --animate-marquee: marquee var(--duration) linear infinite;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+	--animate-marquee: marquee 50s linear infinite;
+	--animate-marquee-vertical: marquee-vertical 50s linear infinite;
 
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
-  }
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-100% - var(--gap)));
+		}
+	}
+	@keyframes marquee-vertical {
+		from {
+			transform: translateY(0);
+		}
+		to {
+			transform: translateY(calc(-100% - var(--gap)));
+		}
+	}
 }
 
 @utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
+	margin-inline: auto;
+	padding-inline: 2rem;
+	@media (width >= --theme(--breakpoint-sm)) {
+		max-width: none;
+	}
+	@media (width >= 1400px) {
+		max-width: 1400px;
+	}
 }
 
 /*
@@ -114,176 +100,138 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentColor);
+	}
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 210 11.1% 3.53%;
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 210 11.1% 3.53%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 11.1% 3.53%;
+		--card: 0 0% 100%;
+		--card-foreground: 210 11.1% 3.53%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 11.1% 3.53%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 210 11.1% 3.53%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+		--primary: 0 0% 9%;
+		--primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+		--secondary: 0 0% 96.1%;
+		--secondary-foreground: 0 0% 9%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+		--muted: 0 0% 96.1%;
+		--muted-foreground: 0 0% 45.1%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+		--accent: 0 0% 96.1%;
+		--accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+		--border: 0 0% 89.8%;
+		--input: 0 0% 89.8%;
+		--ring: 0 0% 3.9%;
 
-    --radius: 0.5rem;
-  }
+		--radius: 0.5rem;
+	}
 
-  .dark {
-    --background: 210 11.1% 3.53%;
-    --foreground: 0 0% 98%;
+	.dark {
+		--background: 210 11.1% 3.53%;
+		--foreground: 0 0% 98%;
 
-    --card: 210 11.1% 3.53%;
-    --card-foreground: 0 0% 98%;
+		--card: 210 11.1% 3.53%;
+		--card-foreground: 0 0% 98%;
 
-    --popover: 210 11.1% 3.53%;
-    --popover-foreground: 0 0% 98%;
+		--popover: 210 11.1% 3.53%;
+		--popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 0 0% 9%;
 
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+		--muted: 0 0% 14.9%;
+		--muted-foreground: 0 0% 63.9%;
 
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+		--accent: 0 0% 14.9%;
+		--accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
+		--border: 0 0% 14.9%;
+		--input: 0 0% 14.9%;
+		--ring: 0 0% 83.1%;
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
 }
 
-/* Add this to your existing global.css */
 * {
-  cursor: none !important;
+	cursor: none !important;
 }
 
-/* Optional: Disable custom cursor for touch devices */
 @media (hover: none) {
-  * {
-    cursor: auto !important;
-  }
+	* {
+		cursor: auto !important;
+	}
 
-  .custom-cursor {
-    display: none;
-  }
+	.custom-cursor {
+		display: none;
+	}
 }
 
 h3 code {
-  @apply text-lg! md:text-xl!;
+	@apply text-lg! md:text-xl!;
+}
+
+code,
+pre {
+	font-family: var(--font-outfit), sans-serif;
 }
 
 pre {
-  @apply px-0! rounded-lg overflow-x-auto py-4;
-}
-
-pre [data-line] {
-  @apply px-4;
+	@apply px-4! rounded-lg overflow-x-auto py-4!;
+	@apply bg-muted! text-muted-foreground! rounded-lg overflow-x-auto;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	border: 1px solid var(--border);
 }
 
 code {
-  @apply text-sm md:text-base leading-loose!;
+	@apply text-sm md:text-base leading-loose!;
+	@apply bg-muted px-1! py-1! rounded-sm text-primary;
+	font-size: 0.85rem;
+
+	font-weight: 500;
 }
 
 pre > code {
-  counter-reset: line;
-}
-
-code[data-theme*=" "],
-code[data-theme*=" "] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
-  }
-}
-
-code[data-line-numbers] {
-  counter-reset: line;
-}
-
-code[data-line-numbers] > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-  @apply inline-block w-4 mr-4 text-right text-gray-500;
-}
-
-code {
-  counter-reset: line;
-}
-
-code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-
-  /* Other styling */
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
-}
-
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-  width: 2rem;
-}
-
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-  width: 3rem;
+	counter-reset: line;
+	display: block;
+	padding: 0;
+	overflow-x: auto;
 }
 
 * {
-  user-select: none;
+	user-select: none;
 }
 
 article * {
-  user-select: text;
+	user-select: text;
 }
