@@ -24,6 +24,8 @@ import {
 	SiFig,
 	SiGnubash,
 	SiTurborepo,
+	SiRedux,
+	SiReduxsaga,
 } from "react-icons/si";
 
 import {
@@ -78,6 +80,8 @@ const Icons = {
 	nestjs: (props?: IconProps) => <SiNestjs {...props} />,
 	express: (props?: IconProps) => <SiExpress {...props} />,
 	fastify: (props?: IconProps) => <SiFastify {...props} />,
+	redux: (props?: IconProps) => <SiRedux {...props} />,
+	reduxsaga: (props?: IconProps) => <SiReduxsaga {...props} />,
 	nextjs: (props?: IconProps) => <SiNextdotjs {...props} />,
 	flutter: (props?: IconProps) => <SiFlutter {...props} />,
 	jest: (props?: IconProps) => <SiJest {...props} />,
@@ -112,6 +116,7 @@ const logos = {
 	Turborepo: Icons.turborepo,
 	NestJS: Icons.nestjs,
 	GithubActions: Icons.actions,
+	ReduxSaga: Icons.reduxsaga,
 };
 
 const getLogo = (language: keyof typeof logos): React.ElementType => {
