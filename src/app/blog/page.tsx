@@ -40,7 +40,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 	return (
 		<section>
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<div className="h-2 w-12 rounded bg-gradient-to-r from-primary to-primary/60" />
+				<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
 				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
 				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
 			</BlurFade>
@@ -81,7 +81,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 								href={`/blog/${post.slug}`}
 							>
 								<div className="w-full flex flex-col">
-									<div className="h-0.5 w-8 rounded bg-gradient-to-r from-primary to-primary/60" />
+									<div className="h-0.5 w-8 rounded bg-linear-to-r from-primary to-primary/60" />
 									<p className="text-lg font-semibold text-foreground tracking-tight transition-all duration-300">
 										{post.metadata.title}
 									</p>

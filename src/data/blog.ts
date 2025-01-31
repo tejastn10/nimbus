@@ -5,8 +5,8 @@ import matter from "gray-matter";
 
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypeShiki from "@shikijs/rehype";
 import rehypeStringify from "rehype-stringify";
-import rehypePrettyCode from "rehype-pretty-code";
 
 import { unified } from "unified";
 
@@ -53,14 +53,7 @@ const markdownToHTML: MarkdownToHTML = async (markdown) => {
 		const result = await unified()
 			.use(remarkParse) // Parses Markdown
 			.use(remarkRehype) // Transforms Markdown to HTML
-			.use(rehypePrettyCode, {
-				// Configures syntax highlighting
-				theme: {
-					light: "min-light",
-					dark: "min-dark",
-				},
-				keepBackground: false,
-			})
+			.use(rehypeShiki, { theme: "min-dark", keepBackground: false }) // Adds syntax highlighting
 			.use(rehypeStringify) // Serializes HTML as a string
 			.process(markdown);
 
