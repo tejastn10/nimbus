@@ -50,7 +50,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
-				<BentoGrid className="auto-rows-[14rem] grid-cols-4">
+				<BentoGrid className="auto-rows-[14rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 					{recentPosts.map((post) => (
 						<BentoCard key={post.name} {...post} />
 					))}
