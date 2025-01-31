@@ -53,7 +53,10 @@ const markdownToHTML: MarkdownToHTML = async (markdown) => {
 		const result = await unified()
 			.use(remarkParse) // Parses Markdown
 			.use(remarkRehype) // Transforms Markdown to HTML
-			.use(rehypeShiki, { theme: "min-dark", keepBackground: false }) // Adds syntax highlighting
+			.use(rehypeShiki, {
+				theme: "min-dark",
+				keepBackground: false,
+			}) // Adds syntax highlighting
 			.use(rehypeStringify) // Serializes HTML as a string
 			.process(markdown);
 
