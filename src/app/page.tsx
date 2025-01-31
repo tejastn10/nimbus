@@ -89,7 +89,7 @@ const Home: FC = () => {
 
 					{DATA.skills.map((skill, index) => (
 						<div key={index} className="relative">
-							<Marquee reverse={index % 2 === 0} className="[--duration:50s]">
+							<Marquee reverse={index % 2 === 0}>
 								{skill.map((s, i) => (
 									<BlurFade key={i} delay={BLUR_FADE_DELAY * 10 + i * 0.05}>
 										<Badge key={s.name}>
