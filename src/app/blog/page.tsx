@@ -74,30 +74,38 @@ const BlogPage = async (): Promise<JSX.Element> => {
 						}
 						return 1;
 					})
-					.map((post, id) => (
-						<BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
-							<Link
-								className="flex flex-col space-y-2 mb-6 p-4 rounded-lg border border-neutral-300 dark:border-neutral-700 filter grayscale hover:grayscale-0 hover:shadow-lg hover:scale-105 transition-all duration-300 "
-								href={`/blog/${post.slug}`}
-							>
-								<div className="w-full flex flex-col">
-									<div className="h-0.5 w-8 rounded bg-linear-to-r from-primary to-primary/60" />
-									<p className="text-lg font-semibold text-foreground tracking-tight transition-all duration-300">
-										{post.metadata.title}
-									</p>
+					.map((post, id) => {
+						const { slug, metadata } = post;
+						const { title, description, about, publishedAt } = metadata;
+						const Icon = getLogo(about);
 
-									<div className="flex justify-between items-center text-xs text-muted-foreground pt-1">
-										<p className="mr-0 ">{post.metadata.description}</p>
-									</div>
+						return (
+							<BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={slug}>
+								<Link
+									className="flex flex-col space-y-2 mb-6 p-4 rounded-lg border border-neutral-300 dark:border-neutral-700 filter grayscale hover:grayscale-0 hover:shadow-lg hover:scale-105 transition-all duration-300 "
+									href={`/blog/${slug}`}
+								>
+									<div className="w-full flex flex-col">
+										<div className="h-0.5 w-8 rounded bg-linear-to-r from-primary to-primary/60" />
+										<p className="text-lg font-semibold text-foreground tracking-tight transition-all duration-300">
+											{title}
+										</p>
 
-									<div className="flex justify-between items-center text-xs text-muted-foreground pt-8">
-										<p className="ml-0">Published by TN10</p>
-										<p className="mr-0 px-2">{post.metadata.publishedAt}</p>
+										<div className="flex justify-between items-center text-xs text-muted-foreground pt-1">
+											<p className="mr-0 ">{description}</p>
+										</div>
+
+										<div className="flex justify-between items-center text-xs text-muted-foreground pt-8">
+											<p className="ml-0 inline-flex items-center gap-2">
+												<Icon /> {about}
+											</p>
+											<p className="mr-0 px-2">{publishedAt}</p>
+										</div>
 									</div>
-								</div>
-							</Link>
-						</BlurFade>
-					))}
+								</Link>
+							</BlurFade>
+						);
+					})}
 			</BlurFade>
 		</section>
 	);
