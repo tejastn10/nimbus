@@ -236,3 +236,17 @@ pre > code {
 article * {
 	user-select: text;
 }
+
+.underline-slide {
+  @apply relative font-bold text-neutral-900 dark:text-neutral-100 transition-all duration-300;
+}
+
+.underline-slide::after {
+  content: "";
+  @apply absolute left-0 bottom-0 h-[2px] w-full bg-current scale-x-0 origin-left transition-transform duration-300;
+}
+
+.underline-slide:hover::after {
+  @apply scale-x-100;
+}
+
