@@ -109,7 +109,7 @@ const Home: FC = () => {
 						<div key={index} className="relative">
 							<Marquee reverse={index % 2 === 0}>
 								{skill.map((s, i) => (
-									<BlurFade key={i} delay={BLUR_FADE_DELAY * 10 + i * 0.05}>
+									<BlurFade key={i} delay={BLUR_FADE_DELAY * 10 + i * 0.05} yOffset={0}>
 										<Badge key={s.name}>
 											{s.icon}
 											<span className="ml-2">{s.name}</span>{" "}
