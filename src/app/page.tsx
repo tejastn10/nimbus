@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 import { Marquee } from "@/components/animated/Marquee";
 
@@ -53,9 +52,28 @@ const Home: FC = () => {
 					<h2 className="text-xl font-bold">About</h2>
 				</BlurFade>
 				<BlurFade delay={BLUR_FADE_DELAY * 4}>
-					<Markdown className="prose max-w-full text-pretty font-outfit text-sm text-muted-foreground dark:prose-invert">
-						{DATA.summary}
-					</Markdown>
+					<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
+						I began my software engineering journey in 2021 and am currently building creative-ops
+						at{" "}
+						<Link
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://www.rocketium.com"
+							className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+						>
+							Rocketium
+						</Link>
+						. I’m also enhancing my Python skills through the{" "}
+						<Link
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://www.meetup.com/bangpypers/"
+							className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+						>
+							BangPypers
+						</Link>{" "}
+						meet-up group.
+					</p>
 				</BlurFade>
 			</section>
 
