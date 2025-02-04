@@ -3,10 +3,15 @@ import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import Markdown from "react-markdown";
-
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/Card";
 
 import { cx } from "@/utils/tailwind";
 
@@ -42,7 +47,7 @@ const ProjectCard: FC<ProjectProps> = ({
 	return (
 		<Card
 			className={
-				"flex flex-col p-2 overflow-hidden border ease-out h-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+				"flex flex-col p-2 overflow-hidden border ease-out h-full hover:shadow-lg hover:scale-105 transition-all duration-300 underline-slide"
 			}
 		>
 			<Link
@@ -78,11 +83,12 @@ const ProjectCard: FC<ProjectProps> = ({
 					<div className="hidden font-outfit text-xs underline print:visible">
 						{link?.replace("https://", "").replace("www.", "").replace("/", "")}
 					</div>
-					<Markdown className="prose max-w-full text-pretty font-outfit text-xs text-muted-foreground dark:prose-invert py-2">
+					<CardDescription className="prose max-w-full text-pretty text-xs text-muted-foreground dark:prose-invert py-2">
 						{description}
-					</Markdown>
+					</CardDescription>
 				</div>
 			</CardHeader>
+
 			<CardContent className="mt-auto flex flex-col px-2">
 				{tags && tags.length > 0 && (
 					<div className="flex flex-wrap gap-1">
@@ -94,6 +100,7 @@ const ProjectCard: FC<ProjectProps> = ({
 					</div>
 				)}
 			</CardContent>
+
 			<CardFooter className="px-2 pb-2 pt-6">
 				{links && links.length > 0 && (
 					<div className="flex flex-row flex-wrap items-start gap-1">
