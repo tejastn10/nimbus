@@ -11,8 +11,6 @@ export const DATA = {
 
 	description:
 		"Software Engineer with a knack for creating and constantly learning. Obsessed with tech, design systems, and that new framework smell.",
-	summary:
-		"I began my software engineering journey in 2021 and am currently building creative-ops at [Rocketium](https://www.rocketium.com). I’m also enhancing my Python skills through the [BangPypers](https://www.meetup.com/bangpypers/) meet-up group.",
 	avatarUrl: "/profile.jpeg",
 
 	navbar: [
