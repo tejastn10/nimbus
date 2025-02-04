@@ -210,7 +210,7 @@ const Home: FC = () => {
 									target="_blank"
 									rel="noopener noreferrer"
 									href={DATA.contact.social.Twitter.url}
-									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
+									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
 								>
 									here
 								</Link>
@@ -221,7 +221,7 @@ const Home: FC = () => {
 								Prefer email communication? You can also reach out to me via{" "}
 								<Link
 									href={`mailto:${DATA.contact.email}`}
-									className="font-semibold text-gray-800 dark:text-gray-300 hover:underline"
+									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
 								>
 									email
 								</Link>
