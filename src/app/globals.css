@@ -184,6 +184,7 @@
 
 * {
 	cursor: none !important;
+	line-height: 1.2;
 }
 
 @media (hover: none) {
