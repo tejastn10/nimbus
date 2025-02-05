@@ -206,6 +206,10 @@
 	}
 }
 
+h1 {
+	padding-right: 0.5rem;
+}
+
 h3 code {
 	@apply text-lg! md:text-xl!;
 }
