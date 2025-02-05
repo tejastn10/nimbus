@@ -3,12 +3,16 @@ import { JSX, Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { BlurFade } from "@/components/animated/BlurFade";
+import { BoxReveal } from "@/components/animated/BoxReveal";
+import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
+import { ScrollProgress } from "@/components/animated/ScrollProgress";
+
 import { DATA } from "@/data/resume";
 import { getBlogPosts, getPost } from "@/data/blog";
-import { BlurFade } from "@/components/animated/BlurFade";
 
 import { formatDate } from "@/utils/date";
-import { BLUR_FADE_DELAY } from "@/constants/ui";
+import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
 type BlogProps = {
 	params: Promise<{ slug: string }>;
@@ -68,6 +72,7 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 
 	return (
 		<section id="blog">
+			<ScrollProgress />
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -92,14 +97,15 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 			/>
 
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
-				<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
-					{post.metadata.title}
-				</h1>
+				<BoxReveal duration={BOX_REVEAL_DURATION}>
+					<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
+						{post.metadata.title}
+					</h1>
+				</BoxReveal>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
+				<UnderlineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 3}>
