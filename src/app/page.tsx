@@ -3,6 +3,8 @@ import { FC } from "react";
 import Link from "next/link";
 
 import { Marquee } from "@/components/animated/Marquee";
+import { BoxReveal } from "@/components/animated/BoxReveal";
+import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 
 import { CourseCard } from "@/containers/CourseCard";
 import { ResumeCard } from "@/containers/ResumeCard";
@@ -26,10 +28,11 @@ const Home: FC = () => {
 					<div className="gap-2 flex justify-between">
 						<div className="flex-col flex flex-1 space-y-1.5">
 							<BlurFade delay={BLUR_FADE_DELAY}>
-								<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
-								<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-									{`Hi, I'm ${DATA.name.split(" ")[0]}`}
-								</h1>
+								<BoxReveal>
+									<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+										{`Hi, I'm ${DATA.name.split(" ")[0]}`}
+									</h1>
+								</BoxReveal>
 								<h2 className="max-w-[600px] md:text-xl">{DATA.description}</h2>
 							</BlurFade>
 						</div>
@@ -45,6 +48,10 @@ const Home: FC = () => {
 						</BlurFade>
 					</div>
 				</div>
+
+				<BlurFade delay={BLUR_FADE_DELAY}>
+					<UnderlineGrow className="my-0" />
+				</BlurFade>
 			</section>
 
 			<section id="about">
