@@ -1,13 +1,15 @@
 import { JSX } from "react";
 
-import Link from "next/link";
-
 import { BlurFade } from "@/components/animated/BlurFade";
+import { BoxReveal } from "@/components/animated/BoxReveal";
+import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
+
+import { BlogCard } from "@/containers/BlogCard";
 
 import { getBlogPosts } from "@/data/blog";
 
-import { BLUR_FADE_DELAY } from "@/constants/ui";
+import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { POST_SLICE_NUMBER } from "@/constants/values";
 
 import { getLogo } from "@/components/icons/Icons";
@@ -27,22 +29,33 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			(a, b) =>
 				new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
 		)
-		.map((post) => ({
-			name: post.metadata.title,
-			className: "col-span-2 lg:col-span-2 grayscale hover:grayscale-0",
+		.slice(0, POST_SLICE_NUMBER)
+		.map((post, index) => ({
+			name: post.metadata.about,
+			className:
+				index % 4 === 0 || index % 4 === 3
+					? "col-span-3 lg:col-span-1 grayscale hover:grayscale-0"
+					: "col-span-3 lg:col-span-2 grayscale hover:grayscale-0",
 			Icon: getLogo(post.metadata.about),
-			description: formatDate(post.metadata.publishedAt, true),
+			description: post.metadata.title,
+			subDescription: formatDate(post.metadata.publishedAt, true),
 			href: `/blog/${post.slug}`,
 			cta: "Read",
-		}))
-		.slice(0, POST_SLICE_NUMBER);
+		}));
 
 	return (
 		<section>
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
-				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
-				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
+				<BoxReveal duration={BOX_REVEAL_DURATION}>
+					<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
+				</BoxReveal>
+				<BoxReveal duration={BOX_REVEAL_DURATION * 1.2}>
+					<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
+				</BoxReveal>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY}>
+				<UnderlineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -50,15 +63,15 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
-				<BentoGrid className="auto-rows-[14rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+				<BentoGrid className="auto-rows-[14rem]">
 					{recentPosts.map((post) => (
-						<BentoCard key={post.name} {...post} />
+						<BentoCard key={post.description} {...post} />
 					))}
 				</BentoGrid>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
+				<UnderlineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 8}>
@@ -77,32 +90,16 @@ const BlogPage = async (): Promise<JSX.Element> => {
 					.map((post, id) => {
 						const { slug, metadata } = post;
 						const { title, description, about, publishedAt } = metadata;
-						const Icon = getLogo(about);
 
 						return (
-							<BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={slug}>
-								<Link
-									className="flex flex-col space-y-2 mb-6 p-4 rounded-lg border border-neutral-300 dark:border-neutral-700 filter grayscale hover:grayscale-0 hover:shadow-lg hover:scale-105 transition-all duration-300 "
-									href={`/blog/${slug}`}
-								>
-									<div className="w-full flex flex-col">
-										<div className="h-0.5 w-8 rounded bg-linear-to-r from-primary to-primary/60" />
-										<p className="text-lg font-semibold text-foreground tracking-tight transition-all duration-300">
-											{title}
-										</p>
-
-										<div className="flex justify-between items-center text-xs text-muted-foreground pt-1">
-											<p className="mr-0 ">{description}</p>
-										</div>
-
-										<div className="flex justify-between items-center text-xs text-muted-foreground pt-8">
-											<p className="ml-0 inline-flex items-center gap-2">
-												<Icon /> {about}
-											</p>
-											<p className="mr-0 px-2">{publishedAt}</p>
-										</div>
-									</div>
-								</Link>
+							<BlurFade key={slug} delay={BLUR_FADE_DELAY * 2 + id * 0.05}>
+								<BlogCard
+									slug={slug}
+									title={title}
+									description={description}
+									about={about}
+									publishedAt={publishedAt}
+								/>
 							</BlurFade>
 						);
 					})}
