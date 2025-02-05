@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 import {
 	SiAmazonwebservices,
 	SiDart,
@@ -44,6 +46,8 @@ import {
 import { RiTwitterXLine, RiDatabase2Line } from "react-icons/ri";
 
 import { GoContainer } from "react-icons/go";
+
+import { TECH } from "@/constants/data";
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -105,7 +109,7 @@ const Icons = {
 	database: (props?: IconProps) => <RiDatabase2Line {...props} />,
 };
 
-const logos = {
+const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	JavaScript: Icons.javascript,
 	TypeScript: Icons.typescript,
 	Python: Icons.python,
