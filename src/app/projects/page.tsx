@@ -1,11 +1,17 @@
-import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
-import { BlurFade } from "@/components/animated/BlurFade";
-import { getLogo } from "@/components/icons/Icons";
-import { BLUR_FADE_DELAY } from "@/constants/ui";
-import { PROJECT_SLICE_NUMBER } from "@/constants/values";
-import { ProjectCard } from "@/containers/ProjectCard";
-import { DATA } from "@/data/resume";
 import { JSX } from "react";
+
+import { BlurFade } from "@/components/animated/BlurFade";
+import { BoxReveal } from "@/components/animated/BoxReveal";
+import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
+import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
+
+import { ProjectCard } from "@/containers/ProjectCard";
+
+import { DATA } from "@/data/resume";
+import { getLogo } from "@/components/icons/Icons";
+
+import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
+import { PROJECT_SLICE_NUMBER } from "@/constants/values";
 
 export const metadata = {
 	title: "Projects",
@@ -24,7 +30,7 @@ const ProjectsPage = (): JSX.Element => {
 					? "col-span-3 lg:col-span-1 grayscale hover:grayscale-0"
 					: "col-span-3 lg:col-span-2 grayscale hover:grayscale-0",
 			Icon: getLogo(project.technologies[0] as any),
-			description: index % 4 === 0 || index % 4 === 3 ? project.dates : project.description,
+			description: project.description,
 			href: project.links[0].href,
 			cta: "View Project",
 		}));
@@ -41,9 +47,16 @@ const ProjectsPage = (): JSX.Element => {
 	return (
 		<section>
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<div className="h-2 w-12 rounded bg-linear-to-r from-primary to-primary/60" />
-				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
-				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
+				<BoxReveal duration={BOX_REVEAL_DURATION}>
+					<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
+				</BoxReveal>
+				<BoxReveal duration={BOX_REVEAL_DURATION * 1.2}>
+					<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
+				</BoxReveal>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY}>
+				<UnderlineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -59,7 +72,7 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<hr className="my-12 border-3 border-t-2 border-neutral-500 dark:border-neutral-700 rounded-md" />
+				<UnderlineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
