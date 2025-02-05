@@ -16,6 +16,7 @@ type BentoCardProps = {
 	className: string;
 	Icon: React.ElementType;
 	description: string;
+	subDescription?: string;
 	href: string;
 	cta: string;
 };
@@ -28,7 +29,15 @@ const BentoGrid: FC<BentoGridProps> = ({ children, className }) => {
 	);
 };
 
-const BentoCard: FC<BentoCardProps> = ({ name, className, Icon, description, href, cta }) => (
+const BentoCard: FC<BentoCardProps> = ({
+	name,
+	className,
+	Icon,
+	description,
+	href,
+	cta,
+	subDescription,
+}) => (
 	<div
 		key={name}
 		className={cx(
@@ -40,19 +49,23 @@ const BentoCard: FC<BentoCardProps> = ({ name, className, Icon, description, hre
 			className
 		)}
 	>
-		<div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6  transition-all duration-300 group-hover:-translate-y-5">
-			{Icon && (
-				<Icon className="h-14 w-14 py-2 origin-left transform-gpu text-neutral-300 dark:text-neutral-700 group-hover:text-primary dark:group-hover:text-primary transition-all duration-300 ease-in-out group-hover:scale-75" />
+		<div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 p-6 h-full transition-all duration-300 group-hover:-translate-y-5">
+			<div>
+				{Icon && (
+					<Icon className="h-14 w-14 py-2 origin-left transform-gpu text-neutral-300 dark:text-neutral-700 group-hover:text-primary dark:group-hover:text-primary transition-all duration-300 ease-in-out group-hover:scale-75" />
+				)}
+				<h3 className="text-l font-semibold text-neutral-700 dark:text-neutral-300">{name}</h3>
+				<p className="text-xs max-w-lg text-neutral-400 pt-2">{description}</p>
+			</div>
+
+			{subDescription && (
+				<p className="text-xs max-w-lg text-neutral-400 pt-4 text-right mt-auto">
+					{subDescription}
+				</p>
 			)}
-			<h3 className="text-l font-semibold text-neutral-700 dark:text-neutral-300">{name}</h3>
-			<p className="text-xs max-w-lg text-neutral-400 pt-2">{description}</p>
 		</div>
 
-		<div
-			className={cx(
-				"pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-			)}
-		>
+		<div className="pointer-events-none absolute bottom-0 flex w-full transform-gpu flex-row items-center p-4 transition-all duration-300 opacity-100 translate-y-0 md:opacity-0 md:translate-y-10 md:group-hover:translate-y-0 md:group-hover:opacity-100">
 			<Button variant="ghost" asChild size="sm" className="pointer-events-auto">
 				<a href={href}>
 					{cta}
