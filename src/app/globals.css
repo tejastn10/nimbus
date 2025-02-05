@@ -78,6 +78,15 @@
 			transform: translateY(calc(-100% - var(--gap)));
 		}
 	}
+
+	@keyframes growUnderline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 }
 
 @utility container {
@@ -250,3 +259,6 @@ article * {
   @apply scale-x-100;
 }
 
+.animate-grow {
+  animation: growUnderline 0.5s ease-out forwards;
+}
