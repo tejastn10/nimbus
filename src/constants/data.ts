@@ -10,6 +10,7 @@ enum TECH {
 	NestJS = "NestJS",
 	GithubActions = "GithubActions",
 	ReduxSaga = "ReduxSaga",
+	Architecture = "Architecture",
 }
 
 export { TECH };
