@@ -41,6 +41,7 @@ import {
 	RxLinkedinLogo,
 	RxMoon,
 	RxSun,
+	RxGear,
 } from "react-icons/rx";
 
 import { RiTwitterXLine, RiDatabase2Line } from "react-icons/ri";
@@ -107,6 +108,9 @@ const Icons = {
 	// * Tools
 	template: (props?: IconProps) => <SiFig {...props} />,
 	database: (props?: IconProps) => <RiDatabase2Line {...props} />,
+
+	// * Misc
+	gear: (props?: IconProps) => <RxGear {...props} />,
 };
 
 const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
@@ -121,6 +125,7 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	NestJS: Icons.nestjs,
 	GithubActions: Icons.actions,
 	ReduxSaga: Icons.reduxsaga,
+	Architecture: Icons.gear,
 };
 
 const getLogo = (language: keyof typeof logos): React.ElementType => {
