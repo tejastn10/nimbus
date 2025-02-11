@@ -12,6 +12,7 @@ import { DATA } from "@/data/resume";
 import { getBlogPosts, getPost } from "@/data/blog";
 
 import { formatDate } from "@/utils/date";
+import { getLogo } from "@/components/icons/Icons";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
 type BlogProps = {
@@ -70,9 +71,34 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 		notFound();
 	}
 
+	const Icon = getLogo(post.metadata.about);
+
 	return (
-		<section id="blog">
+		<section id="blog" className="relative">
 			<ScrollProgress />
+
+			{Icon && (
+				<>
+					{/* Top-Right Icon */}
+					<BlurFade
+						delay={BLUR_FADE_DELAY * 2}
+						className="hidden sm:block fixed top-4 right-4 md:top-8 md:right-8 lg:top-12 lg:right-12 pointer-events-none z-[-1]"
+						aria-hidden="true"
+					>
+						<Icon className="text-[250px] md:text-[300px] lg:text-[350px] text-neutral-500 dark:text-neutral-400 opacity-10 hover:opacity-20 rotate-12 hover:rotate-0 transition-all duration-300  pointer-events-auto" />
+					</BlurFade>
+
+					{/* Bottom-Left Icon */}
+					<BlurFade
+						delay={BLUR_FADE_DELAY * 2}
+						className="hidden sm:block fixed bottom-4 left-4 md:bottom-8 md:left-8 lg:bottom-12 lg:left-12 pointer-events-none z-[-1]"
+						aria-hidden="true"
+					>
+						<Icon className="text-[250px] md:text-[300px] lg:text-[350px] text-neutral-500 dark:text-neutral-400 opacity-10 hover:opacity-20 -rotate-12 hover:rotate-0 transition-all duration-300 -rotate-12 pointer-events-auto" />
+					</BlurFade>
+				</>
+			)}
+
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
