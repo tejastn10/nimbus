@@ -126,6 +126,7 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	GithubActions: Icons.actions,
 	ReduxSaga: Icons.reduxsaga,
 	Architecture: Icons.gear,
+	NextJS: Icons.nextjs,
 };
 
 const getLogo = (language: keyof typeof logos): React.ElementType => {
