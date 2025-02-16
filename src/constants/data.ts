@@ -11,6 +11,7 @@ enum TECH {
 	GithubActions = "GithubActions",
 	ReduxSaga = "ReduxSaga",
 	Architecture = "Architecture",
+	NextJS = "NextJS",
 }
 
 export { TECH };
