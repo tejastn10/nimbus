@@ -126,6 +126,69 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Arbor",
+			href: "https://github.com/tejastn10/arbor",
+			dates: "February 2025",
+			featured: false,
+			description:
+				"A Next.js template with custom ESLint and Prettier rules for consistent code quality. It includes Tailwind CSS, Husky, and Commitlint for a seamless developer experience.",
+			technologies: [
+				"NextJS",
+				"TypeScript",
+				"Tailwindcss",
+				"ESLint",
+				"Prettier",
+				"Husky",
+				"Commitlint",
+			],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/arbor",
+					icon: Icons.github(),
+				},
+				{
+					type: "Template",
+					href: "",
+					icon: Icons.template(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
+			title: "Hearth",
+			href: "https://github.com/tejastn10/hearth",
+			dates: "January 2025 - February 2025",
+			featured: true,
+			description:
+				"A minimal and scalable NestJS starter template with ESLint, Prettier, Husky, and Commitlint preconfigured for clean and efficient backend development.",
+			technologies: [
+				"NestJS",
+				"TypeScript",
+				"Docker",
+				"Fastify",
+				"ESLint",
+				"Prettier",
+				"Husky",
+				"Commitlint",
+			],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/hearth",
+					icon: Icons.github(),
+				},
+				{
+					type: "Template",
+					href: "",
+					icon: Icons.template(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
 			title: "Verve",
 			href: "https://github.com/tejastn10/verve",
 			dates: "January 2025",
@@ -196,7 +259,7 @@ export const DATA = {
 			featured: false,
 			description:
 				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
-			technologies: ["Next.js", "TypeScript", "shadcn", "TailwindCSS", "Vercel"],
+			technologies: ["NextJS", "TypeScript", "shadcn", "TailwindCSS", "Vercel"],
 			links: [
 				{
 					type: "Source",
@@ -276,7 +339,7 @@ export const DATA = {
 			title: "Eden",
 			href: "https://github.com/tejastn10/eden",
 			dates: "June 2024 - July 2024",
-			featured: true,
+			featured: false,
 			description:
 				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
 			technologies: ["TypeScript", "React", "ViteJS", "ESLint", "Prettier", "Husky", "Commitlint"],
