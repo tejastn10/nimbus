@@ -3,6 +3,7 @@ import path from "path";
 
 import matter from "gray-matter";
 
+import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeShiki from "@shikijs/rehype";
@@ -53,6 +54,7 @@ const markdownToHTML: MarkdownToHTML = async (markdown) => {
 		const result = await unified()
 			.use(remarkParse) // Parses Markdown
 			.use(remarkRehype) // Transforms Markdown to HTML
+			.use(remarkGfm) // Adds support for GFM (GitHub Flavored Markdown)
 			.use(rehypeShiki, {
 				theme: "min-dark",
 				keepBackground: false,
