@@ -10,12 +10,12 @@ import { CourseCard } from "@/containers/CourseCard";
 import { ResumeCard } from "@/containers/ResumeCard";
 import { ProjectCard } from "@/containers/ProjectCard";
 
-import { Icons } from "@/components/icons/Icons";
-
 import { BlurFade } from "@/components/animated/BlurFade";
 
 import { Badge } from "@/components/ui/Badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+
+import { Icons } from "@/components/icons/Icons";
 
 import { DATA } from "@/data/resume";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
@@ -24,7 +24,7 @@ const Home: FC = () => {
 	return (
 		<main className="flex flex-col min-h-[100dvh] space-y-10">
 			<section id="hero">
-				<div className="mx-auto w-full max-w-2xl space-y-8">
+				<div className="mx-auto w-full space-y-8">
 					<div className="gap-2 flex justify-between">
 						<div className="flex-col flex flex-1 space-y-1.5">
 							<BlurFade delay={BLUR_FADE_DELAY}>
@@ -70,7 +70,7 @@ const Home: FC = () => {
 						>
 							Rocketium
 						</Link>
-						. I’m also enhancing my Python skills through the{" "}
+						. Sometimes, you might find me at a{" "}
 						<Link
 							target="_blank"
 							rel="noopener noreferrer"
@@ -79,7 +79,7 @@ const Home: FC = () => {
 						>
 							BangPypers
 						</Link>{" "}
-						meet-up group.
+						meetup, where I continue to enhance my Python skills.
 					</p>
 				</BlurFade>
 			</section>
@@ -155,7 +155,7 @@ const Home: FC = () => {
 							</div>
 						</div>
 					</BlurFade>
-					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto">
+					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
 						{DATA.projects
 							.filter((project) => project.featured)
 							.map((project, id) => (
@@ -165,7 +165,7 @@ const Home: FC = () => {
 										key={project.title}
 										title={project.title}
 										description={project.description}
-										dates={project.dates}
+										purpose={project.purpose}
 										tags={project.technologies}
 										image={project.image}
 										video={project.video}
