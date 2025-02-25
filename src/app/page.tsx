@@ -3,8 +3,8 @@ import { FC } from "react";
 import Link from "next/link";
 
 import { Marquee } from "@/components/animated/Marquee";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 
 import { CourseCard } from "@/containers/CourseCard";
 import { ResumeCard } from "@/containers/ResumeCard";
@@ -50,7 +50,7 @@ const Home: FC = () => {
 				</div>
 
 				<BlurFade delay={BLUR_FADE_DELAY}>
-					<UnderlineGrow className="my-0" />
+					<LineGrow className="my-0" />
 				</BlurFade>
 			</section>
 

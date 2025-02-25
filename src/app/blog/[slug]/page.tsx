@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { ScrollProgress } from "@/components/animated/ScrollProgress";
 
 import { DATA } from "@/data/resume";
@@ -130,8 +130,9 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 				</BoxReveal>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<UnderlineGrow className="my-12" />
+			<BlurFade delay={BLUR_FADE_DELAY * 2} className="flex items-center gap-4">
+				<Icon className="text-neutral-500 dark:text-neutral-400" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 3}>
@@ -146,7 +147,7 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
 				<article
-					className="prose dark:prose-invert leading-[1.5]"
+					className="prose dark:prose-invert leading-[1.5] w-full max-w-none"
 					dangerouslySetInnerHTML={{ __html: post.source }}
 				/>
 			</BlurFade>

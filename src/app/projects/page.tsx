@@ -1,8 +1,8 @@
 import { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
 import { ProjectCard } from "@/containers/ProjectCard";
@@ -56,7 +56,7 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -72,7 +72,7 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
