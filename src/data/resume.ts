@@ -68,11 +68,12 @@ export const DATA = {
 					start: "July 2022",
 					end: undefined,
 					description: [
-						"Automated image exports in AWS Lambda, ensuring integrity and efficiency. Designed BullMQ-based queues for real-time data updates and reliable processing of the image export",
-						"Developed Rocketium’s core video editor (similar to Adobe After Effects) with advanced features like precise timeline manipulation, keyframe movements, and layer snapping, enabling scalable video production.",
-						"Addressed 800+ vulnerabilities, achieving SOC2 compliance and system security.",
-						"Implemented a scalable version history system for handling large datasets, leveraging AWS S3 and Lambda. Optimized storage and transfer with Google’s Brotli compression for high performance and efficiency.",
-						"Developed a Brand Safety feature for GIFs and videos using AWS Step Functions and Lambda. Enabled frame-by-frame analysis with Google Vision for precise content moderation.",
+						"Developed a Brand Safety feature for analyzing GIFs and videos using AWS Step Functions and Lambda. This feature enabled precise frame-by-frame content moderation by integrating Google Vision for in-depth analysis, improving brand safety and compliance.",
+						"Designed and implemented a scalable version history system to handle large datasets efficiently by leveraging AWS S3 for storage and AWS Lambda for processing. Enhanced performance and storage efficiency by utilizing Google’s Brotli compression.",
+						"Automated the image export process using AWS Lambda, ensuring high-quality output, integrity of images, and efficient processing. Designed and implemented BullMQ-based queues that provided real-time data updates and reliable processing for image exports, significantly improving operational speed.",
+						"Led the effort to address and fix over 800 vulnerabilities across the system, successfully achieving SOC2 compliance and greatly enhancing the security posture of the platform.",
+						"Set up CI/CD pipelines using GitHub Actions, which streamlined the deployment process, significantly reducing downtime and improving overall developer productivity.",
+						"Contributed to the development of Rocketium’s core video editor, which is similar to Adobe After Effects, by adding advanced features such as precise timeline manipulation, keyframe movements, and layer snapping, allowing for scalable and high-quality video production.",
 					],
 				},
 				{
@@ -80,12 +81,10 @@ export const DATA = {
 					start: "May 2021",
 					end: "July 2022",
 					description: [
-						"Engineered custom data filters, optimizing analysis for Creative Analytics used by Airtel, ADA, Rappi.",
-						"Configured CI/CD with GitHub Actions, improving deployment and productivity.",
-						"Enhanced front-end algorithms, supporting heavy asset processing and large datasets.",
-						"Transitioned data calculations to back-end, boosting platform speed and efficiency.",
-						"Built a new animation engine with WAAPI and upgraded video editor UI for seamless user interaction.",
-						"Implemented unified logging and resolved critical on-call issues for reliability.",
+						"Spearheaded the development of a new animation engine using the Web Animations API (WAAPI), which was integrated into Rocketium’s video editor. This new engine significantly improved the performance and user experience by providing smooth and scalable animation capabilities.",
+						"Implemented a unified logging system that improved system monitoring and diagnostics. Addressed and resolved several critical on-call issues, ensuring higher reliability and uptime for the platform.",
+						"Enhanced the front-end algorithms for handling large asset processing, which allowed the system to efficiently manage large datasets and improve the user experience.",
+						"Transitioned data-intensive calculations from the front-end to the back-end, boosting platform speed and efficiency by reducing client-side load and enhancing data processing capabilities.",
 					],
 				},
 			],
@@ -101,13 +100,20 @@ export const DATA = {
 			{ icon: Icons.go(), name: "Go" },
 		],
 		[
-			{ icon: Icons.node(), name: "Node.js" },
 			{ icon: Icons.react(), name: "React" },
+			{ icon: Icons.redux(), name: "Redux" },
+			{ icon: Icons.reduxsaga(), name: "Redux Saga" },
+			{ icon: Icons.nextjs(), name: "Next.js" },
+			{ icon: Icons.tailwind(), name: "Tailwind CSS" },
+			{ icon: Icons.flutter(), name: "Flutter" },
+		],
+		[
+			{ icon: Icons.rest(), name: "Rest" },
+			{ icon: Icons.websockets(), name: "WebSockets" },
+			{ icon: Icons.node(), name: "Node.js" },
 			{ icon: Icons.nestjs(), name: "Nest.js" },
 			{ icon: Icons.express(), name: "Express" },
 			{ icon: Icons.fastify(), name: "Fastify" },
-			{ icon: Icons.nextjs(), name: "Next.js" },
-			{ icon: Icons.flutter(), name: "Flutter" },
 			{ icon: Icons.jest(), name: "Jest" },
 		],
 		[
@@ -120,15 +126,62 @@ export const DATA = {
 			{ icon: Icons.docker(), name: "Docker" },
 			{ icon: Icons.vercel(), name: "Vercel" },
 			{ icon: Icons.aws(), name: "AWS" },
+			{ icon: Icons.nginx(), name: "Nginx" },
 			{ icon: Icons.actions(), name: "Github Actions" },
 		],
 	],
 
 	projects: [
 		{
+			title: "Nyx",
+			href: "https://github.com/tejastn10/nyx",
+			purpose: "Visual Effects",
+			featured: false,
+			description:
+				"A Next.js project that recreates the iconic Matrix digital rain effect using the Canvas API. It delivers a smooth, visually striking animation optimized for performance.",
+			technologies: ["NextJS", "React", "TypeScript", "Canvas", "TailwindCSS", "Vercel"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/nyx",
+					icon: Icons.github(),
+				},
+				{
+					type: "Website",
+					href: "https://nyx-puce.vercel.app",
+					icon: Icons.link(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
+			title: "Acre",
+			href: "https://github.com/tejastn10/acre",
+			purpose: "Financial Tools",
+			featured: false,
+			description:
+				"A sleek and interactive return calculator that visualizes investment growth over time using an Area Chart with Indian currency formatting.",
+			technologies: ["NextJS", "React", "TypeScript", "Recharts", "TailwindCSS", "Vercel"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/acre",
+					icon: Icons.github(),
+				},
+				{
+					type: "Website",
+					href: "https://acre-red.vercel.app",
+					icon: Icons.link(),
+				},
+			],
+			image: "",
+			video: "",
+		},
+		{
 			title: "Arbor",
 			href: "https://github.com/tejastn10/arbor",
-			dates: "February 2025",
+			purpose: "Frontend Template",
 			featured: false,
 			description:
 				"A Next.js template with custom ESLint and Prettier rules for consistent code quality. It includes Tailwind CSS, Husky, and Commitlint for a seamless developer experience.",
@@ -159,7 +212,7 @@ export const DATA = {
 		{
 			title: "Hearth",
 			href: "https://github.com/tejastn10/hearth",
-			dates: "January 2025 - February 2025",
+			purpose: "Backend Template",
 			featured: true,
 			description:
 				"A minimal and scalable NestJS starter template with ESLint, Prettier, Husky, and Commitlint preconfigured for clean and efficient backend development.",
@@ -191,7 +244,7 @@ export const DATA = {
 		{
 			title: "Verve",
 			href: "https://github.com/tejastn10/verve",
-			dates: "January 2025",
+			purpose: "AI Automation",
 			featured: false,
 			description:
 				"An AI-driven Twitter bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
@@ -209,10 +262,10 @@ export const DATA = {
 		{
 			title: "Halcyon",
 			href: "https://github.com/tejastn10/halcyon",
-			dates: "December 2024 - January 2025",
+			purpose: "File Management",
 			featured: true,
 			description:
-				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly",
+				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly.",
 			technologies: ["Go", "Cobra", "Github Actions"],
 			links: [
 				{
@@ -227,7 +280,7 @@ export const DATA = {
 		{
 			title: "Argus",
 			href: "https://github.com/tejastn10/argus",
-			dates: "November 2024 - December 2024",
+			purpose: "Monitoring",
 			featured: true,
 			description:
 				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
@@ -255,7 +308,7 @@ export const DATA = {
 		{
 			title: "Nimbus",
 			href: "https://github.com/tejastn10/nimbus",
-			dates: "October 2024 - Present",
+			purpose: "Portfolio",
 			featured: false,
 			description:
 				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
@@ -276,36 +329,9 @@ export const DATA = {
 			video: "",
 		},
 		{
-			title: "ShoeShoppee",
-			href: "https://github.com/tejastn10/ShoeShoppee",
-			dates: "February 2021 - March 2021",
-			featured: false,
-			description:
-				"An e-commerce website for shoes with a sleek black and white theme, showcasing animated UI components for a visually engaging shopping experience.",
-			technologies: [
-				"NodeJs",
-				"TypeScript",
-				"React",
-				"Express",
-				"Ant Design",
-				"MongoDB",
-				"Docker",
-				"Nginx",
-			],
-			links: [
-				{
-					type: "Source",
-					href: "https://github.com/tejastn10/ShoeShoppee",
-					icon: Icons.github(),
-				},
-			],
-			image: "",
-			video: "",
-		},
-		{
 			title: "Verdant",
 			href: "https://github.com/tejastn10/verdant",
-			dates: "July 2024 - August 2024",
+			purpose: "Monorepo Setup",
 			featured: true,
 			description:
 				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It’s flexible enough to add what you need, but expect it to be a work in progress!",
@@ -338,7 +364,7 @@ export const DATA = {
 		{
 			title: "Eden",
 			href: "https://github.com/tejastn10/eden",
-			dates: "June 2024 - July 2024",
+			purpose: "React Starter",
 			featured: false,
 			description:
 				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
