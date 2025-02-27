@@ -1,7 +1,7 @@
-import { FC } from "react";
+"use client";
 
+import { FC, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { GlowingText } from "@/components/animated/GlowingText";
 
@@ -15,15 +15,17 @@ import {
 	CardTitle,
 } from "@/components/ui/Card";
 
+import { Icons } from "@/components/icons/Icons";
+
 import { cx } from "@/utils/tailwind";
+
+import { CLIPBOARD_COPY_DELAY } from "@/constants/ui";
 
 type ProjectProps = {
 	title: string;
 	href?: string;
 	purpose: string;
 	link?: string;
-	image?: string;
-	video?: string;
 	description: string;
 	tags: readonly string[];
 	links?: readonly {
@@ -38,14 +40,23 @@ const ProjectCard: FC<ProjectProps> = ({
 	href,
 	tags,
 	link,
-	image,
 	title,
-	video,
 	links,
 	purpose,
 	className,
 	description,
 }) => {
+	const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+	const copyToClipboard = (link: { href: string }, index: number) => {
+		if (link.href) {
+			navigator.clipboard.writeText(link.href);
+			setCopiedIndex(index);
+
+			setTimeout(() => setCopiedIndex(null), CLIPBOARD_COPY_DELAY);
+		}
+	};
+
 	return (
 		<Card
 			className={cx(
@@ -64,27 +75,7 @@ const ProjectCard: FC<ProjectProps> = ({
 				href={href || "#"}
 				rel="noopener noreferrer"
 				className={cx("block cursor-pointer", className)}
-			>
-				{video && (
-					<video
-						src={video}
-						autoPlay
-						loop
-						muted
-						playsInline
-						className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
-					/>
-				)}
-				{image && (
-					<Image
-						src={image}
-						alt={title}
-						width={500}
-						height={300}
-						className="h-40 w-full overflow-hidden object-cover object-top"
-					/>
-				)}
-			</Link>
+			></Link>
 			<CardHeader className="px-2">
 				<div className="space-y-1">
 					<CardTitle className="mt-1 text-pretty text-lg font-semibold text-neutral-700 dark:text-neutral-300">
@@ -118,7 +109,46 @@ const ProjectCard: FC<ProjectProps> = ({
 			<CardFooter className="px-2 pb-2 pt-6">
 				{links && links.length > 0 && (
 					<div className="flex flex-row flex-wrap items-start gap-1">
-						{links?.map((link, idx) => {
+						{links.map((link, idx) => {
+							if (link?.href && link?.type === "Curl") {
+								return (
+									<Badge
+										key={idx}
+										className="relative flex items-center gap-2 px-2 py-1 text-[10px] cursor-pointer transition-all duration-300 overflow-hidden"
+										onClick={() => copyToClipboard(link, idx)}
+									>
+										<span
+											className={cx(
+												"transition-all duration-300",
+												copiedIndex === idx
+													? "opacity-0 -translate-x-2"
+													: "opacity-100 translate-x-0"
+											)}
+										>
+											{link.icon}
+										</span>
+										<span
+											className={cx(
+												"transition-all duration-300",
+												copiedIndex === idx ? "-translate-x-3" : "translate-x-0"
+											)}
+										>
+											{link.type}
+										</span>
+										<span
+											className={cx(
+												"absolute right-2 transition-all duration-300",
+												copiedIndex === idx
+													? "opacity-100 scale-100 translate-x-0"
+													: "opacity-0 scale-90 translate-x-2"
+											)}
+										>
+											{Icons.check()}
+										</span>
+									</Badge>
+								);
+							}
+
 							return link?.href ? (
 								<Link key={idx} href={link?.href} target="_blank" rel="noopener noreferrer">
 									<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
