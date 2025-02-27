@@ -152,8 +152,6 @@ export const DATA = {
 					icon: Icons.link(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Acre",
@@ -175,8 +173,6 @@ export const DATA = {
 					icon: Icons.link(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Arbor",
@@ -206,8 +202,6 @@ export const DATA = {
 					icon: Icons.template(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Hearth",
@@ -238,8 +232,6 @@ export const DATA = {
 					icon: Icons.template(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Verve",
@@ -256,8 +248,6 @@ export const DATA = {
 					icon: Icons.github(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Halcyon",
@@ -273,9 +263,12 @@ export const DATA = {
 					href: "https://github.com/tejastn10/halcyon",
 					icon: Icons.github(),
 				},
+				{
+					type: "Curl",
+					href: "curl -sSf https://raw.githubusercontent.com/tejastn10/halcyon/main/install.sh | bash",
+					icon: Icons.bash(),
+				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Argus",
@@ -302,8 +295,6 @@ export const DATA = {
 					icon: Icons.container(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Nimbus",
@@ -325,8 +316,6 @@ export const DATA = {
 					icon: Icons.link(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Verdant",
@@ -358,8 +347,6 @@ export const DATA = {
 					icon: Icons.template(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 		{
 			title: "Eden",
@@ -381,8 +368,6 @@ export const DATA = {
 					icon: Icons.template(),
 				},
 			],
-			image: "",
-			video: "",
 		},
 	],
 
