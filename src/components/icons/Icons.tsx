@@ -87,6 +87,7 @@ import {
 	RxReader,
 	RxGlobe,
 	RxCode,
+	RxCheck,
 } from "react-icons/rx";
 
 import { RiTwitterXLine, RiDatabase2Line, RiMapPin3Line, RiTimer2Line } from "react-icons/ri";
@@ -104,6 +105,7 @@ const Icons = {
 	sun: (props?: IconProps) => <RxSun {...props} />,
 	moon: (props?: IconProps) => <RxMoon {...props} />,
 	link: (props?: IconProps) => <RxLink2 {...props} />,
+	check: (props?: IconProps) => <RxCheck {...props} />,
 	template: (props?: IconProps) => <SiFig {...props} />,
 	reader: (props?: IconProps) => <RxReader {...props} />,
 	calendar: (props?: IconProps) => <RxCalendar {...props} />,
