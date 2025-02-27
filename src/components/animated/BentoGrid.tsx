@@ -54,7 +54,7 @@ const BentoCard: FC<BentoCardProps> = ({
 				{Icon && (
 					<Icon className="h-14 w-14 py-2 origin-left transform-gpu text-neutral-300 dark:text-neutral-700 group-hover:text-primary dark:group-hover:text-primary transition-all duration-300 ease-in-out group-hover:scale-75" />
 				)}
-				<h3 className="text-l font-semibold text-neutral-700 dark:text-neutral-300">{name}</h3>
+				<h3 className="text-lg font-semibold text-neutral-700 dark:text-neutral-300">{name}</h3>
 				<p className="text-xs max-w-lg text-neutral-400 pt-2">{description}</p>
 			</div>
 

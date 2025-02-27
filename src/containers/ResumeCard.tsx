@@ -4,13 +4,15 @@ import React, { FC } from "react";
 
 import Link from "next/link";
 
-import { Icons } from "@/components/icons/Icons";
-
 import { MotionDiv } from "@/components/motion";
+
+import { BlurFade } from "@/components/animated/BlurFade";
+
 import { RoleCard } from "@/components/ui/RoleCard";
 import { Card, CardHeader } from "@/components/ui/Card";
-import { BlurFade } from "@/components/animated/BlurFade";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+
+import { Icons } from "@/components/icons/Icons";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 
@@ -76,12 +78,14 @@ const ResumeCard: FC<ResumeCardProps> = ({
 									)}
 								/>
 							</h3>
-							<div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+							<div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+								{Icons.duration()}
 								{period}
 							</div>
 						</div>
 						{location && (
-							<div className="text-[0.75rem] font-light text-gray-600 dark:text-gray-400 mt-1">
+							<div className="inline-flex items-center gap-2 text-[0.75rem] font-light text-gray-600 dark:text-gray-400 mt-1">
+								{Icons.location()}
 								{location}
 							</div>
 						)}

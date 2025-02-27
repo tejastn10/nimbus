@@ -80,13 +80,35 @@
 	}
 
 	@keyframes growUnderline {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
+		0% {
+			width: 0;
+		}
+		100% {
+			width: 100%;
+		}
+	}
+
+	@keyframes glow {
+		0%, 100% {
+			opacity: 0.9;
+			text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+		50% {
+			opacity: 1;
+			text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+		}
+	}
+
+	@keyframes glowMore {
+		0%, 100% {
+			opacity: 0.5;
+			text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+		50% {
+			opacity: 1;
+			text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+		}
+	}
 }
 
 @utility container {
@@ -101,12 +123,12 @@
 }
 
 /*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+	The default border color has changed to `currentColor` in Tailwind CSS v4,
+	so we've added these compatibility styles to make sure everything still
+	looks the same as it did with Tailwind CSS v3.
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+	If we ever want to remove these styles, we need to add an explicit border
+	color utility to any element that depends on these defaults.
 */
 @layer base {
 	*,
@@ -251,18 +273,31 @@ article * {
 }
 
 .underline-slide {
-  @apply relative font-bold text-neutral-900 dark:text-neutral-100 transition-all duration-300;
+	@apply relative font-bold text-neutral-900 dark:text-neutral-100 transition-all duration-300;
 }
 
 .underline-slide::after {
-  content: "";
-  @apply absolute left-0 bottom-0 h-[2px] w-full bg-current scale-x-0 origin-left transition-transform duration-300;
+	content: "";
+	@apply absolute left-0 bottom-0 h-[2px] w-full scale-x-0 origin-left transition-transform duration-300;
+	background-image: linear-gradient(to right, #000000, transparent);
+}
+
+.dark .underline-slide::after {
+	background-image: linear-gradient(to right, #ffffff, transparent);
 }
 
 .underline-slide:hover::after {
-  @apply scale-x-100;
+	@apply scale-x-100;
 }
 
 .animate-grow {
-  animation: growUnderline 0.5s ease-out forwards;
+	animation: growUnderline 0.5s ease-out forwards;
+}
+
+.animate-glow {
+	animation: glow 1s infinite ease-in-out;
+}
+
+.animate-glow-more {
+	animation: glowMore 1s infinite ease-in-out;
 }

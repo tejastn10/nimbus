@@ -1,20 +1,21 @@
 import { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
 import { BlogCard } from "@/containers/BlogCard";
 
-import { getBlogPosts } from "@/data/blog";
-
-import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
-import { POST_SLICE_NUMBER } from "@/constants/values";
-
 import { getLogo } from "@/components/icons/Icons";
 
+import { POST_SLICE_NUMBER } from "@/constants/values";
+import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
+
+import { getBlogPosts } from "@/data/blog";
+
 import { formatDate } from "@/utils/date";
+import { sortBlogPosts } from "@/utils/blog";
 
 export const metadata = {
 	title: "Blog",
@@ -55,7 +56,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -71,7 +72,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 8}>
@@ -79,30 +80,35 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 12}>
-				{posts
-					.slice(POST_SLICE_NUMBER)
-					.sort((a, b) => {
-						if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-							return -1;
-						}
-						return 1;
-					})
-					.map((post, id) => {
-						const { slug, metadata } = post;
-						const { title, description, about, publishedAt } = metadata;
+				<LineGrow className="absolute left-6 top-0 bottom-0" direction="vertical" duration={2} />
+				<div className="space-y-10">
+					{posts
+						.slice(POST_SLICE_NUMBER)
+						.sort(sortBlogPosts)
+						.map((post, id) => {
+							const { slug, metadata } = post;
+							const { title, description, publishedAt } = metadata;
+							const Icon = getLogo(metadata.about);
 
-						return (
-							<BlurFade key={slug} delay={BLUR_FADE_DELAY * 2 + id * 0.05}>
-								<BlogCard
-									slug={slug}
-									title={title}
-									description={description}
-									about={about}
-									publishedAt={publishedAt}
-								/>
-							</BlurFade>
-						);
-					})}
+							return (
+								<div key={id} className="relative pl-18 group">
+									<div className="absolute left-6 -translate-x-1/2 flex items-center justify-center w-10 h-10 bg-background rounded-md transition-all duration-300 group-hover:border-primary group-hover:scale-110">
+										<Icon className="text-muted-foreground transition-all duration-300 group-hover:text-primary" />
+									</div>
+
+									<BlurFade key={slug} delay={BLUR_FADE_DELAY * 2 + id * 0.05}>
+										<BlogCard
+											slug={slug}
+											title={title}
+											description={description}
+											publishedAt={publishedAt}
+											source={post.source}
+										/>
+									</BlurFade>
+								</div>
+							);
+						})}
+				</div>
 			</BlurFade>
 		</section>
 	);

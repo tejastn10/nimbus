@@ -8,11 +8,11 @@ import { Navbar } from "@/containers/Navbar";
 
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
+import { Cursor } from "@/components/animated/Cursor";
 import { GridPattern } from "@/components/animated/GridPattern";
 
+import { PageLines } from "@/components/ui/PageLines";
 import { TooltipProvider } from "@/components/ui/Tooltip";
-
-import { Cursor } from "@/components/animated/Cursor";
 
 import { DATA } from "@/data/resume";
 
@@ -70,7 +70,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning className={outfit.variable}>
 			<body
 				className={cx(
-					"min-h-screen bg-background font-outfit antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
+					"min-h-screen bg-background font-outfit antialiased max-w-4xl mx-auto py-12 sm:py-24 px-6",
 					outfit.variable
 				)}
 			>
@@ -120,6 +120,7 @@ export default function RootLayout({
 							"fixed inset-0 z-0 h-[210%] w-full skew-y-12"
 						)}
 					/>
+					<PageLines />
 				</ThemeProvider>
 			</body>
 		</html>

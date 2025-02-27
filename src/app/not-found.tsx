@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import Link from "next/link";
 
-import { Icons } from "@/components/icons/Icons";
-
 import { Badge } from "@/components/ui/Badge";
+
+import { Icons } from "@/components/icons/Icons";
 
 const NotFound: FC = () => {
 	return (

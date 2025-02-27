@@ -1,14 +1,15 @@
 import { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
 import { ProjectCard } from "@/containers/ProjectCard";
 
-import { DATA } from "@/data/resume";
 import { getLogo } from "@/components/icons/Icons";
+
+import { DATA } from "@/data/resume";
 
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
@@ -56,7 +57,7 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -72,14 +73,14 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<UnderlineGrow className="my-12" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
 				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Other Projects</h2>
 			</BlurFade>
 
-			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto">
+			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
 				{otherProjects.map((project, id) => (
 					<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
 						<ProjectCard
@@ -87,7 +88,7 @@ const ProjectsPage = (): JSX.Element => {
 							key={project.title}
 							title={project.title}
 							description={project.description}
-							dates={project.dates}
+							purpose={project.purpose}
 							tags={project.technologies}
 							image={project.image}
 							video={project.video}

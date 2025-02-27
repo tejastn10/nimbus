@@ -2,7 +2,6 @@
   <img src="logo.svg" alt="Logo">
 </p>
 
-
 # Nimbus ☁️
 
 ![Node.js Version](https://img.shields.io/badge/Node.js-22%2B-339933?logo=nodedotjs&logoColor=white)
@@ -102,7 +101,7 @@ nimbus/
 
 ## License 📜
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
 ---
 

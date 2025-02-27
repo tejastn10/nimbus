@@ -4,12 +4,13 @@ import React, { FC } from "react";
 
 import Link from "next/link";
 
-import { Icons } from "@/components/icons/Icons";
+import { MotionDiv } from "@/components/motion";
 
 import { Badge } from "@/components/ui/Badge";
-import { MotionDiv } from "@/components/motion";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+
+import { Icons } from "@/components/icons/Icons";
 
 import { cx } from "@/utils/tailwind";
 

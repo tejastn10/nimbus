@@ -4,15 +4,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { BlurFade } from "@/components/animated/BlurFade";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { UnderlineGrow } from "@/components/animated/UnderlineGrow";
 import { ScrollProgress } from "@/components/animated/ScrollProgress";
+
+import { getLogo, Icons } from "@/components/icons/Icons";
 
 import { DATA } from "@/data/resume";
 import { getBlogPosts, getPost } from "@/data/blog";
 
 import { formatDate } from "@/utils/date";
-import { getLogo } from "@/components/icons/Icons";
+import { calculateReadingTime } from "@/utils/blog";
+
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
 type BlogProps = {
@@ -73,31 +76,12 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 
 	const Icon = getLogo(post.metadata.about);
 
+	const formattedDate = formatDate(post.metadata.publishedAt);
+	const readingTime = calculateReadingTime(post.source);
+
 	return (
-		<section id="blog" className="relative">
+		<section id="blog" className="relative pb-16">
 			<ScrollProgress />
-
-			{Icon && (
-				<>
-					{/* Top-Right Icon */}
-					<BlurFade
-						delay={BLUR_FADE_DELAY * 2}
-						className="hidden sm:block fixed top-4 right-4 md:top-8 md:right-8 lg:top-12 lg:right-12 pointer-events-none z-[-1]"
-						aria-hidden="true"
-					>
-						<Icon className="text-[250px] md:text-[300px] lg:text-[350px] text-neutral-500 dark:text-neutral-400 opacity-10 hover:opacity-20 rotate-15 hover:rotate-0 transition-all duration-300 pointer-events-auto" />
-					</BlurFade>
-
-					{/* Bottom-Left Icon */}
-					<BlurFade
-						delay={BLUR_FADE_DELAY * 2}
-						className="hidden sm:block fixed bottom-4 left-4 md:bottom-8 md:left-8 lg:bottom-12 lg:left-12 pointer-events-none z-[-1]"
-						aria-hidden="true"
-					>
-						<Icon className="text-[250px] md:text-[300px] lg:text-[350px] text-neutral-500 dark:text-neutral-400 opacity-10 hover:opacity-20 -rotate-15 hover:rotate-0 transition-all duration-300 pointer-events-auto" />
-					</BlurFade>
-				</>
-			)}
 
 			<script
 				type="application/ld+json"
@@ -130,15 +114,20 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 				</BoxReveal>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<UnderlineGrow className="my-12" />
+			<BlurFade delay={BLUR_FADE_DELAY * 2} className="flex items-center gap-4">
+				<Icon className="text-neutral-500 dark:text-neutral-400" />
+				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 3}>
-				<div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+				<div className="flex justify-between items-center mt-2 mb-8 text-sm">
 					<Suspense fallback={<p className="h-5" />}>
-						<p className="text-xs text-neutral-400 dark:text-neutral-400">
-							{formatDate(post.metadata.publishedAt)}
+						<p className="inline-flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-400">
+							{Icons.calendar()}
+							{formattedDate}
+						</p>
+						<p className="inline-flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-400">
+							{readingTime} min read {Icons.reader()}
 						</p>
 					</Suspense>
 				</div>
@@ -146,7 +135,7 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
 				<article
-					className="prose dark:prose-invert leading-[1.5]"
+					className="prose dark:prose-invert leading-[1.5] w-full max-w-none"
 					dangerouslySetInnerHTML={{ __html: post.source }}
 				/>
 			</BlurFade>

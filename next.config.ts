@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	images: {
-		domains: ["https://www.tejastn10.com"],
+		domains: ["www.tejastn10.com"],
 	},
 };
 
