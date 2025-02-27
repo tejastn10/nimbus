@@ -167,8 +167,6 @@ const Home: FC = () => {
 										description={project.description}
 										purpose={project.purpose}
 										tags={project.technologies}
-										image={project.image}
-										video={project.video}
 										links={project.links}
 									/>
 								</BlurFade>
