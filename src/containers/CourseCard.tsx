@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC, MouseEvent, useState } from "react";
 
 import Link from "next/link";
 
@@ -35,9 +35,8 @@ const CourseCard: FC<CourseCardProps> = ({
 	subtitle,
 	description,
 }) => {
-	const [isExpanded, setIsExpanded] = React.useState(false);
-
-	const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+	const [isExpanded, setIsExpanded] = useState(false);
+	const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
 		if (description) {
 			e.preventDefault();
 			setIsExpanded(!isExpanded);

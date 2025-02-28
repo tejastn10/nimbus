@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC, MouseEvent, useState } from "react";
 
 import Link from "next/link";
 
@@ -42,9 +42,9 @@ const ResumeCard: FC<ResumeCardProps> = ({
 	period,
 	roles,
 }) => {
-	const [isExpanded, setIsExpanded] = React.useState(false);
+	const [isExpanded, setIsExpanded] = useState(false);
 
-	const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+	const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
 		if (roles.length > 0) {
 			e.preventDefault();
 			setIsExpanded(!isExpanded);
