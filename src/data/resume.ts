@@ -133,6 +133,27 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Gaia",
+			href: "https://github.com/tejastn10/gaia",
+			purpose: "Git Tools",
+			featured: true,
+			description:
+				"CLI tool to seamlessly update the first commit message in a Git repository without manual intervention.",
+			technologies: ["Go", "Cobra", "Github Actions"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/gaia",
+					icon: Icons.github(),
+				},
+				{
+					type: "Curl",
+					href: "curl -sSf https://raw.githubusercontent.com/tejastn10/gaia/main/scripts/install.sh | bash",
+					icon: Icons.bash(),
+				},
+			],
+		},
+		{
 			title: "Nyx",
 			href: "https://github.com/tejastn10/nyx",
 			purpose: "Visual Effects",
@@ -265,7 +286,7 @@ export const DATA = {
 				},
 				{
 					type: "Curl",
-					href: "curl -sSf https://raw.githubusercontent.com/tejastn10/halcyon/main/install.sh | bash",
+					href: "curl -sSf https://raw.githubusercontent.com/tejastn10/halcyon/main/scripts/install.sh | bash",
 					icon: Icons.bash(),
 				},
 			],

@@ -19,6 +19,7 @@ import { Icons } from "@/components/icons/Icons";
 
 import { DATA } from "@/data/resume";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
+import { PROJECT_SLICE_NUMBER } from "@/constants/values";
 
 const Home: FC = () => {
 	return (
@@ -158,6 +159,7 @@ const Home: FC = () => {
 					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
 						{DATA.projects
 							.filter((project) => project.featured)
+							.slice(0, PROJECT_SLICE_NUMBER)
 							.map((project, id) => (
 								<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
 									<ProjectCard
