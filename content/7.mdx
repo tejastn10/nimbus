@@ -46,7 +46,7 @@ On many Linux systems, `systemd` is responsible for managing system services, in
 through `journald`. `journald` is a system service that collects and stores logs. By default,
 `journald` can store logs in a ring buffer (in-memory) or persist them to disk.
 
-If your Docker logs are flooding the disk, one way to control this is by configuring `systemd`’s
+If your Docker logs are flooding the disk, one way to control this is by configuring `systemd`'s
 journaling settings. Specifically, the `SystemMaxUse` option in the `/etc/systemd/journald.conf`
 file can limit the maximum disk space allocated for logs, preventing them from growing beyond a set
 size.
@@ -91,7 +91,7 @@ In addition to configuring systemd logging, Docker Compose provides a way to man
 container in your application. By configuring the logging driver in the docker-compose.yml file, you
 can set limits on the log file size and the number of rotated log files.
 
-Here’s an example of how to configure logging in a Docker Compose file:
+Here's an example of how to configure logging in a Docker Compose file:
 
 ```yml
 services:
@@ -160,7 +160,7 @@ preventing potential system slowdowns or crashes.
   storage.
 
 - **Monitoring Disk Usage**: Regularly monitor disk usage and logs to catch any potential issues
-  before they flood the server. Tools like `docker system df` can provide insights into Docker’s
+  before they flood the server. Tools like `docker system df` can provide insights into Docker's
   disk consumption.
 
 ---
@@ -168,6 +168,6 @@ preventing potential system slowdowns or crashes.
 ### Conclusion
 
 Managing logs in Docker is critical to ensure system health and avoid running into disk space
-issues. By configuring `systemd`’s `journald` logging system and implementing Docker’s own log
+issues. By configuring `systemd`'s `journald` logging system and implementing Docker's own log
 rotation mechanisms, you can effectively limit log growth. This ensures that your Docker containers
 provide the necessary insights without flooding your server's disk space.

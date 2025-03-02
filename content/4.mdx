@@ -34,12 +34,12 @@ explicitly allowing such requests by including certain headers in its response.
 ### Configuring CORS in NestJS with Fastify
 
 While enabling CORS in a NestJS application using Express is straightforward, using Fastify requires
-a slightly different approach. When I was working on a project, I decided to switch from Vite’s
+a slightly different approach. When I was working on a project, I decided to switch from Vite's
 proxy server to enabling CORS on my Fastify server, both as a learning opportunity and for better
 alignment with production setups. However, I found the documentation and available articles on
 enabling CORS for Fastify in NestJS to be sparse.
 
-Here’s how I tackled it.
+Here's how I tackled it.
 
 ### Step 1: Define CORS Options
 
@@ -145,7 +145,7 @@ While configuring CORS for Fastify in NestJS, I initially used Express-specific 
 felt incorrect and hacky. After thorough research, I found the proper way to enable it using the
 enableCors method of the Fastify adapter.
 
-If you’re using my [**Verdant**](https://github.com/tejastn10/verdant) turborepo template, you can
+If you're using my [**Verdant**](https://github.com/tejastn10/verdant) turborepo template, you can
 find an example of this CORS configuration there. The repo also demonstrates how to structure a
 modern monorepo using tools like **TurboRepo** and **Vite**.
 
@@ -155,5 +155,5 @@ explaining the concept in detail.
 
 ---
 
-CORS can seem tricky initially, but with the right approach, it’s straightforward to configure and
+CORS can seem tricky initially, but with the right approach, it's straightforward to configure and
 ensures secure communication between your frontend and backend.
