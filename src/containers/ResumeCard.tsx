@@ -79,8 +79,8 @@ const ResumeCard: FC<ResumeCardProps> = ({
 								/>
 							</h3>
 							<div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
-								{Icons.duration()}
 								{period}
+								{Icons.duration()}
 							</div>
 						</div>
 						{location && (

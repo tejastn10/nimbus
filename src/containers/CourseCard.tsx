@@ -81,8 +81,9 @@ const CourseCard: FC<CourseCardProps> = ({
 									)}
 								/>
 							</h3>
-							<div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+							<div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
 								{period}
+								{Icons.duration()}
 							</div>
 						</div>
 						{subtitle && <div className="font-outfit text-xs">{subtitle}</div>}
