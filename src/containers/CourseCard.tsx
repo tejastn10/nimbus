@@ -21,6 +21,7 @@ type CourseCardProps = {
 	logoUrl: string;
 	altText: string;
 	subtitle?: string;
+	location?: string;
 	description?: string;
 	badges?: readonly string[];
 };
@@ -33,6 +34,7 @@ const CourseCard: FC<CourseCardProps> = ({
 	logoUrl,
 	altText,
 	subtitle,
+	location,
 	description,
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -84,6 +86,12 @@ const CourseCard: FC<CourseCardProps> = ({
 							</div>
 						</div>
 						{subtitle && <div className="font-outfit text-xs">{subtitle}</div>}
+						{location && (
+							<div className="inline-flex items-center gap-2 text-[0.75rem] font-light text-gray-600 dark:text-gray-400 mt-1">
+								{Icons.location()}
+								{location}
+							</div>
+						)}
 					</CardHeader>
 					{description && (
 						<MotionDiv

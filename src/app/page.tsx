@@ -191,6 +191,7 @@ const Home: FC = () => {
 								altText={education.school}
 								title={education.school}
 								subtitle={education.degree}
+								location={education.location}
 								period={`${education.start} - ${education.end}`}
 							/>
 						</BlurFade>
