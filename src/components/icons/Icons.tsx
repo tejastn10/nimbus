@@ -69,6 +69,13 @@ import {
 	SiVitest,
 	SiVuedotjs,
 	SiAuth0,
+	SiGit,
+	SiNpm,
+	SiYarn,
+	SiPypi,
+	SiDebian,
+	SiHomebrew,
+	SiChocolatey,
 } from "react-icons/si";
 
 import {
@@ -220,6 +227,18 @@ const Icons = {
 	soc2: (props?: IconProps) => <SiCivicrm {...props} />,
 	pentesting: (props?: IconProps) => <SiBurpsuite {...props} />,
 	csp: (props?: IconProps) => <SiDatadog {...props} />,
+
+	// * Package Managers
+	npm: (props?: IconProps) => <SiNpm {...props} />,
+	yarn: (props?: IconProps) => <SiYarn {...props} />,
+	pip: (props?: IconProps) => <SiPypi {...props} />,
+	goget: (props?: IconProps) => <SiGo {...props} />,
+	apt: (props?: IconProps) => <SiDebian {...props} />,
+	homebrew: (props?: IconProps) => <SiHomebrew {...props} />,
+	chocolatey: (props?: IconProps) => <SiChocolatey {...props} />,
+
+	// * Version Control
+	git: (props?: IconProps) => <SiGit {...props} />,
 
 	// * Misc
 	code: (props?: IconProps) => <RxCode {...props} />,
