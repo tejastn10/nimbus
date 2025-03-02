@@ -398,6 +398,7 @@ export const DATA = {
 			school: "University of Mumbai",
 			href: "https://mu.ac.in/",
 			degree: "Bachelor of Technology, Computer Engineering",
+			location: "Mumbai, India",
 			logoUrl: "/mumbai.jpeg",
 			start: "August 2017",
 			end: "May 2021",
