@@ -150,7 +150,7 @@ const Home: FC = () => {
 									Check out my latest work
 								</h2>
 								<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-									I&apos;ve worked on a variety of projects, from simple websites to complex web
+									I've worked on a variety of projects, from simple websites to complex web
 									applications. Here are a few of my favorites.
 								</p>
 							</div>
@@ -211,7 +211,7 @@ const Home: FC = () => {
 							</Badge>
 							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get in Touch</h2>
 							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-								If you’d like to connect, Twitter is an efficient way to reach me. Feel free to send
+								If you'd like to connect, Twitter is an efficient way to reach me. Feel free to send
 								me a message{" "}
 								<Link
 									target="_blank"
@@ -232,7 +232,7 @@ const Home: FC = () => {
 								>
 									email
 								</Link>
-								, and I’ll get back to you promptly.
+								, and I'll get back to you promptly.
 							</p>
 						</div>
 					</BlurFade>

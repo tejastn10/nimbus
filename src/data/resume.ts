@@ -69,11 +69,11 @@ export const DATA = {
 					end: undefined,
 					description: [
 						"Developed a Brand Safety feature for analyzing GIFs and videos using AWS Step Functions and Lambda. This feature enabled precise frame-by-frame content moderation by integrating Google Vision for in-depth analysis, improving brand safety and compliance.",
-						"Designed and implemented a scalable version history system to handle large datasets efficiently by leveraging AWS S3 for storage and AWS Lambda for processing. Enhanced performance and storage efficiency by utilizing Google’s Brotli compression.",
+						"Designed and implemented a scalable version history system to handle large datasets efficiently by leveraging AWS S3 for storage and AWS Lambda for processing. Enhanced performance and storage efficiency by utilizing Google's Brotli compression.",
 						"Automated the image export process using AWS Lambda, ensuring high-quality output, integrity of images, and efficient processing. Designed and implemented BullMQ-based queues that provided real-time data updates and reliable processing for image exports, significantly improving operational speed.",
 						"Led the effort to address and fix over 800 vulnerabilities across the system, successfully achieving SOC2 compliance and greatly enhancing the security posture of the platform.",
 						"Set up CI/CD pipelines using GitHub Actions, which streamlined the deployment process, significantly reducing downtime and improving overall developer productivity.",
-						"Contributed to the development of Rocketium’s core video editor, which is similar to Adobe After Effects, by adding advanced features such as precise timeline manipulation, keyframe movements, and layer snapping, allowing for scalable and high-quality video production.",
+						"Contributed to the development of Rocketium's core video editor, which is similar to Adobe After Effects, by adding advanced features such as precise timeline manipulation, keyframe movements, and layer snapping, allowing for scalable and high-quality video production.",
 					],
 				},
 				{
@@ -81,7 +81,7 @@ export const DATA = {
 					start: "May 2021",
 					end: "July 2022",
 					description: [
-						"Spearheaded the development of a new animation engine using the Web Animations API (WAAPI), which was integrated into Rocketium’s video editor. This new engine significantly improved the performance and user experience by providing smooth and scalable animation capabilities.",
+						"Spearheaded the development of a new animation engine using the Web Animations API (WAAPI), which was integrated into Rocketium's video editor. This new engine significantly improved the performance and user experience by providing smooth and scalable animation capabilities.",
 						"Implemented a unified logging system that improved system monitoring and diagnostics. Addressed and resolved several critical on-call issues, ensuring higher reliability and uptime for the platform.",
 						"Enhanced the front-end algorithms for handling large asset processing, which allowed the system to efficiently manage large datasets and improve the user experience.",
 						"Transitioned data-intensive calculations from the front-end to the back-end, boosting platform speed and efficiency by reducing client-side load and enhancing data processing capabilities.",
@@ -344,7 +344,7 @@ export const DATA = {
 			purpose: "Monorepo Setup",
 			featured: true,
 			description:
-				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It’s flexible enough to add what you need, but expect it to be a work in progress!",
+				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It's flexible enough to add what you need, but expect it to be a work in progress!",
 			technologies: [
 				"Turborepo",
 				"NodeJs",
