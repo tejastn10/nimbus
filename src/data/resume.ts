@@ -98,6 +98,7 @@ export const DATA = {
 			{ icon: Icons.python(), name: "Python" },
 			{ icon: Icons.dart(), name: "Dart" },
 			{ icon: Icons.go(), name: "Go" },
+			{ icon: Icons.git(), name: "Git" },
 		],
 		[
 			{ icon: Icons.react(), name: "React" },
