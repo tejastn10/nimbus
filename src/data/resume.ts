@@ -229,7 +229,7 @@ export const DATA = {
 			title: "Hearth",
 			href: "https://github.com/tejastn10/hearth",
 			purpose: "Backend Template",
-			featured: true,
+			featured: false,
 			description:
 				"A minimal and scalable NestJS starter template with ESLint, Prettier, Husky, and Commitlint preconfigured for clean and efficient backend development.",
 			technologies: [
@@ -275,7 +275,7 @@ export const DATA = {
 			title: "Halcyon",
 			href: "https://github.com/tejastn10/halcyon",
 			purpose: "File Management",
-			featured: true,
+			featured: false,
 			description:
 				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly.",
 			technologies: ["Go", "Cobra", "Github Actions"],
