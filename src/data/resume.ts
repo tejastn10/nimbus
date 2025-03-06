@@ -134,6 +134,27 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Nest Pingbot",
+			href: "https://github.com/tejastn10/nest-pingbot",
+			purpose: "Notifications",
+			featured: true,
+			description:
+				"A NestJS messaging module for Slack and Discord notifications, built with a focus on simplicity and ease of use.",
+			technologies: ["NestJS", "TypeScript", "Slack API", "Discord API"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/nest-pingbot",
+					icon: Icons.github(),
+				},
+				{
+					type: "NPM",
+					href: "https://www.npmjs.com/package/nest-pingbot",
+					icon: Icons.npm(),
+				},
+			],
+		},
+		{
 			title: "Gaia",
 			href: "https://github.com/tejastn10/gaia",
 			purpose: "Git Tools",
