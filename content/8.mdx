@@ -1,0 +1,175 @@
+---
+title: "Run GitHub Actions Locally with Act: A Developer's Guide 🛠️"
+publishedAt: "2025-03-07"
+description:
+  "Explore how to use the Act tool to run GitHub Actions workflows locally. Learn how to install,
+  configure, and use this powerful tool to catch issues early and streamline your CI/CD pipelines."
+about: GithubActions
+---
+
+_As someone who has been writing GitHub Actions for a long time, I've come to appreciate the value
+of the [Act tool](https://github.com/nektos/act). It's been a game-changer for me, allowing me to:_
+
+1. _Run actions locally and avoid the dreaded failed workflows showing up in the GitHub Actions tab
+   😅._
+2. _Catch errors early, especially for workflows involving tasks like pushing code, Docker images,
+   or deploying branches._
+3. _Save time and resources by testing actions locally before pushing to GitHub._
+
+---
+
+### Getting Started with Act
+
+The main dependency for Act is Docker, so make sure you have it installed on your system. Once
+Docker is ready, follow these steps:
+
+#### Step 1: Install Act
+
+Install Act using one of the following methods:
+
+- **Using Homebrew (macOS/Linux):**
+
+  ```bash
+  brew install act
+  ```
+
+- **Using Scoop (Windows):**
+
+  ```bash
+  scoop install act
+  ```
+
+- **Using Shell Script:**
+
+  ```bash
+  curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+  ```
+
+For other installation methods, check the
+[official Act documentation](https://nektosact.com/installation/index.html).
+
+#### Step 2: Configure Act
+
+Once installed, run the following command to set up Act:
+
+```bash
+act
+```
+
+You'll be prompted to choose a default image for running your workflows:
+
+- **Large size image:** ~17GB download and ~75GB disk space required. Mirrors GitHub-hosted runners.
+- **Medium size image:** ~500MB. Includes essential tools for most workflows.
+- **Micro size image:** <200MB. Contains only Node.js. Not compatible with all workflows.
+
+Choose the image that best fits your requirements. For most use cases, the medium image is a good
+balance between size and functionality.
+
+#### Step 3: Start Using Act
+
+Here are some common use cases for Act:
+
+1. To see all available workflows in your repository, use:
+
+   ```bash
+   act -l
+   ```
+
+   **Example**: The following output showcases the use of the act -l command, which lists all
+   available workflows in your repository. This provides a clear view of the workflows, jobs, and
+   the events that trigger them
+
+   ```bash
+    act -l
+    INFO[0000] Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'
+    Stage  Job ID          Job name               Workflow name                   Workflow file       Events
+    0      build-and-push  Build and Push Images  Build and Publish Docker Image  docker-image.yml    push
+    0      lint            Linting Go Code        Lint                            lint.yml            pull_request
+    0      security_audit  security_audit         Security Audit                  security-audit.yml  pull_request
+    0      unit_tests      unit_tests             Unit Tests                      unit-test.yml       workflow_dispatch,pull_request
+   ```
+
+2. Run a specific workflow by specifying the event that triggers it. For example:
+
+   ```bash
+   act push
+   ```
+
+3. You can run a specific job within a workflow using:
+
+   ```bash
+   act -j <job_name>
+   ```
+
+   **Example**: Below is a trimmed output for the unit_tests job. Note that a lot of logs have been
+   omitted for brevity, as the job produces extensive output
+
+   ```bash
+    act -j unit_tests
+
+    [Unit Tests/unit_tests] ⭐ Run Main Install Dependencies
+    [Unit Tests/unit_tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+    | go: downloading github.com/fatih/color v1.18.0
+    | go: downloading golang.org/x/sys v0.25.0
+    | go: downloading github.com/mattn/go-colorable v0.1.13
+    | go: downloading github.com/mattn/go-isatty v0.0.20
+    [Unit Tests/unit_tests]   ✅  Success - Main Install Dependencies
+
+    [Unit Tests/unit_tests] ⭐ Run Main Run Unit Tests
+    [Unit Tests/unit_tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+    | ?     github.com/tejastn10/argus      [no test files]
+    | === RUN   TestLoggingToFile
+    | --- PASS: TestLoggingToFile (0.00s)
+    | PASS
+    | ok    github.com/tejastn10/argus/logs 0.001s
+    | === RUN   TestMonitorURLTable
+    | === RUN   TestMonitorURLTable/Valid_URL
+    | === RUN   TestMonitorURLTable/Invalid_URL
+    | --- PASS: TestMonitorURLTable (0.83s)
+    |     --- PASS: TestMonitorURLTable/Valid_URL (0.83s)
+    |     --- PASS: TestMonitorURLTable/Invalid_URL (0.00s)
+    | PASS
+    | ok    github.com/tejastn10/argus/monitor      0.827s
+    [Unit Tests/unit_tests]   ✅  Success - Main Run Unit Tests
+   ```
+
+4. To use a specific workflow file, run:
+
+   ```bash
+   act -W .github/workflows/<workflow_file>.yml
+   ```
+
+5. Act supports loading environment variables from a `.env` file. Create a `.env` file with your
+   variables and run:
+
+   ```bash
+   act --env-file .env
+   ```
+
+   Same is true for secrets file too. Create a `.secrets` file with your secrets and run:
+
+   ```bash
+   act --secret-file=.secrets
+   ```
+
+---
+
+### Key Features and Limitations
+
+#### Features
+
+- **Test Locally:** Run workflows without pushing changes to GitHub.
+- **Environment Variable Support:** Load `.env` files directly for configuration.
+- **Workflow Debugging:** Quickly debug issues in your workflows.
+- **Granular Control:** Run specific workflows, jobs, or tasks.
+
+#### Limitations
+
+- Some features of GitHub Actions are not fully supported (e.g., `workflow_dispatch` inputs).
+- Requires Docker, so make sure your system meets the requirements.
+
+---
+
+This tool has been a lifesaver for me when developing workflows. If you're tired of failed actions
+cluttering your GitHub Actions tab or want to ensure your workflows run smoothly before pushing to
+GitHub, Act is definitely worth a try. Happy coding!
