@@ -152,6 +152,11 @@ export const DATA = {
 					href: "https://www.npmjs.com/package/nest-pingbot",
 					icon: Icons.npm(),
 				},
+				{
+					type: "Yarn",
+					href: "https://classic.yarnpkg.com/en/package/nest-pingbot",
+					icon: Icons.yarn(),
+				},
 			],
 		},
 		{
