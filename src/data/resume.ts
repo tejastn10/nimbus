@@ -134,6 +134,27 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Celestria",
+			href: "https://github.com/tejastn10/celestria",
+			purpose: "Code Snippet Generator",
+			featured: false,
+			description:
+				"An elegant Next.js application for generating, customizing, and sharing beautiful code snippets with support for multiple languages, themes, and export options.",
+			technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/celestria",
+					icon: Icons.github(),
+				},
+				{
+					type: "Website",
+					href: "https://celestria.vercel.app",
+					icon: Icons.link(),
+				},
+			],
+		},
+		{
 			title: "Nest Pingbot",
 			href: "https://github.com/tejastn10/nest-pingbot",
 			purpose: "Notifications",
