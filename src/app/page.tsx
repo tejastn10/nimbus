@@ -9,6 +9,7 @@ import { BoxReveal } from "@/components/animated/BoxReveal";
 import { CourseCard } from "@/containers/CourseCard";
 import { ResumeCard } from "@/containers/ResumeCard";
 import { ProjectCard } from "@/containers/ProjectCard";
+import { GitHubContributions } from "@/containers/GithubContributions";
 
 import { BlurFade } from "@/components/animated/BlurFade";
 
@@ -174,6 +175,17 @@ const Home: FC = () => {
 								</BlurFade>
 							))}
 					</div>
+				</div>
+			</section>
+
+			<section id="github-activity">
+				<div className="flex min-h-0 flex-col gap-y-3">
+					<BlurFade delay={BLUR_FADE_DELAY * 13}>
+						<h2 className="text-xl font-bold">GitHub Activity</h2>
+					</BlurFade>
+					<BlurFade delay={BLUR_FADE_DELAY * 14}>
+						<GitHubContributions />
+					</BlurFade>
 				</div>
 			</section>
 
