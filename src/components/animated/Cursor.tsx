@@ -14,28 +14,13 @@ const Cursor: FC = () => {
 			// Check if hovering over clickable elements or their children
 			const target = e.target as HTMLElement;
 
-			// Function to check if element or any parent is clickable
-			const isClickable = (element: HTMLElement | null): boolean => {
-				if (!element) return false;
+			// Use closest() method instead of recursion
+			const isClickable =
+				window.getComputedStyle(target).cursor === "pointer" ||
+				Boolean(target.closest("button")) ||
+				Boolean(target.closest("a"));
 
-				// Check if the element itself is clickable
-				if (
-					window.getComputedStyle(element).cursor === "pointer" ||
-					element.tagName.toLowerCase() === "button" ||
-					element.tagName.toLowerCase() === "a"
-				) {
-					return true;
-				}
-
-				// Check parent elements until we reach the body
-				if (element.parentElement && element !== document.body) {
-					return isClickable(element.parentElement);
-				}
-
-				return false;
-			};
-
-			setIsPointer(isClickable(target));
+			setIsPointer(isClickable);
 		};
 
 		window.addEventListener("mousemove", updateCursor);
