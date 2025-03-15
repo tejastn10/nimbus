@@ -11,13 +11,31 @@ const Cursor: FC = () => {
 			const { clientX: x, clientY: y } = e;
 			setPosition({ x, y });
 
-			// Check if hovering over clickable elements
+			// Check if hovering over clickable elements or their children
 			const target = e.target as HTMLElement;
-			setIsPointer(
-				window.getComputedStyle(target).cursor === "pointer" ||
-					target.tagName.toLowerCase() === "button" ||
-					target.tagName.toLowerCase() === "a"
-			);
+
+			// Function to check if element or any parent is clickable
+			const isClickable = (element: HTMLElement | null): boolean => {
+				if (!element) return false;
+
+				// Check if the element itself is clickable
+				if (
+					window.getComputedStyle(element).cursor === "pointer" ||
+					element.tagName.toLowerCase() === "button" ||
+					element.tagName.toLowerCase() === "a"
+				) {
+					return true;
+				}
+
+				// Check parent elements until we reach the body
+				if (element.parentElement && element !== document.body) {
+					return isClickable(element.parentElement);
+				}
+
+				return false;
+			};
+
+			setIsPointer(isClickable(target));
 		};
 
 		window.addEventListener("mousemove", updateCursor);
