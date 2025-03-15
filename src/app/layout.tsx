@@ -82,42 +82,39 @@ export default function RootLayout({
 					</TooltipProvider>
 					<GridPattern
 						squares={[
-							[4, 4],
-							[5, 1],
-							[8, 2],
-							[5, 3],
-							[5, 5],
-							[10, 10],
-							[15, 17],
-							[12, 17],
-							[10, 15],
-							[15, 12],
-							[12, 15],
-							[15, 10],
+							[2, 3],
+							[3, 5],
+							[5, 2],
+							[6, 4],
+							[4, 7],
 						]}
 						className={cx(
-							"[mask-image:radial-gradient(200px_circle_at_center,white,transparent)]",
-							"fixed inset-0 z-0 h-[25%] w-full skew-y-12"
+							"[mask-image:radial-gradient(400px_circle_at_top_left,white,transparent)]",
+							"fixed inset-0 z-0 h-[105%] w-full -skew-y-12 -top-50"
 						)}
 					/>
 					<GridPattern
 						squares={[
-							[8, 8],
-							[10, 2],
-							[16, 4],
-							[10, 6],
-							[10, 10],
-							[20, 20],
-							[30, 34],
-							[24, 34],
-							[20, 30],
 							[30, 24],
-							[24, 30],
-							[30, 20],
+							[32, 26],
+							[35, 30],
+							[38, 32],
+							[40, 28],
+							[42, 34],
+							[45, 36],
+							[47, 38],
+
+							[45, 29],
+							[46, 30],
+							[48, 31],
+							[49, 32],
+							[47, 33],
+							[46, 34],
+							[48, 29],
 						]}
 						className={cx(
-							"[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
-							"fixed inset-0 z-0 h-[210%] w-full skew-y-12"
+							"[mask-image:radial-gradient(400px_circle_at_bottom_right,white,transparent)]",
+							"fixed inset-0 z-0 h-[120%] w-full -skew-y-12 top-auto -bottom-50"
 						)}
 					/>
 					<PageLines />
