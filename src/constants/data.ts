@@ -2,10 +2,11 @@ enum TECH {
 	General = "General",
 
 	// * Frontend
-	React = "React",
 	JavaScript = "JavaScript",
 	TypeScript = "TypeScript",
 	Dart = "Dart",
+	React = "React",
+	Electron = "Electron",
 	Flutter = "Flutter",
 	NextJS = "NextJS",
 	Redux = "Redux",

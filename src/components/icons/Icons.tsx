@@ -76,6 +76,7 @@ import {
 	SiDebian,
 	SiHomebrew,
 	SiChocolatey,
+	SiElectron,
 } from "react-icons/si";
 
 import {
@@ -150,6 +151,7 @@ const Icons = {
 	vue: (props?: IconProps) => <SiVuedotjs {...props} />,
 	svelte: (props?: IconProps) => <SiSvelte {...props} />,
 	angular: (props?: IconProps) => <SiAngular {...props} />,
+	electron: (props?: IconProps) => <SiElectron {...props} />,
 	tailwind: (props?: IconProps) => <SiTailwindcss {...props} />,
 	scss: (props?: IconProps) => <SiSass {...props} />,
 	nextjs: (props?: IconProps) => <SiNextdotjs {...props} />,
@@ -250,10 +252,11 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	General: Icons.code,
 
 	// * Frontend
-	React: Icons.react,
 	JavaScript: Icons.javascript,
 	TypeScript: Icons.typescript,
 	Dart: Icons.dart,
+	React: Icons.react,
+	Electron: Icons.electron,
 	Flutter: Icons.flutter,
 	NextJS: Icons.nextjs,
 	Redux: Icons.redux,
