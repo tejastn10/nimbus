@@ -134,6 +134,36 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Brimstone",
+			href: "https://github.com/tejastn10/brimstone",
+			purpose: "Desktop Application Template",
+			featured: false,
+			description:
+				"Modern Electron template with React and TypeScript, featuring Vite for fast development and pre-configured tools like ESLint, Prettier, and Husky.",
+			technologies: [
+				"Electron",
+				"React",
+				"TypeScript",
+				"Vite",
+				"ESLint",
+				"Prettier",
+				"Husky",
+				"Commitlint",
+			],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/brimstone",
+					icon: Icons.github(),
+				},
+				{
+					type: "Template",
+					href: "",
+					icon: Icons.template(),
+				},
+			],
+		},
+		{
 			title: "Celestria",
 			href: "https://github.com/tejastn10/celestria",
 			purpose: "Code Snippet Generator",
