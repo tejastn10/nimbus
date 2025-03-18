@@ -6,6 +6,7 @@ import { BoxReveal } from "@/components/animated/BoxReveal";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
 import { ProjectCard } from "@/containers/ProjectCard";
+import { TemplateCard } from "@/containers/TemplateCard";
 
 import { getLogo } from "@/components/icons/Icons";
 
@@ -20,8 +21,13 @@ export const metadata = {
 };
 
 const ProjectsPage = (): JSX.Element => {
+	// Filter featured projects (including templates)
 	const featuredProjects = DATA.projects.filter((project) => project.featured);
 
+	// Filter other projects (not featured and not templates)
+	const otherProjects = DATA.projects.filter((project) => !project.featured && !project.isTemplate);
+
+	// Create Bento cards for featured projects
 	const ProjectBentoCards: BentoCardProps[] = featuredProjects
 		.slice(0, PROJECT_SLICE_NUMBER)
 		.map((project, index) => ({
@@ -39,11 +45,14 @@ const ProjectsPage = (): JSX.Element => {
 	// Featured projects that are not displayed in the Bento Grid
 	const remainingFeaturedProjects = featuredProjects.slice(PROJECT_SLICE_NUMBER);
 
-	// Combine the remaining featured projects with the non-featured ones
-	const otherProjects = [
-		...DATA.projects.filter((project) => !project.featured),
-		...remainingFeaturedProjects,
+	// Add remaining featured projects to other projects, but exclude templates
+	const allOtherProjects = [
+		...otherProjects,
+		...remainingFeaturedProjects.filter((project) => !project.isTemplate),
 	];
+
+	// Filter all template projects regardless of featured status
+	const templateProjects = DATA.projects.filter((project) => project.isTemplate);
 
 	return (
 		<section>
@@ -81,7 +90,7 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
-				{otherProjects.map((project, id) => (
+				{allOtherProjects.map((project, id) => (
 					<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
 						<ProjectCard
 							href={project.href}
@@ -91,6 +100,28 @@ const ProjectsPage = (): JSX.Element => {
 							purpose={project.purpose}
 							tags={project.technologies}
 							links={project.links}
+						/>
+					</BlurFade>
+				))}
+			</div>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 10}>
+				<LineGrow className="my-12" />
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 10}>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Templates</h2>
+			</BlurFade>
+
+			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mx-auto">
+				{templateProjects.map((project, id) => (
+					<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
+						<TemplateCard
+							href={project.href}
+							key={project.title}
+							title={project.title}
+							description={project.description}
+							tags={project.technologies}
 						/>
 					</BlurFade>
 				))}
