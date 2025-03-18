@@ -138,6 +138,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/brimstone",
 			purpose: "Desktop Application Template",
 			featured: false,
+			isTemplate: true,
 			description:
 				"Modern Electron template with React and TypeScript, featuring Vite for fast development and pre-configured tools like ESLint, Prettier, and Husky.",
 			technologies: [
@@ -156,11 +157,6 @@ export const DATA = {
 					href: "https://github.com/tejastn10/brimstone",
 					icon: Icons.github(),
 				},
-				{
-					type: "Template",
-					href: "",
-					icon: Icons.template(),
-				},
 			],
 		},
 		{
@@ -168,6 +164,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/celestria",
 			purpose: "Code Snippet Generator",
 			featured: false,
+			isTemplate: false,
 			description:
 				"An elegant Next.js application for generating, customizing, and sharing beautiful code snippets with support for multiple languages, themes, and export options.",
 			technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion"],
@@ -189,6 +186,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/nest-pingbot",
 			purpose: "Notifications",
 			featured: true,
+			isTemplate: false,
 			description:
 				"A NestJS messaging module for Slack and Discord notifications, built with a focus on simplicity and ease of use.",
 			technologies: ["NestJS", "TypeScript", "Slack API", "Discord API"],
@@ -215,6 +213,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/gaia",
 			purpose: "Git Tools",
 			featured: true,
+			isTemplate: false,
 			description:
 				"CLI tool to seamlessly update the first commit message in a Git repository without manual intervention.",
 			technologies: ["Go", "Cobra", "Github Actions"],
@@ -236,6 +235,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/nyx",
 			purpose: "Visual Effects",
 			featured: false,
+			isTemplate: false,
 			description:
 				"A Next.js project that recreates the iconic Matrix digital rain effect using the Canvas API. It delivers a smooth, visually striking animation optimized for performance.",
 			technologies: ["NextJS", "React", "TypeScript", "Canvas", "TailwindCSS", "Vercel"],
@@ -257,6 +257,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/acre",
 			purpose: "Financial Tools",
 			featured: false,
+			isTemplate: false,
 			description:
 				"A sleek and interactive return calculator that visualizes investment growth over time using an Area Chart with Indian currency formatting.",
 			technologies: ["NextJS", "React", "TypeScript", "Recharts", "TailwindCSS", "Vercel"],
@@ -278,6 +279,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/arbor",
 			purpose: "Frontend Template",
 			featured: false,
+			isTemplate: true,
 			description:
 				"A Next.js template with custom ESLint and Prettier rules for consistent code quality. It includes Tailwind CSS, Husky, and Commitlint for a seamless developer experience.",
 			technologies: [
@@ -295,11 +297,6 @@ export const DATA = {
 					href: "https://github.com/tejastn10/arbor",
 					icon: Icons.github(),
 				},
-				{
-					type: "Template",
-					href: "",
-					icon: Icons.template(),
-				},
 			],
 		},
 		{
@@ -307,6 +304,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/hearth",
 			purpose: "Backend Template",
 			featured: false,
+			isTemplate: true,
 			description:
 				"A minimal and scalable NestJS starter template with ESLint, Prettier, Husky, and Commitlint preconfigured for clean and efficient backend development.",
 			technologies: [
@@ -325,11 +323,6 @@ export const DATA = {
 					href: "https://github.com/tejastn10/hearth",
 					icon: Icons.github(),
 				},
-				{
-					type: "Template",
-					href: "",
-					icon: Icons.template(),
-				},
 			],
 		},
 		{
@@ -337,6 +330,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/verve",
 			purpose: "AI Automation",
 			featured: false,
+			isTemplate: false,
 			description:
 				"An AI-driven Twitter bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
 			technologies: ["Python", "Tweepy", "Hugging Face", "GPT-2", "Poetry"],
@@ -353,6 +347,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/halcyon",
 			purpose: "File Management",
 			featured: false,
+			isTemplate: false,
 			description:
 				"Fast and lightweight Go-based CLI tool to detect and manage duplicate files effortlessly.",
 			technologies: ["Go", "Cobra", "Github Actions"],
@@ -374,6 +369,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/argus",
 			purpose: "Monitoring",
 			featured: true,
+			isTemplate: false,
 			description:
 				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
 			technologies: ["Go", "Github Actions", "Docker"],
@@ -400,6 +396,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/nimbus",
 			purpose: "Portfolio",
 			featured: false,
+			isTemplate: false,
 			description:
 				"A personal portfolio built with Next.js and shadcn, designed to showcase projects and achievements with a sleek, developer-friendly design.",
 			technologies: ["NextJS", "TypeScript", "shadcn", "TailwindCSS", "Vercel"],
@@ -421,6 +418,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/verdant",
 			purpose: "Monorepo Setup",
 			featured: true,
+			isTemplate: true,
 			description:
 				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It's flexible enough to add what you need, but expect it to be a work in progress!",
 			technologies: [
@@ -440,11 +438,6 @@ export const DATA = {
 					href: "https://github.com/tejastn10/verdant",
 					icon: Icons.github(),
 				},
-				{
-					type: "Template",
-					href: "",
-					icon: Icons.template(),
-				},
 			],
 		},
 		{
@@ -452,6 +445,7 @@ export const DATA = {
 			href: "https://github.com/tejastn10/eden",
 			purpose: "React Starter",
 			featured: false,
+			isTemplate: true,
 			description:
 				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
 			technologies: ["TypeScript", "React", "ViteJS", "ESLint", "Prettier", "Husky", "Commitlint"],
@@ -460,11 +454,6 @@ export const DATA = {
 					type: "Source",
 					href: "https://github.com/tejastn10/eden",
 					icon: Icons.github(),
-				},
-				{
-					type: "Template",
-					href: "",
-					icon: Icons.template(),
 				},
 			],
 		},
