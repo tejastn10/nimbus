@@ -60,7 +60,9 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Recent Posts</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Recent Posts
+				</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
@@ -76,7 +78,9 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Remaining Posts</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Remaining Posts
+				</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 12}>
