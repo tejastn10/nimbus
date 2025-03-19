@@ -147,7 +147,7 @@ const Home: FC = () => {
 									{Icons.projects()}
 									<span className="ml-2">My Projects</span>
 								</Badge>
-								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl pt-2">
+								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl pt-2 text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
 									Check out my latest work
 								</h2>
 								<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
@@ -222,7 +222,9 @@ const Home: FC = () => {
 								{Icons.contact()}
 								<span className="ml-2">Contact</span>
 							</Badge>
-							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get in Touch</h2>
+							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+								Get in Touch
+							</h2>
 							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
 								If you'd like to connect, Twitter is an efficient way to reach me. Feel free to send
 								me a message{" "}
