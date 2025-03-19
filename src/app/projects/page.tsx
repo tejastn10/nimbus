@@ -70,7 +70,9 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Featured Projects</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Featured Projects
+				</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
@@ -86,7 +88,9 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Other Projects</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Other Projects
+				</h2>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
@@ -110,7 +114,9 @@ const ProjectsPage = (): JSX.Element => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Templates</h2>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Templates
+				</h2>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mx-auto">
