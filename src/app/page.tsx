@@ -191,11 +191,11 @@ const Home: FC = () => {
 
 			<section id="education">
 				<div className="flex min-h-0 flex-col gap-y-3">
-					<BlurFade delay={BLUR_FADE_DELAY * 7}>
+					<BlurFade delay={BLUR_FADE_DELAY * 15}>
 						<h2 className="text-xl font-bold">Education</h2>
 					</BlurFade>
 					{DATA.education.map((education, index) => (
-						<BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + index * 0.05}>
+						<BlurFade key={education.school} delay={BLUR_FADE_DELAY * 16 + index * 0.05}>
 							<CourseCard
 								key={education.school}
 								href={education.href}
@@ -213,7 +213,7 @@ const Home: FC = () => {
 
 			<section id="contact">
 				<div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-					<BlurFade delay={BLUR_FADE_DELAY * 16}>
+					<BlurFade delay={BLUR_FADE_DELAY * 18}>
 						<div className="space-y-3">
 							<Badge
 								noHover
