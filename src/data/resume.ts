@@ -134,6 +134,23 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Quill",
+			href: "https://github.com/tejastn10/quill",
+			purpose: "Version Control",
+			featured: true,
+			isTemplate: false,
+			description:
+				"A lightweight Git clone in Go that explores versioning, file diffs, and object storage to understand distributed version control systems.",
+			technologies: ["Go", "Cobra", "Github Actions"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/quill",
+					icon: Icons.github(),
+				},
+			],
+		},
+		{
 			title: "Brimstone",
 			href: "https://github.com/tejastn10/brimstone",
 			purpose: "Desktop Application Template",
@@ -417,7 +434,7 @@ export const DATA = {
 			title: "Verdant",
 			href: "https://github.com/tejastn10/verdant",
 			purpose: "Monorepo Setup",
-			featured: true,
+			featured: false,
 			isTemplate: true,
 			description:
 				"A starter template built with Turborepo, NestJS, React, and ViteJS for quickly launching projects. It's flexible enough to add what you need, but expect it to be a work in progress!",
