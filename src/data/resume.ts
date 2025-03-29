@@ -134,6 +134,33 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "AWS-Lambda-Radar",
+			href: "https://github.com/tejastn10/aws-lambda-radar",
+			purpose: "Serverless Monitoring",
+			featured: true,
+			isTemplate: false,
+			description:
+				"Streamlined middleware for enhanced Lambda logging and error handling with automatic context capture for better traceability.",
+			technologies: ["NodeJS", "AWS Lambda", "TypeScript", "CloudWatch"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/aws-lambda-radar",
+					icon: Icons.github(),
+				},
+				{
+					type: "NPM",
+					href: "https://www.npmjs.com/package/aws-lambda-radar",
+					icon: Icons.npm(),
+				},
+				{
+					type: "Yarn",
+					href: "https://classic.yarnpkg.com/en/package/aws-lambda-radar",
+					icon: Icons.yarn(),
+				},
+			],
+		},
+		{
 			title: "Quill",
 			href: "https://github.com/tejastn10/quill",
 			purpose: "Version Control",
