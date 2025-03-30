@@ -175,6 +175,11 @@ export const DATA = {
 					href: "https://github.com/tejastn10/quill",
 					icon: Icons.github(),
 				},
+				{
+					type: "Curl",
+					href: "curl -sSf https://raw.githubusercontent.com/tejastn10/quill/main/scripts/install.sh | bash",
+					icon: Icons.bash(),
+				},
 			],
 		},
 		{
