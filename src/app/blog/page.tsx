@@ -35,8 +35,8 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			name: post.metadata.about,
 			className:
 				index % 4 === 0 || index % 4 === 3
-					? "col-span-3 lg:col-span-1 grayscale hover:grayscale-0"
-					: "col-span-3 lg:col-span-2 grayscale hover:grayscale-0",
+					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
+					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
 			Icon: getLogo(post.metadata.about),
 			description: post.metadata.title,
 			subDescription: formatDate(post.metadata.publishedAt, true),

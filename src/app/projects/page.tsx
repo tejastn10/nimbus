@@ -34,8 +34,8 @@ const ProjectsPage = (): JSX.Element => {
 			name: project.title,
 			className:
 				index % 4 === 0 || index % 4 === 3
-					? "col-span-3 lg:col-span-1 grayscale hover:grayscale-0"
-					: "col-span-3 lg:col-span-2 grayscale hover:grayscale-0",
+					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
+					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
 			Icon: getLogo(project.technologies[0] as any),
 			description: project.description,
 			href: project.links[0].href,
