@@ -61,12 +61,12 @@ export const DATA = {
 			location: "Bangalore, India",
 			logoUrl: "/rocketium.png",
 			start: "May 2021",
-			end: undefined,
+			end: "April 2025",
 			roles: [
 				{
 					title: "Software Development Engineer II",
 					start: "July 2022",
-					end: undefined,
+					end: "April 2025",
 					description: [
 						"Developed a Brand Safety feature for analyzing GIFs and videos using AWS Step Functions and Lambda. This feature enabled precise frame-by-frame content moderation by integrating Google Vision for in-depth analysis, improving brand safety and compliance.",
 						"Designed and implemented a scalable version history system to handle large datasets efficiently by leveraging AWS S3 for storage and AWS Lambda for processing. Enhanced performance and storage efficiency by utilizing Google's Brotli compression.",
