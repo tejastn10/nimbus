@@ -283,6 +283,7 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	WebSockets: Icons.websockets,
 
 	// * Databases
+	Database: Icons.database,
 	MongoDB: Icons.mongo,
 	PostgreSQL: Icons.postgres,
 	MySQL: Icons.mysql,

@@ -33,6 +33,7 @@ enum TECH {
 	WebSockets = "WebSockets",
 
 	// * Databases
+	Database = "Database",
 	MongoDB = "MongoDB",
 	PostgreSQL = "PostgreSQL",
 	MySQL = "MySQL",
