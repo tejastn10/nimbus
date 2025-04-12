@@ -234,7 +234,7 @@ const Home: FC = () => {
 									href={DATA.contact.social.Twitter.url}
 									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
 								>
-									here
+									on Twitter
 								</Link>
 								, and I will respond as soon as possible. Please note that unsolicited messages will
 								not receive a response.
