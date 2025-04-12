@@ -16,7 +16,10 @@ import { cx } from "@/utils/tailwind";
 
 const Navbar: FC = () => {
 	return (
-		<div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
+		<nav
+			className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14"
+			aria-label="Main navigation"
+		>
 			<div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background" />
 
 			<Dock
@@ -35,8 +38,9 @@ const Navbar: FC = () => {
 								<Link
 									href={item.href}
 									className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
+									aria-label={item.label}
 								>
-									<item.icon className="size-4" />
+									<item.icon className="size-4" aria-hidden="true" />
 								</Link>
 							</TooltipTrigger>
 							<TooltipContent>
@@ -45,7 +49,9 @@ const Navbar: FC = () => {
 						</Tooltip>
 					</DockIcon>
 				))}
+
 				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
+
 				{Object.entries(DATA.contact.social)
 					.filter(([, social]) => social.navbar)
 					.map(([name, social]) => (
@@ -57,6 +63,7 @@ const Navbar: FC = () => {
 										href={social.url}
 										rel="noopener noreferrer"
 										className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
+										aria-label={`Visit ${name}`}
 									>
 										<social.icon className="size-4" />
 									</Link>
@@ -67,7 +74,9 @@ const Navbar: FC = () => {
 							</Tooltip>
 						</DockIcon>
 					))}
+
 				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
+
 				<DockIcon>
 					<Tooltip>
 						<TooltipTrigger asChild>
@@ -79,7 +88,7 @@ const Navbar: FC = () => {
 					</Tooltip>
 				</DockIcon>
 			</Dock>
-		</div>
+		</nav>
 	);
 };
 
