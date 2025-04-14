@@ -134,6 +134,33 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Srotas",
+			href: "https://github.com/tejastn10/srotas",
+			purpose: "Event Management",
+			featured: false,
+			isTemplate: false,
+			description:
+				"A utility package providing event handler functions like debounce and throttle for efficient function execution. Built with TypeScript and optimized for React projects.",
+			technologies: ["React", "TypeScript", "Vite", "ESLint", "Prettier", "Vitest"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/srotas",
+					icon: Icons.github(),
+				},
+				{
+					type: "NPM",
+					href: "https://www.npmjs.com/package/srotas",
+					icon: Icons.npm(),
+				},
+				{
+					type: "Yarn",
+					href: "https://classic.yarnpkg.com/en/package/srotas",
+					icon: Icons.yarn(),
+				},
+			],
+		},
+		{
 			title: "AWS-Lambda-Radar",
 			href: "https://github.com/tejastn10/aws-lambda-radar",
 			purpose: "Serverless Monitoring",
