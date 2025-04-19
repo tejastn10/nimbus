@@ -1,0 +1,232 @@
+---
+title: "Compiler vs. Transpiler: Understanding the Differences and Use Cases ⚙️"
+publishedAt: "2025-04-19"
+description:
+  "A deep dive into compilers and transpilers, their role in software development, and how they
+  differ. Learn why both are essential and explore real-world examples of each."
+about: General
+---
+
+_A while ago, while reading about compilers, I came across a term that I hadn't seen
+before—**transpiler**. At first, it seemed like just another word for a compiler, but as I dug
+deeper, I realized it had a distinct purpose. This curiosity led me to explore how compilers and
+transpilers work, their differences, and why developers use them._
+
+_This article will break down the **key differences between compilers and transpilers**, their **use
+cases**, and provide **real-world examples** of each._
+
+---
+
+## **What is a Compiler?**
+
+A **compiler** is a program that translates **high-level source code** (such as C, Java, or Go) into
+**machine code** (binary instructions) that a computer can execute. The process typically involves
+multiple stages:
+
+1. **Lexical Analysis** – Breaking the code into tokens (like words in a sentence).
+2. **Syntax Analysis** – Checking if the tokens follow the grammatical rules of the language.
+3. **Semantic Analysis** – Ensuring the code makes logical sense (like type checking).
+4. **Intermediate Code Generation** – Creating a middle representation of the code.
+5. **Optimization** – Improving performance and efficiency of the intermediate code.
+6. **Code Generation** – Producing the final machine code for the target architecture.
+
+### **Examples of Compilers**
+
+- **GCC (GNU Compiler Collection)**: Compiles C/C++ code into executable machine code.
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+```
+
+When compiled with GCC (`gcc main.c -o main`), this code transforms into an executable binary file
+that my computer can run directly.
+
+- **Javac (Java Compiler)**: Translates Java source code into bytecode (`.class` files), which the
+  Java Virtual Machine (JVM) interprets.
+
+- **LLVM**: A modular compiler infrastructure used by many modern compilers like Clang (C/C++),
+  Swift, and Rust compilers.
+
+- **Go compiler**: Converts Go code into machine code for direct execution.
+
+---
+
+## **What is a Transpiler?**
+
+A **transpiler** (or **source-to-source compiler**) translates code from **one programming language
+to another** or from one version of a language to another. Unlike a traditional compiler, a
+transpiler doesn't produce machine code but instead generates human-readable code in another
+high-level language.
+
+### **How Transpilers Work**
+
+Transpilers follow similar initial steps as compilers:
+
+1. **Parse the source code** into an Abstract Syntax Tree (AST)
+2. **Transform the AST** based on the target language rules
+3. **Generate code** in the target language
+
+The key difference is that the output remains human-readable source code rather than machine code.
+
+### **Common Uses of Transpilers**
+
+1. **Cross-Language Conversion** – Convert code between languages (e.g., TypeScript to JavaScript).
+2. **Modernization** – Convert older syntax to modern standards (e.g., ES5 to ES6 JavaScript).
+3. **Platform Compatibility** – Ensure code runs on different environments.
+4. **Polyfilling** – Adding features that might be missing in target environments.
+
+### **Examples of Transpilers**
+
+- **Babel**: Converts modern JavaScript (ES6+) into older JavaScript (ES5) to ensure compatibility
+  with older browsers.
+
+#### **Input (ES6 JavaScript)**
+
+```js
+const greet = (name) => `Hello, ${name}!`;
+console.log(greet("Tejas"));
+```
+
+#### **Output (ES5 JavaScript after Babel transpilation)**
+
+```js
+"use strict";
+function greet(name) {
+	return "Hello, " + name + "!";
+}
+console.log(greet("Tejas"));
+```
+
+- **TypeScript Compiler (TSC)**: Converts TypeScript into plain JavaScript.
+
+- **Emscripten**: Transpiles C/C++ into WebAssembly (Wasm) or JavaScript for running native code in
+  web browsers.
+
+- **CoffeeScript Compiler**: Converts CoffeeScript's more concise syntax into standard JavaScript.
+
+- **Dart to JavaScript compiler**: Converts Dart code to JavaScript for web applications.
+
+---
+
+## **Key Differences Between Compiler and Transpiler**
+
+| Feature      | Compiler                             | Transpiler                                        |
+| ------------ | ------------------------------------ | ------------------------------------------------- |
+| Output Type  | Machine code or bytecode             | Human-readable source code                        |
+| Translation  | High-level language → Low-level code | High-level language → Another high-level language |
+| Target       | CPU architecture or virtual machine  | Another programming language runtime              |
+| Optimization | Typically optimizes for performance  | Usually preserves code readability                |
+| Purpose      | Final execution by hardware          | Compatibility or language feature enhancement     |
+| Examples     | GCC, Clang, Javac, Go compiler       | Babel, TypeScript Compiler, Emscripten, Dart2js   |
+
+---
+
+## **Why Use a Compiler or Transpiler?**
+
+### **When to Use a Compiler?**
+
+- **Performance**: Compilers optimize code for execution speed. Languages like C, C++, and Go are
+  compiled to maximize performance.
+
+- **Standalone Executables**: Compiled languages generate standalone executables that do not require
+  an interpreter.
+
+- **Low-Level Hardware Interaction**: Some applications (e.g., embedded systems, OS development)
+  require direct hardware control.
+
+- **Security**: Compiled code can be more difficult to reverse-engineer than interpreted code.
+
+- **Deployment Simplicity**: Once compiled, the program doesn't need additional runtime environments
+  installed (except for languages that use virtual machines like Java).
+
+### **When to Use a Transpiler?**
+
+- **Cross-Browser Compatibility**: Babel ensures JavaScript code runs on all browsers, even older
+  ones.
+
+- **Language Interoperability**: Emscripten allows running C/C++ code in web browsers.
+
+- **Feature Adoption**: TypeScript provides modern features (e.g., strong typing), and its
+  transpiler ensures it runs as plain JavaScript.
+
+- **Code Maintainability**: Using a more expressive or safer language (like TypeScript) while still
+  targeting a widely supported platform (JavaScript).
+
+- **Gradual Migration**: Allows teams to incrementally adopt new language features or move to new
+  languages.
+
+---
+
+## **Real-World Scenarios**
+
+### **Scenario 1: Writing Modern JavaScript for Older Browsers**
+
+When I'm developing a web application using the latest **ES6+ JavaScript** features like arrow
+functions, template literals, and async/await, I need to ensure my code runs on older browsers that
+only support **ES5**. Babel transpiles my ES6 code into ES5-compatible JavaScript, so my application
+works everywhere.
+
+### **Scenario 2: Running C/C++ Code in the Browser**
+
+I have a complex image processing algorithm written in C++ that I want to use in my web application.
+Using **Emscripten**, I can transpile this C++ code into **WebAssembly** or JavaScript, enabling
+high-performance applications like **Photoshop Web** or **games running in a browser**.
+
+### **Scenario 3: Type Safety in JavaScript Applications**
+
+For a large team project, I prefer using TypeScript for its static typing to catch errors at compile
+time rather than runtime. The **TypeScript Compiler (TSC)** transpiles my TypeScript into
+JavaScript, ensuring type safety during development while maintaining compatibility with JavaScript
+environments when deployed.
+
+### **Scenario 4: Cross-Platform Mobile Development**
+
+When building mobile apps, I can write code in a language like Dart (for Flutter) or React Native's
+JSX syntax. Transpilers convert this code into the appropriate format for each platform (Android or
+iOS), allowing me to maintain a single codebase.
+
+---
+
+## **Common Confusion Points**
+
+Some aspects of compilers and transpilers can be confusing for beginners (like me when I started):
+
+### **Aren't All Transpilers Just Compilers?**
+
+Technically, yes! A transpiler is a specialized type of compiler. The distinction is mostly in the
+output: traditional compilers produce machine code, while transpilers produce another high-level
+language.
+
+### **Is JavaScript a Compiled or Interpreted Language?**
+
+It's actually both! Modern JavaScript engines use Just-In-Time (JIT) compilation. They first
+interpret the code and then compile frequently used parts for better performance. When we use Babel,
+we're adding a transpilation step before this process.
+
+### **What About WebAssembly?**
+
+WebAssembly (Wasm) sits in an interesting middle ground. Languages like C++ can be compiled to
+WebAssembly (a binary format), but WebAssembly itself isn't direct machine code—it's executed in a
+browser environment. This is why tools like Emscripten are sometimes called transpilers, even though
+they're producing a binary format.
+
+---
+
+## **Conclusion**
+
+Compilers and transpilers both play crucial roles in software development, but they serve different
+purposes. While compilers translate high-level code into machine code for execution, transpilers
+convert code into another high-level language to ensure compatibility and maintainability.
+
+Understanding these differences has helped me choose the right tool based on my project's needs. If
+I'm building a performance-critical application that needs direct hardware access, I'll choose a
+compiled language. If I'm developing a web application that needs to run across various browsers,
+I'll use JavaScript with a transpiler like Babel.
+
+As programming ecosystems continue to evolve, the line between compilation and transpilation might
+blur even further, but the fundamental concepts will remain important for any developer to
+understand. 🚀
