@@ -10,9 +10,12 @@ import GitHubCalendar from "react-github-calendar";
 import { Icons } from "@/components/icons/Icons";
 
 import { cx } from "@/utils/tailwind";
+import { getCurrentYear } from "@/utils/date";
 
 const GitHubContributions: FC = () => {
 	const { theme } = useTheme();
+
+	const currentYear = getCurrentYear();
 
 	const [mounted, setMounted] = useState(false);
 
@@ -56,6 +59,7 @@ const GitHubContributions: FC = () => {
 						username="tejastn10"
 						colorScheme={isDarkMode ? "dark" : "light"}
 						fontSize={10}
+						year={currentYear}
 						blockSize={11}
 						blockMargin={3.2}
 						theme={{

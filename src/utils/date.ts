@@ -44,4 +44,10 @@ const formatDate = (date: string, onlyDate?: boolean): string => {
 	}
 };
 
-export { formatDate };
+const getCurrentYear = (): number => {
+	const currentDate = new Date();
+	const currentYear = currentDate.getFullYear();
+	return currentYear;
+};
+
+export { formatDate, getCurrentYear };
