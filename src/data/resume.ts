@@ -56,6 +56,22 @@ export const DATA = {
 
 	work: [
 		{
+			company: "Habuild",
+			href: "https://habuild.in",
+			location: "Bangalore, India",
+			logoUrl: "/habuild.png",
+			start: "May 2025",
+			end: "Present",
+			roles: [
+				{
+					title: "Technical Lead",
+					start: "May 2025",
+					end: "Present",
+					description: [],
+				},
+			],
+		},
+		{
 			company: "Rocketium",
 			href: "https://rocketium.com",
 			location: "Bangalore, India",
