@@ -62,17 +62,16 @@ const Home: FC = () => {
 				</BlurFade>
 				<BlurFade delay={BLUR_FADE_DELAY * 4}>
 					<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-						I began my software engineering journey in 2021 and am currently building creative-ops
-						at{" "}
+						I began my software engineering journey in 2021 and am currently a Technical Lead at{" "}
 						<Link
 							target="_blank"
 							rel="noopener noreferrer"
-							href="https://www.rocketium.com"
+							href="https://www.habuild.in"
 							className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
 						>
-							Rocketium
+							HaBuild
 						</Link>
-						. Sometimes, you might find me at a{" "}
+						, where I’m helping shape product and engineering decisions. You might also find me at a{" "}
 						<Link
 							target="_blank"
 							rel="noopener noreferrer"
@@ -81,7 +80,7 @@ const Home: FC = () => {
 						>
 							BangPypers
 						</Link>{" "}
-						meetup, where I continue to enhance my Python skills.
+						meetup, continuing to level up my Python skills and meet fellow developers.
 					</p>
 				</BlurFade>
 			</section>
