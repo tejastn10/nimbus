@@ -60,7 +60,7 @@ const BookCard: FC<BookCardProps> = ({
 			year: "numeric",
 			month: "long",
 			day: "numeric",
-		  })
+		})
 		: null;
 
 	const styles = getStatusStyles(readingStatus);
@@ -79,11 +79,9 @@ const BookCard: FC<BookCardProps> = ({
 				`after:bg-gradient-to-br after:${styles.gradient}`,
 				"after:opacity-0 hover:after:opacity-100",
 				"after:transition-opacity after:duration-500"
-				
 			)}
-			
 		>
-			<Link href={`/books/${slug}`} className="flex flex-col flex-1" >
+			<Link href={`/books/${slug}`} className="flex flex-col flex-1">
 				<CardHeader className="flex-1 ">
 					<div className="flex items-start justify-between gap-4">
 						<CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors duration-500">
