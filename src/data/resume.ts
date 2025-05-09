@@ -14,10 +14,20 @@ export const DATA = {
 	avatarUrl: "/profile.jpeg",
 
 	navbar: [
-		{ href: "/", icon: Icons.home, label: "Home" },
 		{ href: "/blog", icon: Icons.blog, label: "Blog" },
+		{ href: "/books", icon: Icons.books, label: "Books" },
 		{ href: "/projects", icon: Icons.projects, label: "Projects" },
 	],
+
+	showcase: {
+		GitHub: {
+			name: "GitHub",
+			url: "https://github.com/tejastn10",
+			icon: Icons.github,
+
+			navbar: true,
+		},
+	},
 
 	contact: {
 		email: "tejastn10@gmail.com",
@@ -30,13 +40,7 @@ export const DATA = {
 
 				navbar: true,
 			},
-			GitHub: {
-				name: "GitHub",
-				url: "https://github.com/tejastn10",
-				icon: Icons.github,
 
-				navbar: true,
-			},
 			Twitter: {
 				name: "Twitter",
 				url: "https://x.com/tejastn10",
