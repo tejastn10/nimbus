@@ -12,6 +12,7 @@ type BookMetadata = {
 	readingStatus: "reading" | "completed" | "to-read";
 	description: string;
 	publishedDate?: string;
+	finishedOn?: string; // Date when the book was completed
 };
 
 type Book = {
