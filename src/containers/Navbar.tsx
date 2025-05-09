@@ -13,6 +13,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip
 import { DATA } from "@/data/resume";
 
 import { cx } from "@/utils/tailwind";
+import { Icons } from "@/components/icons/Icons";
 
 const Navbar: FC = () => {
 	return (
@@ -31,6 +32,25 @@ const Navbar: FC = () => {
 					"dark:bg-black dark:[border:1px_solid_rgba(255,255,255,.2)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
 				)}
 			>
+				<DockIcon>
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<Link
+								href={"/"}
+								className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
+								aria-label="Home"
+							>
+								<Icons.home className="size-4" aria-hidden="true" />
+							</Link>
+						</TooltipTrigger>
+						<TooltipContent>
+							<p>Home</p>
+						</TooltipContent>
+					</Tooltip>
+				</DockIcon>
+
+				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
+
 				{DATA.navbar.map((item, index) => (
 					<DockIcon key={index}>
 						<Tooltip>
@@ -49,6 +69,29 @@ const Navbar: FC = () => {
 						</Tooltip>
 					</DockIcon>
 				))}
+
+				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
+
+				{Object.entries(DATA.showcase)
+					.filter(([, showcase]) => showcase.navbar)
+					.map(([name, showcase]) => (
+						<DockIcon key={name}>
+							<Tooltip>
+								<TooltipTrigger asChild>
+									<Link
+										href={showcase.url}
+										className={cx(buttonVariants({ variant: "ghost", size: "icon" }), "size-12")}
+										aria-label={`Visit ${name}`}
+									>
+										<showcase.icon className="size-4" />
+									</Link>
+								</TooltipTrigger>
+								<TooltipContent>
+									<p className="capitalize">{name}</p>
+								</TooltipContent>
+							</Tooltip>
+						</DockIcon>
+					))}
 
 				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
 
