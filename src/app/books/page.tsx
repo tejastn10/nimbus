@@ -34,7 +34,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			description: book.metadata.category,
 			subDescription: book.metadata.author,
 			href: `/books/${book.slug}`,
-			cta: "View Book",
+			cta: "View Book review",
 		}));
 
 	const completed = books.filter((book) => book.metadata.readingStatus === "completed");
@@ -106,6 +106,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 											description={book.metadata.description}
 											category={book.metadata.category}
 											readingStatus={book.metadata.readingStatus}
+											publishedDate={book.metadata.publishedDate}
 										/>
 									</BlurFade>
 								</div>
@@ -141,6 +142,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 									description={book.metadata.description}
 									category={book.metadata.category}
 									readingStatus={book.metadata.readingStatus}
+									publishedDate={book.metadata.publishedDate}
 								/>
 							</BlurFade>
 						);
