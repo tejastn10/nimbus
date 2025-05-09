@@ -11,6 +11,7 @@ type BookMetadata = {
 	category: string;
 	readingStatus: "reading" | "completed" | "to-read";
 	description: string;
+	publishedDate?: string;
 };
 
 type Book = {
