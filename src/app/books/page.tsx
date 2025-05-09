@@ -110,8 +110,8 @@ const BooksPage = async (): Promise<JSX.Element> => {
 						</BlurFade>
 					))
 				) : (
-					<BlurFade delay={BLUR_FADE_DELAY * 12}>
-						<p className="text-muted-foreground text-center py-8 col-span-2">
+					<BlurFade delay={BLUR_FADE_DELAY * 12} className="col-span-1 md:col-span-2">
+						<p className="text-muted-foreground text-center py-8">
 							No completed books yet. Check back later!
 						</p>
 					</BlurFade>
