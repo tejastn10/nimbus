@@ -17,6 +17,32 @@ type BookCardProps = {
 	category: string;
 	readingStatus: "reading" | "completed" | "to-read";
 	publishedDate?: string;
+	finishedOn?: string;
+};
+
+const getStatusStyles = (readingStatus: BookCardProps["readingStatus"]) => {
+	const statusColors = {
+		reading: {
+			badge: "bg-amber-500/80 hover:bg-amber-500",
+			gradient: "from-amber-500/10 to-amber-600/10",
+			border: "border-amber-500/50",
+			text: "text-amber-500",
+		},
+		completed: {
+			badge: "bg-emerald-500/80 hover:bg-emerald-500",
+			gradient: "from-emerald-500/10 to-emerald-600/10",
+			border: "border-emerald-500/50",
+			text: "text-emerald-500",
+		},
+		"to-read": {
+			badge: "bg-blue-500/80 hover:bg-blue-500",
+			gradient: "from-blue-500/10 to-blue-600/10",
+			border: "border-blue-500/50",
+			text: "text-blue-500",
+		},
+	};
+
+	return statusColors[readingStatus];
 };
 
 const BookCard: FC<BookCardProps> = ({
@@ -27,53 +53,67 @@ const BookCard: FC<BookCardProps> = ({
 	category,
 	readingStatus,
 	publishedDate,
+	finishedOn,
 }) => {
+	const formattedFinishedDate = finishedOn
+		? new Date(finishedOn).toLocaleDateString("en-US", {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		  })
+		: null;
+
+	const styles = getStatusStyles(readingStatus);
+
 	return (
 		<Card
 			className={cx(
-				"flex flex-col space-y-2 mb-6 p-8 rounded-lg overflow-hidden ease-out h-full transition-all duration-300",
-				"hover:shadow-lg hover:scale-105 filter grayscale hover:grayscale-0",
-				// light styles
-				"bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-				// dark styles
-				"transform-gpu dark:bg-black dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
-				// Extra effects
-				"transform-gpu underline-slide group"
+				"relative isolate group",
+				"flex flex-col space-y-2 mb-6 p-8 rounded-lg overflow-hidden h-full transition-all duration-500",
+				"bg-gradient-to-br from-background to-background/80",
+				"hover:shadow-xl hover:scale-[1.02]",
+				"border border-border/50",
+				// Animated border
+				"after:absolute after:inset-0 after:-z-10",
+				"after:p-[1px] after:rounded-lg",
+				`after:bg-gradient-to-br after:${styles.gradient}`,
+				"after:opacity-0 hover:after:opacity-100",
+				"after:transition-opacity after:duration-500"
+				
 			)}
+			
 		>
-			<Link href={`/books/${slug}`}>
-				<CardHeader>
-					<CardTitle className="text-2xl mb-2 font-bold">{title}</CardTitle>
-					<p className="text-sm text-muted-foreground mb-1 font-light">by {author}</p>
-					<div className="pb-2">
-						<div className="flex items-center justify-between">
-							<Badge
-								className={cx(
-									"mt-2 text-xs max-w-[90px] truncate",
-									readingStatus === "reading" && "bg-amber-500 hover:bg-amber-600",
-									readingStatus === "completed" && "bg-emerald-500 hover:bg-emerald-600",
-									readingStatus === "to-read" && "bg-blue-500 hover:bg-blue-600"
-								)}
-							>
-								{readingStatus === "reading" && "Reading"}
-								{readingStatus === "completed" && "Completed"}
-								{readingStatus === "to-read" && "To Read"}
-							</Badge>
-						</div>
+			<Link href={`/books/${slug}`} className="flex flex-col flex-1" >
+				<CardHeader className="flex-1 ">
+					<div className="flex items-start justify-between gap-4">
+						<CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors duration-500">
+							{title}
+						</CardTitle>
+						<Badge className={cx("shrink-0 pointer-events-auto", styles.badge)}>
+							{readingStatus === "reading" && "Reading"}
+							{readingStatus === "completed" && "Completed"}
+							{readingStatus === "to-read" && "To Read"}
+						</Badge>
 					</div>
+					<p className="text-sm text-muted-foreground mt-2">by {author}</p>
 				</CardHeader>
 
-				<CardDescription className="flex justify-between items-center text-xs text-muted-foreground pt-1">
+				<CardDescription className="flex-1 text-sm text-muted-foreground leading-relaxed ">
 					{description}
 				</CardDescription>
 
-				<CardFooter className="flex justify-between items-center text-xs text-muted-foreground mt-4 pt-4 border-t border/50-muted-foreground/20">
-					<p className="ml-0 inline-flex items-center gap-2">
-						{Icons.template()} {category}
+				<CardFooter className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mt-6 pt-6 border-t border-border/10 ">
+					<p className="inline-flex items-center gap-2">
+						<Icons.template className="w-4 h-4" /> {category}
 					</p>
 					{publishedDate && (
-						<p className="ml-0 inline-flex items-center gap-2">
-							{Icons.calendar()} {publishedDate}
+						<p className="inline-flex items-center gap-2">
+							<Icons.calendar className="w-4 h-4" /> Published: {publishedDate}
+						</p>
+					)}
+					{formattedFinishedDate && (
+						<p className="inline-flex items-center gap-2">
+							<Icons.check className="w-4 h-4" /> Finished: {formattedFinishedDate}
 						</p>
 					)}
 				</CardFooter>
