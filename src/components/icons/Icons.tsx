@@ -100,7 +100,13 @@ import {
 	RxCopy,
 } from "react-icons/rx";
 
-import { RiTwitterXLine, RiDatabase2Line, RiMapPin3Line, RiTimer2Line } from "react-icons/ri";
+import {
+	RiTwitterXLine,
+	RiDatabase2Line,
+	RiMapPin3Line,
+	RiTimer2Line,
+	RiBook3Line,
+} from "react-icons/ri";
 
 import { GoContainer } from "react-icons/go";
 
@@ -128,6 +134,7 @@ const Icons = {
 	// * Navbar
 	home: (props?: IconProps) => <RxHome {...props} />,
 	blog: (props?: IconProps) => <RxLayers {...props} />,
+	books: (props?: IconProps) => <RiBook3Line {...props} />,
 	medium: (props?: IconProps) => <SiMedium {...props} />,
 	github: (props?: IconProps) => <RxGithubLogo {...props} />,
 	twitter: (props?: IconProps) => <RiTwitterXLine {...props} />,
