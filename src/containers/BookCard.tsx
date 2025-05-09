@@ -16,6 +16,7 @@ type BookCardProps = {
 	description: string;
 	category: string;
 	readingStatus: "reading" | "completed" | "to-read";
+	publishedDate?: string;
 };
 
 const BookCard: FC<BookCardProps> = ({
@@ -25,6 +26,7 @@ const BookCard: FC<BookCardProps> = ({
 	description,
 	category,
 	readingStatus,
+	publishedDate,
 }) => {
 	return (
 		<Card
@@ -41,12 +43,13 @@ const BookCard: FC<BookCardProps> = ({
 		>
 			<Link href={`/books/${slug}`}>
 				<CardHeader>
+					<CardTitle className="text-2xl mb-2 font-bold">{title}</CardTitle>
+					<p className="text-sm text-muted-foreground mb-1 font-light">by {author}</p>
 					<div className="pb-2">
 						<div className="flex items-center justify-between">
-							<CardTitle className="mt-1 text-base">{title}</CardTitle>
 							<Badge
 								className={cx(
-									"ml-2 text-xs max-w-[90px] truncate",
+									"mt-2 text-xs max-w-[90px] truncate",
 									readingStatus === "reading" && "bg-amber-500 hover:bg-amber-600",
 									readingStatus === "completed" && "bg-emerald-500 hover:bg-emerald-600",
 									readingStatus === "to-read" && "bg-blue-500 hover:bg-blue-600"
@@ -57,7 +60,6 @@ const BookCard: FC<BookCardProps> = ({
 								{readingStatus === "to-read" && "To Read"}
 							</Badge>
 						</div>
-						<p className="text-sm text-muted-foreground mt-1">by {author}</p>
 					</div>
 				</CardHeader>
 
@@ -65,10 +67,15 @@ const BookCard: FC<BookCardProps> = ({
 					{description}
 				</CardDescription>
 
-				<CardFooter className="flex justify-between items-center text-xs text-muted-foreground pt-8">
+				<CardFooter className="flex justify-between items-center text-xs text-muted-foreground mt-4 pt-4 border-t border/50-muted-foreground/20">
 					<p className="ml-0 inline-flex items-center gap-2">
 						{Icons.template()} {category}
 					</p>
+					{publishedDate && (
+						<p className="ml-0 inline-flex items-center gap-2">
+							{Icons.calendar()} {publishedDate}
+						</p>
+					)}
 				</CardFooter>
 			</Link>
 		</Card>
