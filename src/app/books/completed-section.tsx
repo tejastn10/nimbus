@@ -81,36 +81,38 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 			</div>
 
 			{totalPages > 1 && (
-				<Pagination className="mt-6">
-					<PaginationContent>
-						<PaginationItem>
-							<PaginationPrevious
-								href="#"
-								onClick={(e) => handlePageChange({ e, newPage: page - 1 })}
-							/>
-						</PaginationItem>
-						{[...Array(totalPages)].map((_, i) => (
-							<PaginationItem key={i}>
-								<PaginationLink
+				<BlurFade delay={BLUR_FADE_DELAY * 14}>
+					<Pagination className="mt-6">
+						<PaginationContent>
+							<PaginationItem>
+								<PaginationPrevious
 									href="#"
-									isActive={page === i + 1}
-									onClick={(e) => handlePageChange({ e, newPage: i + 1 })}
-								>
-									{i + 1}
-								</PaginationLink>
+									onClick={(e) => handlePageChange({ e, newPage: page - 1 })}
+								/>
 							</PaginationItem>
-						))}
-						<PaginationItem>
-							<PaginationNext
-								href="#"
-								onClick={(e) => handlePageChange({ e, newPage: page + 1 })}
-							/>
-						</PaginationItem>
-					</PaginationContent>
-				</Pagination>
+							{[...Array(totalPages)].map((_, i) => (
+								<PaginationItem key={i}>
+									<PaginationLink
+										href="#"
+										isActive={page === i + 1}
+										onClick={(e) => handlePageChange({ e, newPage: i + 1 })}
+									>
+										{i + 1}
+									</PaginationLink>
+								</PaginationItem>
+							))}
+							<PaginationItem>
+								<PaginationNext
+									href="#"
+									onClick={(e) => handlePageChange({ e, newPage: page + 1 })}
+								/>
+							</PaginationItem>
+						</PaginationContent>
+					</Pagination>
+				</BlurFade>
 			)}
 
-			<BlurFade delay={BLUR_FADE_DELAY * 14}>
+			<BlurFade delay={BLUR_FADE_DELAY * 16}>
 				<LineGrow className="my-12" />
 			</BlurFade>
 		</>

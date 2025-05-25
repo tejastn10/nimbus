@@ -92,7 +92,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 
 			<CompletedSection completed={completed} />
 
-			<BlurFade delay={BLUR_FADE_DELAY * 16}>
+			<BlurFade delay={BLUR_FADE_DELAY * 18}>
 				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
 					Reading List
 				</h2>
@@ -101,7 +101,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			<div className="grid grid-cols-1 gap-8">
 				{toRead.length > 0 ? (
 					toRead.map((book, index) => (
-						<BlurFade key={book.slug} delay={BLUR_FADE_DELAY * 18 + index * 0.05}>
+						<BlurFade key={book.slug} delay={BLUR_FADE_DELAY * 20 + index * 0.05}>
 							<BookCard {...book} />
 						</BlurFade>
 					))
