@@ -58,13 +58,8 @@ const eslintConfig = [
 			semi: "error",
 			quotes: ["error", "double"],
 
-			indent: [
-				"error",
-				"tab",
-				{
-					SwitchCase: 1,
-				},
-			],
+			// ? Disabled as Prettier handles these
+			indent: "off",
 
 			"@typescript-eslint/no-explicit-any": "off",
 			"react/no-unescaped-entities": "off",
