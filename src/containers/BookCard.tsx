@@ -16,7 +16,6 @@ type BookCardProps = {
 	description: string;
 	category: string;
 	readingStatus: "reading" | "completed" | "to-read";
-	publishedDate?: string;
 	finishedOn?: string;
 };
 
@@ -52,15 +51,14 @@ const BookCard: FC<BookCardProps> = ({
 	description,
 	category,
 	readingStatus,
-	publishedDate,
 	finishedOn,
 }) => {
 	const formattedFinishedDate = finishedOn
 		? new Date(finishedOn).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		})
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+			})
 		: null;
 
 	const styles = getStatusStyles(readingStatus);
@@ -78,7 +76,9 @@ const BookCard: FC<BookCardProps> = ({
 				"after:p-[1px] after:rounded-lg",
 				`after:bg-gradient-to-br after:${styles.gradient}`,
 				"after:opacity-0 hover:after:opacity-100",
-				"after:transition-opacity after:duration-500"
+				"after:transition-opacity after:duration-500",
+				// Greyscale by default, color on hover
+				"filter grayscale hover:filter-none"
 			)}
 		>
 			<Link href={`/books/${slug}`} className="flex flex-col flex-1">
@@ -104,11 +104,6 @@ const BookCard: FC<BookCardProps> = ({
 					<p className="inline-flex items-center gap-2">
 						<Icons.template className="w-4 h-4" /> {category}
 					</p>
-					{publishedDate && (
-						<p className="inline-flex items-center gap-2">
-							<Icons.calendar className="w-4 h-4" /> Published: {publishedDate}
-						</p>
-					)}
 					{formattedFinishedDate && (
 						<p className="inline-flex items-center gap-2">
 							<Icons.check className="w-4 h-4" /> Finished: {formattedFinishedDate}
