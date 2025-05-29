@@ -6,8 +6,6 @@ import { BoxReveal } from "@/components/animated/BoxReveal";
 
 import { BookCard } from "@/containers/BookCard";
 
-import { Icons } from "@/components/icons/Icons";
-
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
 import { getBooks } from "@/data/book";
@@ -65,12 +63,9 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<div className="flex items-center gap-3 mb-8">
-					<Icons.books className="w-8 h-8 text-amber-500" />
-					<h2 className="font-bold text-3xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-amber-300">
-						Currently Reading
-					</h2>
-				</div>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Currently Reading
+				</h2>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 gap-8">
@@ -94,12 +89,9 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<div className="flex items-center gap-3 mb-8">
-					<Icons.check className="w-8 h-8 text-emerald-500" />
-					<h2 className="font-bold text-3xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-emerald-300">
-						Completed Books
-					</h2>
-				</div>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Completed Books
+				</h2>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -123,12 +115,9 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 16}>
-				<div className="flex items-center gap-3 mb-8">
-					<Icons.books className="w-8 h-8 text-blue-500" />
-					<h2 className="font-bold text-3xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-300">
-						Reading List
-					</h2>
-				</div>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
+					Reading List
+				</h2>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 gap-8">
