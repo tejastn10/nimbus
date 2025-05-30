@@ -53,12 +53,15 @@ const BookCard: FC<BookCardProps> = ({
 	readingStatus,
 	finishedOn,
 }) => {
+	const dateOptions: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	};
+
+	// Format the finished date to a more readable format
 	const formattedFinishedDate = finishedOn
-		? new Date(finishedOn).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		})
+		? new Date(finishedOn).toLocaleDateString("en-US", dateOptions)
 		: null;
 
 	const styles = getStatusStyles(readingStatus);
@@ -116,3 +119,4 @@ const BookCard: FC<BookCardProps> = ({
 };
 
 export { BookCard };
+export type { BookCardProps };
