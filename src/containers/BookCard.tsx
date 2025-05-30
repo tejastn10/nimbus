@@ -55,10 +55,10 @@ const BookCard: FC<BookCardProps> = ({
 }) => {
 	const formattedFinishedDate = finishedOn
 		? new Date(finishedOn).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "long",
-				day: "numeric",
-			})
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		})
 		: null;
 
 	const styles = getStatusStyles(readingStatus);
