@@ -39,7 +39,7 @@ const Cursor: FC = () => {
 				}}
 			>
 				<div
-					className={`rounded-full bg-white transition-all duration-100 ${isPointer ? "w-8 h-8 opacity-35" : "w-4 h-4"}`}
+					className={`bg-white transition-all duration-100 ${isPointer ? "w-6 h-6 opacity-35 rounded-[6px]" : "w-3 h-3 rounded-[3px]"}`}
 				/>
 			</div>
 		</>
