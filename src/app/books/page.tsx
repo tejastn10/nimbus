@@ -6,6 +6,8 @@ import { BoxReveal } from "@/components/animated/BoxReveal";
 
 import { BookCard } from "@/containers/BookCard";
 
+import { CompletedSection } from "./completed-section";
+
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
 import { getBooks } from "@/data/book";
@@ -88,31 +90,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 				<LineGrow className="my-12" />
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Completed Books
-				</h2>
-			</BlurFade>
-
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-				{completed.length > 0 ? (
-					completed.map((book, index) => (
-						<BlurFade key={book.slug} delay={BLUR_FADE_DELAY * 12 + index * 0.05}>
-							<BookCard {...book} />
-						</BlurFade>
-					))
-				) : (
-					<BlurFade delay={BLUR_FADE_DELAY * 12} className="col-span-1 md:col-span-2">
-						<p className="text-muted-foreground text-center py-8">
-							No completed books yet. Check back later!
-						</p>
-					</BlurFade>
-				)}
-			</div>
-
-			<BlurFade delay={BLUR_FADE_DELAY * 14}>
-				<LineGrow className="my-12" />
-			</BlurFade>
+			<CompletedSection completed={completed} />
 
 			<BlurFade delay={BLUR_FADE_DELAY * 16}>
 				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
