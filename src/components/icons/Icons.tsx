@@ -106,6 +106,7 @@ import {
 	RiMapPin3Line,
 	RiTimer2Line,
 	RiBook3Line,
+	RiMoreLine,
 } from "react-icons/ri";
 
 import { GoContainer } from "react-icons/go";
@@ -130,6 +131,7 @@ const Icons = {
 	duration: (props?: IconProps) => <RiTimer2Line {...props} />,
 	chevron: (props?: IconProps) => <RxChevronRight {...props} />,
 	location: (props?: IconProps) => <RiMapPin3Line {...props} />,
+	more: (props?: IconProps) => <RiMoreLine {...props} />,
 
 	// * Navbar
 	home: (props?: IconProps) => <RxHome {...props} />,
