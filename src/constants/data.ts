@@ -59,7 +59,6 @@ enum TECH {
 	Bash = "Bash",
 	Network = "Network",
 	Terraform = "Terraform",
-	Ansible = "Ansible",
 	Cloudflare = "Cloudflare",
 	NGINX = "NGINX",
 

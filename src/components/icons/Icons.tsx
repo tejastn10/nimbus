@@ -318,7 +318,6 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	Bash: Icons.bash,
 	Network: Icons.network,
 	Terraform: Icons.terraform,
-	Ansible: Icons.ansible,
 	Cloudflare: Icons.cloudflare,
 	NGINX: Icons.nginx,
 
