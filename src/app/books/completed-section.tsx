@@ -61,7 +61,12 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10} className="flex w-full items-center mb-8 gap-2">
-				<Input type="text" placeholder="Search" value={search} onChange={handleOnSearchChange} />
+				<Input
+					type="text"
+					placeholder="Search books..."
+					value={search}
+					onChange={handleOnSearchChange}
+				/>
 			</BlurFade>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
