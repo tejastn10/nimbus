@@ -5,9 +5,9 @@ import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
-import { BlogCard } from "@/containers/BlogCard";
-
 import { getLogo } from "@/components/icons/Icons";
+
+import { RemainingSection } from "./remaining-section";
 
 import { POST_SLICE_NUMBER } from "@/constants/values";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
@@ -15,7 +15,6 @@ import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { getBlogPosts } from "@/data/blog";
 
 import { formatDate } from "@/utils/date";
-import { sortBlogPosts } from "@/utils/blog";
 
 export const metadata = {
 	title: "Blog",
@@ -43,6 +42,8 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			href: `/blog/${post.slug}`,
 			cta: "Read",
 		}));
+
+	const remainingPosts = posts.slice(POST_SLICE_NUMBER);
 
 	return (
 		<section>
@@ -77,43 +78,7 @@ const BlogPage = async (): Promise<JSX.Element> => {
 				<LineGrow className="my-12" />
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Remaining Posts
-				</h2>
-			</BlurFade>
-
-			<BlurFade delay={BLUR_FADE_DELAY * 12}>
-				<LineGrow className="absolute left-6 top-0 bottom-0" direction="vertical" duration={2} />
-				<div className="space-y-10">
-					{posts
-						.slice(POST_SLICE_NUMBER)
-						.sort(sortBlogPosts)
-						.map((post, id) => {
-							const { slug, metadata } = post;
-							const { title, description, publishedAt } = metadata;
-							const Icon = getLogo(metadata.about);
-
-							return (
-								<div key={id} className="relative pl-18 group">
-									<div className="absolute left-6 -translate-x-1/2 flex items-center justify-center w-10 h-10 bg-background rounded-md transition-all duration-300 group-hover:border-primary group-hover:scale-110">
-										<Icon className="text-muted-foreground transition-all duration-300 group-hover:text-primary" />
-									</div>
-
-									<BlurFade key={slug} delay={BLUR_FADE_DELAY * 2 + id * 0.05}>
-										<BlogCard
-											slug={slug}
-											title={title}
-											description={description}
-											publishedAt={publishedAt}
-											source={post.source}
-										/>
-									</BlurFade>
-								</div>
-							);
-						})}
-				</div>
-			</BlurFade>
+			<RemainingSection remaining={remainingPosts} />
 		</section>
 	);
 };
