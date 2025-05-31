@@ -71,7 +71,10 @@ export const DATA = {
 					title: "Technical Lead",
 					start: "May 2025",
 					end: "Present",
-					description: [],
+					description: [
+						"Spearheaded the creation of a production-grade NestJS service template to standardize and accelerate backend development across teams.",
+						"Defined and documented best practices for scalable microservice architecture, enabling seamless migration of legacy services and ensuring consistent development standards.",
+					],
 				},
 			],
 		},
