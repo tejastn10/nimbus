@@ -1,4 +1,4 @@
 const WORDS_PER_MINUTE = 200;
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 8;
 
 export { WORDS_PER_MINUTE, POSTS_PER_PAGE };
