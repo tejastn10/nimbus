@@ -71,7 +71,7 @@ const markdownToHTML: MarkdownToHTML = async (markdown) => {
 
 const getPost = async (slug: string): Promise<Post | null> => {
 	try {
-		const filePath = path.join("content", `${slug}.mdx`);
+		const filePath = path.join("blog", `${slug}.mdx`);
 		const source = fs.readFileSync(filePath, "utf-8");
 		const { content: rawContent, data: metadata } = matter(source);
 		const htmlContent = await markdownToHTML(rawContent);
@@ -101,7 +101,7 @@ const getAllPosts: AllPosts = async (dir): Promise<Post[]> => {
 };
 
 const getBlogPosts = async (): Promise<Post[]> => {
-	const blogPosts = await getAllPosts(path.join(process.cwd(), "content"));
+	const blogPosts = await getAllPosts(path.join(process.cwd(), "blog"));
 
 	const filteredBlogPosts = blogPosts.filter((post) => post !== null);
 	return filteredBlogPosts;
