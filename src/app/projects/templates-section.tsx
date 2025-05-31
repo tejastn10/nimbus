@@ -69,7 +69,7 @@ const TemplatesSection: FC<TemplatesSectionProps> = ({ templates }) => {
 			<BlurFade delay={BLUR_FADE_DELAY * 10} className="flex w-full items-center mb-8 gap-2">
 				<Input
 					type="text"
-					placeholder="Search projects..."
+					placeholder="Search templates..."
 					value={search}
 					onChange={handleOnSearchChange}
 				/>
