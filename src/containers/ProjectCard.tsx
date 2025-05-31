@@ -171,3 +171,4 @@ const ProjectCard: FC<ProjectProps> = ({
 };
 
 export { ProjectCard };
+export type { ProjectProps };

@@ -5,8 +5,8 @@ import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
 import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 
-import { ProjectCard } from "@/containers/ProjectCard";
-import { TemplateCard } from "@/containers/TemplateCard";
+import { OtherSection } from "./other-section";
+import { TemplatesSection } from "./templates-section";
 
 import { getLogo } from "@/components/icons/Icons";
 
@@ -49,10 +49,18 @@ const ProjectsPage = (): JSX.Element => {
 	const allOtherProjects = [
 		...otherProjects,
 		...remainingFeaturedProjects.filter((project) => !project.isTemplate),
-	];
+	].map((project) => ({
+		...project,
+		tags: project.technologies,
+	}));
 
 	// Filter all template projects regardless of featured status
-	const templateProjects = DATA.projects.filter((project) => project.isTemplate);
+	const templateProjects = DATA.projects
+		.filter((project) => project.isTemplate)
+		.map((project) => ({
+			...project,
+			tags: project.technologies,
+		}));
 
 	return (
 		<section>
@@ -87,51 +95,13 @@ const ProjectsPage = (): JSX.Element => {
 				<LineGrow className="my-12" />
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Other Projects
-				</h2>
-			</BlurFade>
-
-			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
-				{allOtherProjects.map((project, id) => (
-					<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>
-						<ProjectCard
-							href={project.href}
-							key={project.title}
-							title={project.title}
-							description={project.description}
-							purpose={project.purpose}
-							tags={project.technologies}
-							links={project.links}
-						/>
-					</BlurFade>
-				))}
-			</div>
+			<OtherSection projects={allOtherProjects} />
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10}>
 				<LineGrow className="my-12" />
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 10}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Templates
-				</h2>
-			</BlurFade>
-
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mx-auto">
-				{templateProjects.map((project, id) => (
-					<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
-						<TemplateCard
-							href={project.href}
-							key={project.title}
-							title={project.title}
-							description={project.description}
-							tags={project.technologies}
-						/>
-					</BlurFade>
-				))}
-			</div>
+			<TemplatesSection templates={templateProjects} />
 		</section>
 	);
 };
