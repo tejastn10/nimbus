@@ -75,7 +75,8 @@ For more deployment options, check out the Next.js [Deployment Documentation](ht
 
 ```bash
 nimbus/
-├── content/            # Directory for blogs or other dynamic content
+├── blog/               # Directory for blogs
+├── books/              # Directory for books
 ├── public/             # Static assets like images, fonts, and favicon
 ├── src/                # Main source code directory
 │   ├── app/            # Next.js App directory (for routing, layouts, and pages)
