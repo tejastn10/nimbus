@@ -74,6 +74,8 @@ export const DATA = {
 					description: [
 						"Spearheaded the creation of a production-grade NestJS service template to standardize and accelerate backend development across teams.",
 						"Defined and documented best practices for scalable microservice architecture, enabling seamless migration of legacy services and ensuring consistent development standards.",
+						"Built a centralized file service for managing uploads and downloads across all microservices, ensuring secure file handling and reducing duplication across codebases.",
+						"Developed an internal campaign-launching tool that allows teams to trigger targeted campaigns via CSV uploads or user selection queries, integrating with both WATI and Cheerio servers for omnichannel delivery.",
 					],
 				},
 			],
