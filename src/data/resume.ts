@@ -13,6 +13,33 @@ export const DATA = {
 		"Software Engineer with a knack for creating and constantly learning. Obsessed with tech, design systems, and that new framework smell.",
 	avatarUrl: "/profile.jpeg",
 
+	about: {
+		content: [
+			{
+				text: "I began my software engineering journey in 2021 and am currently a Technical Lead at ",
+				isLink: false,
+			},
+			{
+				text: "HaBuild",
+				url: "https://www.habuild.in",
+				isLink: true,
+			},
+			{
+				text: " where I'm helping shape product and engineering decisions. You might also find me at a ",
+				isLink: false,
+			},
+			{
+				text: "BangPypers",
+				url: "https://www.meetup.com/bangpypers/",
+				isLink: true,
+			},
+			{
+				text: " meetup, continuing to level up my Python skills and meet fellow developers.",
+				isLink: false,
+			},
+		],
+	},
+
 	navbar: [
 		{ href: "/blog", icon: Icons.blog, label: "Blog" },
 		{ href: "/books", icon: Icons.books, label: "Books" },

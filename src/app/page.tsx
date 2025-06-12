@@ -64,25 +64,21 @@ const Home: FC = () => {
 				</BlurFade>
 				<BlurFade delay={BLUR_FADE_DELAY * 4}>
 					<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-						I began my software engineering journey in 2021 and am currently a Technical Lead at{" "}
-						<Link
-							target="_blank"
-							rel="noopener noreferrer"
-							href="https://www.habuild.in"
-							className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
-						>
-							HaBuild
-						</Link>
-						, where I’m helping shape product and engineering decisions. You might also find me at a{" "}
-						<Link
-							target="_blank"
-							rel="noopener noreferrer"
-							href="https://www.meetup.com/bangpypers/"
-							className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
-						>
-							BangPypers
-						</Link>{" "}
-						meetup, continuing to level up my Python skills and meet fellow developers.
+						{DATA.about.content.map((item, index) =>
+							item.isLink ? (
+								<Link
+									key={index}
+									target="_blank"
+									rel="noopener noreferrer"
+									href={item.url}
+									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+								>
+									{item.text}
+								</Link>
+							) : (
+								<span key={index}>{item.text}</span>
+							)
+						)}
 					</p>
 				</BlurFade>
 			</section>
