@@ -21,6 +21,7 @@ import { Icons } from "@/components/icons/Icons";
 import { DATA } from "@/data/resume";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
+import { GlowingText } from "@/components/animated/GlowingText";
 
 const Home: FC = () => {
 	return (
@@ -31,9 +32,10 @@ const Home: FC = () => {
 						<div className="flex-col flex flex-1 space-y-1.5">
 							<BlurFade delay={BLUR_FADE_DELAY}>
 								<BoxReveal>
-									<h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-										{`Hi, I'm ${DATA.name.split(" ")[0]}`}
-									</h1>
+									<GlowingText
+										text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+										className="text-3xl font-bold tracking-tighter mr-2 sm:text-5xl xl:text-6xl/none"
+									/>
 								</BoxReveal>
 								<h2 className="max-w-[600px] md:text-xl">{DATA.description}</h2>
 							</BlurFade>
