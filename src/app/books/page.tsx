@@ -80,7 +80,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 				) : (
 					<BlurFade delay={BLUR_FADE_DELAY * 4}>
 						<p className="text-muted-foreground text-center py-8">
-							Not currently reading any books. Check back later!
+							I'm not currently reading any books. Check back later!
 						</p>
 					</BlurFade>
 				)}
