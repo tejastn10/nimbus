@@ -197,23 +197,6 @@ export const DATA = {
 
 	projects: [
 		{
-			title: "Hollow",
-			href: "https://github.com/tejastn10/hollow",
-			purpose: "Network Packet Analysis",
-			featured: true,
-			isTemplate: false,
-			description:
-				"A modern, Electron-based network packet analyzer with a sleek UI, built using TypeScript and React. Designed as a Wireshark alternative for real-time packet inspection and analysis.",
-			technologies: ["Electron", "TypeScript", "React", "pcap"],
-			links: [
-				{
-					type: "Source",
-					href: "https://github.com/tejastn10/hollow",
-					icon: Icons.github(),
-				},
-			],
-		},
-		{
 			title: "Srotas",
 			href: "https://github.com/tejastn10/srotas",
 			purpose: "Event Management",
