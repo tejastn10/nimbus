@@ -242,7 +242,7 @@ pre {
 }
 
 pre {
-	@apply px-4! rounded-lg overflow-x-auto py-4!;
+	@apply px-2! rounded-lg overflow-x-auto py-2!;
 	@apply bg-muted! text-muted-foreground! rounded-lg overflow-x-auto;
 	font-size: 0.9rem;
 	line-height: 1.6;
@@ -251,7 +251,7 @@ pre {
 
 code {
 	@apply text-sm md:text-base leading-loose!;
-	@apply bg-muted px-1! py-1! rounded-sm text-primary;
+	@apply bg-muted px-0.5! py-0.5! rounded-sm text-primary;
 	font-size: 1rem;
 
 	font-weight: 500;
