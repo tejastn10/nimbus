@@ -86,7 +86,7 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 			</div>
 
 			{totalPages > 1 && (
-				<BlurFade delay={BLUR_FADE_DELAY * 14}>
+				<BlurFade delay={BLUR_FADE_DELAY * 14} className="pb-12 md:pb-0">
 					<Pagination className="mt-6">
 						<PaginationContent>
 							<PaginationItem>
