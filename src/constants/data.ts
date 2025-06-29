@@ -70,6 +70,7 @@ enum TECH {
 	// * Broader Concepts
 	Architecture = "Architecture",
 	SystemDesign = "SystemDesign",
+	DataStructure = "DataStructure",
 
 	// * Mobile Development
 	ReactNative = "ReactNative",

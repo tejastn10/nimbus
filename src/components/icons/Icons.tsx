@@ -109,6 +109,8 @@ import {
 	RiMoreLine,
 } from "react-icons/ri";
 
+import { PiTreeStructure } from "react-icons/pi";
+
 import { GoContainer } from "react-icons/go";
 
 import { VscAzure } from "react-icons/vsc";
@@ -254,6 +256,7 @@ const Icons = {
 	// * Misc
 	code: (props?: IconProps) => <RxCode {...props} />,
 	gear: (props?: IconProps) => <RxGear {...props} />,
+	datastructure: (props?: IconProps) => <PiTreeStructure {...props} />,
 };
 
 const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
@@ -329,6 +332,7 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	// * Broader Concepts
 	Architecture: Icons.gear,
 	SystemDesign: Icons.architecture,
+	DataStructure: Icons.datastructure,
 
 	// * Mobile Development
 	ReactNative: Icons.reactnative,
