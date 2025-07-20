@@ -25,7 +25,7 @@ export const DATA = {
 				isLink: true,
 			},
 			{
-				text: " where I'm helping shape product and engineering decisions. You might also find me at a ",
+				text: " where I'm helping shape product and engineering decisions. You might also find me at ",
 				isLink: false,
 			},
 			{
@@ -34,7 +34,16 @@ export const DATA = {
 				isLink: true,
 			},
 			{
-				text: " meetup, continuing to level up my Python skills and meet fellow developers.",
+				text: " or ",
+				isLink: false,
+			},
+			{
+				text: "GitTogether",
+				url: "https://www.meetup.com/gittogether-bengaluru/",
+				isLink: true,
+			},
+			{
+				text: " meetups, continuing to level up my Python, AI, and other skills while meeting fellow developers.",
 				isLink: false,
 			},
 		],
