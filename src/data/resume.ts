@@ -211,6 +211,11 @@ export const DATA = {
 					href: "https://github.com/tejastn10/hollow",
 					icon: Icons.github(),
 				},
+				{
+					type: "Download",
+					href: "https://github.com/tejastn10/hollow/releases",
+					icon: Icons.projects(),
+				},
 			],
 		},
 		{
