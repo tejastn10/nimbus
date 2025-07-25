@@ -206,6 +206,23 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Papyrus",
+			href: "https://github.com/tejastn10/papyrus",
+			purpose: "PDF Password Management",
+			featured: true,
+			isTemplate: false,
+			description:
+				"A minimalist PDF utility that allows you to remove or add password protection to PDF files. Built using Python and FastAPI with a clean React frontend. Ideal for quick, secure, client-side PDF operations without file storage.",
+			technologies: ["Python", "FastAPI", "React", "AntD", "Vite"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/papyrus",
+					icon: Icons.github(),
+				},
+			],
+		},
+		{
 			title: "Hollow",
 			href: "https://github.com/tejastn10/hollow",
 			purpose: "Network Packet Analysis",
