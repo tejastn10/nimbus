@@ -302,7 +302,7 @@ export const DATA = {
 			title: "Quill",
 			href: "https://github.com/tejastn10/quill",
 			purpose: "Version Control",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"A lightweight Git clone in Go that explores versioning, file diffs, and object storage to understand distributed version control systems.",
@@ -372,7 +372,7 @@ export const DATA = {
 			title: "Nest Pingbot",
 			href: "https://github.com/tejastn10/nest-pingbot",
 			purpose: "Notifications",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"A NestJS messaging module for Slack and Discord notifications, built with a focus on simplicity and ease of use.",
@@ -555,7 +555,7 @@ export const DATA = {
 			title: "Argus",
 			href: "https://github.com/tejastn10/argus",
 			purpose: "Monitoring",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"An uptime monitoring service built with Go, containerized with Docker for ease of use. The Docker image is published on Docker Hub, making it accessible and ready for deployment.",
