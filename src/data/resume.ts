@@ -206,6 +206,37 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Ember",
+			href: "https://github.com/tejastn10/ember",
+			purpose: "Backend Observability Template",
+			featured: false,
+			isTemplate: true,
+			description:
+				"A scalable NestJS starter template with LGTM stack (Loki, Grafana, Tempo, Mimir) integration for full observability. Comes preconfigured with ESLint, Prettier, Husky, and Commitlint to ensure clean code and seamless developer experience.",
+			technologies: [
+				"NestJS",
+				"TypeScript",
+				"OpenTelemetry",
+				"Loki",
+				"Tempo",
+				"Mimir",
+				"Grafana",
+				"Fastify",
+				"ESLint",
+				"Prettier",
+				"Husky",
+				"Commitlint",
+				"Docker",
+			],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/ember",
+					icon: Icons.github(),
+				},
+			],
+		},
+		{
 			title: "Papyrus",
 			href: "https://github.com/tejastn10/papyrus",
 			purpose: "PDF Password Management",
