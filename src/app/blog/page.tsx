@@ -1,20 +1,16 @@
-import { JSX } from "react";
-
+import type { JSX } from "react";
+import { BentoCard, type BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
+import { LineGrow } from "@/components/animated/LineGrow";
 
 import { getLogo } from "@/components/icons/Icons";
-
-import { RemainingSection } from "./remaining-section";
-
-import { POST_SLICE_NUMBER } from "@/constants/values";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 
+import { POST_SLICE_NUMBER } from "@/constants/values";
 import { getBlogPosts } from "@/data/blog";
-
 import { formatDate } from "@/utils/date";
+import { RemainingSection } from "./remaining-section";
 
 export const metadata = {
 	title: "Blog",

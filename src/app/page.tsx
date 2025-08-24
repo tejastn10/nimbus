@@ -1,32 +1,25 @@
-import { FC } from "react";
-
 import Link from "next/link";
-
-import { Marquee } from "@/components/animated/Marquee";
-import { LineGrow } from "@/components/animated/LineGrow";
-import { BoxReveal } from "@/components/animated/BoxReveal";
-
-import { CourseCard } from "@/containers/CourseCard";
-import { ResumeCard } from "@/containers/ResumeCard";
-import { ProjectCard } from "@/containers/ProjectCard";
-import { GitHubContributions } from "@/containers/GithubContributions";
-
+import type { FC } from "react";
 import { BlurFade } from "@/components/animated/BlurFade";
-
-import { Badge } from "@/components/ui/Badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-
+import { BoxReveal } from "@/components/animated/BoxReveal";
+import { GlowingText } from "@/components/animated/GlowingText";
+import { LineGrow } from "@/components/animated/LineGrow";
+import { Marquee } from "@/components/animated/Marquee";
 import { Icons } from "@/components/icons/Icons";
-
-import { DATA } from "@/data/resume";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Badge } from "@/components/ui/Badge";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
-import { GlowingText } from "@/components/animated/GlowingText";
+import { CourseCard } from "@/containers/CourseCard";
+import { GitHubContributions } from "@/containers/GithubContributions";
+import { ProjectCard } from "@/containers/ProjectCard";
+import { ResumeCard } from "@/containers/ResumeCard";
+import { DATA } from "@/data/resume";
 
 const Home: FC = () => {
 	return (
 		<main className="flex flex-col min-h-[100dvh] space-y-10">
-			<section id="hero">
+			<section>
 				<div className="mx-auto w-full space-y-8">
 					<div className="gap-2 flex justify-between">
 						<div className="flex-col flex flex-1 space-y-1.5">
@@ -58,16 +51,16 @@ const Home: FC = () => {
 				</BlurFade>
 			</section>
 
-			<section id="about">
+			<section>
 				<BlurFade delay={BLUR_FADE_DELAY * 3}>
 					<h2 className="text-xl font-bold">About</h2>
 				</BlurFade>
 				<BlurFade delay={BLUR_FADE_DELAY * 4}>
 					<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-						{DATA.about.content.map((item, index) =>
+						{DATA.about.content.map((item) =>
 							item.isLink ? (
 								<Link
-									key={index}
+									key={item.text}
 									target="_blank"
 									rel="noopener noreferrer"
 									href={item.url}
@@ -76,22 +69,22 @@ const Home: FC = () => {
 									{item.text}
 								</Link>
 							) : (
-								<span key={index}>{item.text}</span>
+								<span key={item.text}>{item.text}</span>
 							)
 						)}
 					</p>
 				</BlurFade>
 			</section>
 
-			<section id="work">
+			<section>
 				<div className="flex min-h-0 flex-col gap-y-3">
 					<BlurFade delay={BLUR_FADE_DELAY * 5}>
 						<h2 className="text-xl font-bold">Work Experience</h2>
 					</BlurFade>
-					{DATA.work.map((work, index) => (
-						<BlurFade key={work.company + index} delay={BLUR_FADE_DELAY * 6 + index * 0.05}>
+					{DATA.work.map((work) => (
+						<BlurFade key={work.company} delay={BLUR_FADE_DELAY * 6}>
 							<ResumeCard
-								key={work.company + index}
+								key={work.company}
 								logoUrl={work.logoUrl}
 								location={work.location}
 								altText={work.company}
@@ -105,34 +98,37 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section id="skills" className="relative overflow-hidden">
+			<section className="relative overflow-hidden">
 				<div className="flex min-h-0 flex-col gap-y-3">
 					<BlurFade delay={BLUR_FADE_DELAY * 9}>
 						<h2 className="text-xl font-bold">Skills</h2>
 					</BlurFade>
 
-					{DATA.skills.map((skill, index) => (
-						<div key={index} className="relative">
-							<Marquee reverse={index % 2 === 0}>
-								{skill.map((s, i) => (
-									<BlurFade key={i} delay={BLUR_FADE_DELAY * 10 + i * 0.05} yOffset={0}>
-										<Badge key={s.name}>
-											{s.icon}
-											<span className="ml-2">{s.name}</span>{" "}
-										</Badge>
-									</BlurFade>
-								))}
-							</Marquee>
+					{DATA.skills.map((skill) => {
+						const skillKey = skill.map((s) => s.name).join("-");
+						return (
+							<div key={skillKey} className="relative">
+								<Marquee reverse={skillKey.length % 2 === 0}>
+									{skill.map((s, i) => (
+										<BlurFade key={s.name} delay={BLUR_FADE_DELAY * 10 + i * 0.05} yOffset={0}>
+											<Badge key={s.name}>
+												{s.icon}
+												<span className="ml-2">{s.name}</span>{" "}
+											</Badge>
+										</BlurFade>
+									))}
+								</Marquee>
 
-							{/* Shadow Effect on the left and right */}
-							<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
-							<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
-						</div>
-					))}
+								{/* Shadow Effect on the left and right */}
+								<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+								<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
+							</div>
+						);
+					})}
 				</div>
 			</section>
 
-			<section id="projects">
+			<section>
 				<div className="space-y-12 w-full py-12">
 					<BlurFade delay={BLUR_FADE_DELAY * 11}>
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -175,7 +171,7 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section id="github-activity">
+			<section>
 				<div className="flex min-h-0 flex-col gap-y-3">
 					<BlurFade delay={BLUR_FADE_DELAY * 13}>
 						<h2 className="text-xl font-bold">GitHub Activity</h2>
@@ -186,7 +182,7 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section id="education">
+			<section>
 				<div className="flex min-h-0 flex-col gap-y-3">
 					<BlurFade delay={BLUR_FADE_DELAY * 15}>
 						<h2 className="text-xl font-bold">Education</h2>
@@ -208,7 +204,7 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section id="contact">
+			<section>
 				<div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
 					<BlurFade delay={BLUR_FADE_DELAY * 18}>
 						<div className="space-y-3">

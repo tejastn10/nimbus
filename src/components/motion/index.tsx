@@ -1,6 +1,5 @@
+import { type MotionProps, motion } from "motion/react";
 import { forwardRef } from "react";
-
-import { motion, type MotionProps } from "motion/react";
 
 type MotionDivProps = MotionProps & React.HTMLAttributes<HTMLDivElement>;
 type MotionSpanProps = MotionProps & React.HTMLAttributes<HTMLSpanElement>;

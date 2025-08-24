@@ -1,8 +1,0 @@
-node_modules
-.next
-*.local
-.eslintcache
-*.spec.tsx
-*.md
-*.less
-*.css

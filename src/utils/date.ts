@@ -7,7 +7,7 @@ const formatDate = (date: string, onlyDate?: boolean): string => {
 	// ? Try to create a valid date
 	const targetDate = new Date(date);
 	// ? Check for invalid date
-	if (isNaN(targetDate.getTime())) {
+	if (Number.isNaN(targetDate.getTime())) {
 		return "Invalid date";
 	}
 

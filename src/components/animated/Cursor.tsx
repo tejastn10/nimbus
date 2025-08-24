@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 
 const Cursor: FC = () => {
 	const [position, setPosition] = useState({ x: 0, y: 0 });

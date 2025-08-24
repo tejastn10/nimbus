@@ -3,16 +3,12 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import { Outfit } from "next/font/google";
-
-import { Navbar } from "@/containers/Navbar";
-
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
-
 import { Cursor } from "@/components/animated/Cursor";
 import { GridPattern } from "@/components/animated/GridPattern";
-
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { PageLines } from "@/components/ui/PageLines";
 import { TooltipProvider } from "@/components/ui/Tooltip";
+import { Navbar } from "@/containers/Navbar";
 
 import { DATA } from "@/data/resume";
 

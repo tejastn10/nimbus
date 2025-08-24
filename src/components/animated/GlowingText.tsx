@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 
 import { cx } from "@/utils/tailwind";
 
@@ -14,7 +14,7 @@ const GlowingText: FC<GlowingTextProps> = ({ text, className }) => {
 		<span className={cx("inline-flex text-xs", className)}>
 			{text.split("").map((char, i) => (
 				<span
-					key={i}
+					key={i + char}
 					className="animate-glow inline-block"
 					style={{
 						animationDelay: `${i * 100}ms`,

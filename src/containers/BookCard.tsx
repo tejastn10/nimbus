@@ -1,11 +1,8 @@
-import { FC } from "react";
-
 import Link from "next/link";
-
+import type { FC } from "react";
+import { Icons } from "@/components/icons/Icons";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
-
-import { Icons } from "@/components/icons/Icons";
 
 import { cx } from "@/utils/tailwind";
 

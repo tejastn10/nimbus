@@ -89,9 +89,8 @@ nimbus/
 ├── tsconfig.json       # TypeScript configuration file
 ├── postcss.config.mjs  # PostCSS configuration file for TailwindCSS
 ├── tailwind.config.ts  # TailwindCSS configuration file
-├── .prettierrc.yml     # Prettier configuration for code formatting
 ├── .commitlintrc.yml   # Commitlint configuration to enforce commit message conventions
-├── .eslintrc.yml       # ESLint configuration for linting JavaScript/TypeScript
+├── biome.json          # BiomeJS configuration for linting and code quality
 ├── .nvmrc              # Node version file to specify the Node.js version
 ├── package.json        # Dependencies and npm/yarn scripts
 ├── LICENSE.md          # License for the project

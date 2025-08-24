@@ -1,6 +1,6 @@
-import { forwardRef, ComponentProps } from "react";
+import { type ComponentProps, forwardRef } from "react";
 
-import { ButtonProps, buttonVariants } from "@/components/ui/Button";
+import { type ButtonProps, buttonVariants } from "@/components/ui/Button";
 
 import { cx } from "@/utils/tailwind";
 
@@ -8,7 +8,6 @@ import { Icons } from "../icons/Icons";
 
 const Pagination = ({ className, ...props }: ComponentProps<"nav">) => (
 	<nav
-		role="navigation"
 		aria-label="pagination"
 		className={cx("mx-auto flex w-full justify-center", className)}
 		{...props}

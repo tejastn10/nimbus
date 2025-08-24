@@ -1,6 +1,5 @@
-import { Post } from "@/data/blog";
-
 import { WORDS_PER_MINUTE } from "@/constants/blog";
+import type { Post } from "@/data/blog";
 
 const calculateReadingTime = (html: string): number => {
 	const text = html.replace(/<[^>]*>/g, ""); // Strip HTML tags

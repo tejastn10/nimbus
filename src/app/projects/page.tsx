@@ -1,19 +1,15 @@
-import { JSX } from "react";
-
+import type { JSX } from "react";
+import { BentoCard, type BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { BentoCard, BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
-
-import { OtherSection } from "./other-section";
-import { TemplatesSection } from "./templates-section";
-
+import { LineGrow } from "@/components/animated/LineGrow";
 import { getLogo } from "@/components/icons/Icons";
-
-import { DATA } from "@/data/resume";
-
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
+
+import { DATA } from "@/data/resume";
+import { OtherSection } from "./other-section";
+import { TemplatesSection } from "./templates-section";
 
 export const metadata = {
 	title: "Projects",

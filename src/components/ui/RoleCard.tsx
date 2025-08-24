@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 type RoleCardProps = {
 	title: string;
@@ -16,7 +16,7 @@ const RoleCard: FC<RoleCardProps> = ({ title, dates, description }) => {
 
 			<ul className="mb-4 ml-4 border-l">
 				{description.map((task, index) => (
-					<li className="relative ml-5 py-2 text-xs" key={index}>
+					<li className="relative ml-5 py-2 text-xs" key={index + task}>
 						{task}
 					</li>
 				))}

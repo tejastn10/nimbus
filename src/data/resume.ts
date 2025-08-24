@@ -212,7 +212,7 @@ export const DATA = {
 			featured: false,
 			isTemplate: true,
 			description:
-				"A scalable NestJS starter template with LGTM stack (Loki, Grafana, Tempo, Mimir) integration for full observability. Comes preconfigured with ESLint, Prettier, Husky, and Commitlint to ensure clean code and seamless developer experience.",
+				"A scalable NestJS starter template with LGTM stack (Loki, Grafana, Tempo, Mimir) integration for full observability. Comes preconfigured with BiomeJS Husky, and Commitlint to ensure clean code and seamless developer experience.",
 			technologies: [
 				"NestJS",
 				"TypeScript",
@@ -222,8 +222,8 @@ export const DATA = {
 				"Mimir",
 				"Grafana",
 				"Fastify",
-				"ESLint",
-				"Prettier",
+				"BiomeJS",
+				"",
 				"Husky",
 				"Commitlint",
 				"Docker",
@@ -283,7 +283,7 @@ export const DATA = {
 			isTemplate: false,
 			description:
 				"A utility package providing event handler functions like debounce and throttle for efficient function execution. Built with TypeScript and optimized for React projects.",
-			technologies: ["React", "TypeScript", "Vite", "ESLint", "Prettier", "Vitest"],
+			technologies: ["React", "TypeScript", "Vite", "BiomeJS", "Vitest"],
 			links: [
 				{
 					type: "Source",
@@ -358,17 +358,8 @@ export const DATA = {
 			featured: false,
 			isTemplate: true,
 			description:
-				"Modern Electron template with React and TypeScript, featuring Vite for fast development and pre-configured tools like ESLint, Prettier, and Husky.",
-			technologies: [
-				"Electron",
-				"React",
-				"TypeScript",
-				"Vite",
-				"ESLint",
-				"Prettier",
-				"Husky",
-				"Commitlint",
-			],
+				"Modern Electron template with React and TypeScript, featuring Vite for fast development and pre-configured tools like BiomeJS and Husky.",
+			technologies: ["Electron", "React", "TypeScript", "Vite", "BiomeJS", "Husky", "Commitlint"],
 			links: [
 				{
 					type: "Source",
@@ -499,16 +490,8 @@ export const DATA = {
 			featured: false,
 			isTemplate: true,
 			description:
-				"A Next.js template with custom ESLint and Prettier rules for consistent code quality. It includes Tailwind CSS, Husky, and Commitlint for a seamless developer experience.",
-			technologies: [
-				"NextJS",
-				"TypeScript",
-				"Tailwindcss",
-				"ESLint",
-				"Prettier",
-				"Husky",
-				"Commitlint",
-			],
+				"A Next.js template with custom BiomeJS rules for consistent code quality. It includes Tailwind CSS, Husky, and Commitlint for a seamless developer experience.",
+			technologies: ["NextJS", "TypeScript", "Tailwindcss", "BiomeJS", "Husky", "Commitlint"],
 			links: [
 				{
 					type: "Source",
@@ -524,17 +507,8 @@ export const DATA = {
 			featured: false,
 			isTemplate: true,
 			description:
-				"A minimal and scalable NestJS starter template with ESLint, Prettier, Husky, and Commitlint preconfigured for clean and efficient backend development.",
-			technologies: [
-				"NestJS",
-				"TypeScript",
-				"Docker",
-				"Fastify",
-				"ESLint",
-				"Prettier",
-				"Husky",
-				"Commitlint",
-			],
+				"A minimal and scalable NestJS starter template with BiomeJS Husky, and Commitlint preconfigured for clean and efficient backend development.",
+			technologies: ["NestJS", "TypeScript", "Docker", "Fastify", "BiomeJS", "Husky", "Commitlint"],
 			links: [
 				{
 					type: "Source",
@@ -646,8 +620,7 @@ export const DATA = {
 				"React",
 				"NestJS",
 				"ViteJS",
-				"ESLint",
-				"Prettier",
+				"BiomeJS",
 				"Husky",
 			],
 			links: [
@@ -665,8 +638,8 @@ export const DATA = {
 			featured: false,
 			isTemplate: true,
 			description:
-				"A lightweight front-end starter template with Vite, React, ESLint, Prettier, and Commitlint, ready for quick and clean project setups.",
-			technologies: ["TypeScript", "React", "ViteJS", "ESLint", "Prettier", "Husky", "Commitlint"],
+				"A lightweight front-end starter template with Vite, React, BiomeJS and Commitlint, ready for quick and clean project setups.",
+			technologies: ["TypeScript", "React", "ViteJS", "BiomeJS", "Husky", "Commitlint"],
 			links: [
 				{
 					type: "Source",

@@ -1,19 +1,14 @@
-import { FC } from "react";
-
 import Link from "next/link";
-
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
-
-import { LineGrow } from "@/components/animated/LineGrow";
+import type { FC } from "react";
 import { Dock, DockIcon } from "@/components/animated/Dock";
 
+import { LineGrow } from "@/components/animated/LineGrow";
+import { Icons } from "@/components/icons/Icons";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { buttonVariants } from "@/components/ui/Button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/Tooltip";
-
 import { DATA } from "@/data/resume";
-
 import { cx } from "@/utils/tailwind";
-import { Icons } from "@/components/icons/Icons";
 
 const Navbar: FC = () => {
 	return (
@@ -51,8 +46,8 @@ const Navbar: FC = () => {
 
 				<LineGrow className="h-full w-1/2 px-2" direction="vertical" />
 
-				{DATA.navbar.map((item, index) => (
-					<DockIcon key={index}>
+				{DATA.navbar.map((item) => (
+					<DockIcon key={item.href}>
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<Link

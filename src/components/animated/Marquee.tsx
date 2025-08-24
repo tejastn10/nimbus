@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 
 import { cx } from "@/utils/tailwind";
 
@@ -36,7 +36,7 @@ const Marquee: FC<MarqueeProps> = ({
 				.fill(0)
 				.map((_, i) => (
 					<div
-						key={i}
+						key={`marquee-${i}-${typeof children === "string" ? children : ""}`}
 						className={cx("flex shrink-0 justify-around [gap:var(--gap)]", {
 							"animate-marquee flex-row": !vertical,
 							"animate-marquee-vertical flex-col": vertical,

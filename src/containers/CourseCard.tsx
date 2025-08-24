@@ -1,16 +1,12 @@
 "use client";
 
-import { FC, MouseEvent, useState } from "react";
-
 import Link from "next/link";
-
+import { type FC, type MouseEvent, useState } from "react";
+import { Icons } from "@/components/icons/Icons";
 import { MotionDiv } from "@/components/motion";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader } from "@/components/ui/Card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-
-import { Icons } from "@/components/icons/Icons";
 
 import { cx } from "@/utils/tailwind";
 
@@ -68,7 +64,11 @@ const CourseCard: FC<CourseCardProps> = ({
 								{badges && (
 									<span className="inline-flex gap-x-1">
 										{badges.map((badge, index) => (
-											<Badge variant="secondary" className="align-middle text-xs" key={index}>
+											<Badge
+												variant="secondary"
+												className="align-middle text-xs"
+												key={index + badge}
+											>
 												{badge}
 											</Badge>
 										))}

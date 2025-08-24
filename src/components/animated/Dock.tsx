@@ -1,23 +1,20 @@
 "use client";
 
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
 import {
 	Children,
 	cloneElement,
 	forwardRef,
 	isValidElement,
-	PropsWithChildren,
+	type PropsWithChildren,
 	useRef,
 } from "react";
-
-import { MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
-
-import { cva, type VariantProps } from "class-variance-authority";
-
-import { MotionDiv } from "../motion";
+import { DEFAULT_DISTANCE, DEFAULT_MAGNIFICATION } from "@/constants/ui";
 
 import { cx } from "@/utils/tailwind";
-
-import { DEFAULT_DISTANCE, DEFAULT_MAGNIFICATION } from "@/constants/ui";
+import { MotionDiv } from "../motion";
 
 type DockIconProps = {
 	size?: number;

@@ -1,12 +1,9 @@
 "use client";
 
-import { FC } from "react";
-
 import { useTheme } from "next-themes";
-
-import { Button } from "../ui/Button";
-
+import type { FC } from "react";
 import { Icons } from "../icons/Icons";
+import { Button } from "../ui/Button";
 
 const ThemeToggle: FC = () => {
 	const { theme, setTheme } = useTheme();

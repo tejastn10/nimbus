@@ -1,22 +1,18 @@
-import { JSX, Suspense } from "react";
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { type JSX, Suspense } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
+import { LineGrow } from "@/components/animated/LineGrow";
 import { ScrollProgress } from "@/components/animated/ScrollProgress";
 
 import { getLogo, Icons } from "@/components/icons/Icons";
-
-import { DATA } from "@/data/resume";
-import { getBlogPosts, getPost } from "@/data/blog";
-
-import { formatDate } from "@/utils/date";
-import { calculateReadingTime } from "@/utils/blog";
-
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
+import { getBlogPosts, getPost } from "@/data/blog";
+import { DATA } from "@/data/resume";
+import { calculateReadingTime } from "@/utils/blog";
+import { formatDate } from "@/utils/date";
 
 type BlogProps = {
 	params: Promise<{ slug: string }>;
@@ -80,12 +76,13 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 	const readingTime = calculateReadingTime(post.source);
 
 	return (
-		<section id="blog" className="relative pb-16">
+		<section className="relative pb-16">
 			<ScrollProgress />
 
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
+				// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe JSON-LD structured data
 				dangerouslySetInnerHTML={{
 					__html: JSON.stringify({
 						"@context": "https://schema.org",
@@ -136,6 +133,7 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
 				<article
 					className="prose dark:prose-invert leading-[1.5] w-full max-w-none"
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe JSON-LD structured data
 					dangerouslySetInnerHTML={{ __html: post.source }}
 				/>
 			</BlurFade>

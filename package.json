@@ -6,13 +6,17 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint --fix",
-		"format": "prettier --write \"**/*.{js,ts,tsx,md,json}\"",
+		"lint": "biome lint .",
+		"lint:fix": "biome lint --write .",
+		"format": "biome format --write .",
+		"format:check": "biome format .",
+		"check": "biome check .",
+		"check:fix": "biome check --write .",
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"*.{js,jsx,ts,tsx}": [
-			"eslint --fix"
+		"*.{js,ts,json}": [
+			"biome check --write --no-errors-on-unmatched"
 		]
 	},
 	"husky": {
@@ -38,7 +42,6 @@
 		"motion": "^12.23.12",
 		"next": "15.5.0",
 		"next-themes": "^0.4.6",
-		"prettier": "^3.6.2",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
 		"react-github-calendar": "^4.5.9",
@@ -53,17 +56,14 @@
 		"unified": "^11.0.5"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.2.2",
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
-		"@eslint/eslintrc": "^3.3.1",
-		"@eslint/js": "^9.33.0",
 		"@tailwindcss/postcss": "^4.1.12",
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/node": "^24.3.0",
-		"@types/react": "^19.1.10",
+		"@types/react": "^19.1.11",
 		"@types/react-dom": "^19.1.7",
-		"eslint": "^9.33.0",
-		"eslint-config-next": "15.5.0",
 		"globals": "^16.3.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.1.5",

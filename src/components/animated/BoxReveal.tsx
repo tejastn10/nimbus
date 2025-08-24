@@ -1,8 +1,7 @@
 "use client";
 
-import { FC, JSX, useEffect, useRef } from "react";
-
 import { useAnimation, useInView } from "motion/react";
+import { type FC, type JSX, useEffect, useRef } from "react";
 
 import { MotionDiv } from "../motion";
 

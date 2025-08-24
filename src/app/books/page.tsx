@@ -1,16 +1,12 @@
-import { JSX } from "react";
+import type { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-
-import { BookCard } from "@/containers/BookCard";
-
-import { CompletedSection } from "./completed-section";
-
+import { LineGrow } from "@/components/animated/LineGrow";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
-
+import { BookCard } from "@/containers/BookCard";
 import { getBooks } from "@/data/book";
+import { CompletedSection } from "./completed-section";
 
 export const metadata = {
 	title: "Books",
