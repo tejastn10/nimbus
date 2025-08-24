@@ -1,8 +1,7 @@
 "use client";
 
-import { FC, ReactNode, useRef } from "react";
-
-import { AnimatePresence, useInView, Variants } from "motion/react";
+import { AnimatePresence, useInView, type Variants } from "motion/react";
+import { type FC, type ReactNode, useRef } from "react";
 
 import { MotionDiv } from "../motion";
 

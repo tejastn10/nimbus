@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useMemo, FC, ChangeEvent, MouseEvent } from "react";
+import { type ChangeEvent, type FC, type MouseEvent, useMemo, useState } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
 import { LineGrow } from "@/components/animated/LineGrow";
-
-import { BookCard, BookCardProps } from "@/containers/BookCard";
+import { Input } from "@/components/ui/Input";
 
 import {
 	Pagination,
@@ -15,10 +14,10 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/Pagination";
-import { Input } from "@/components/ui/Input";
+import { BOOKS_PER_PAGE } from "@/constants/book";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
-import { BOOKS_PER_PAGE } from "@/constants/book";
+import { BookCard, type BookCardProps } from "@/containers/BookCard";
 
 type CompletedSectionProps = {
 	completed: BookCardProps[];
@@ -95,17 +94,20 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 									onClick={(e) => handlePageChange({ e, newPage: page - 1 })}
 								/>
 							</PaginationItem>
-							{[...Array(totalPages)].map((_, i) => (
-								<PaginationItem key={i}>
-									<PaginationLink
-										href="#"
-										isActive={page === i + 1}
-										onClick={(e) => handlePageChange({ e, newPage: i + 1 })}
-									>
-										{i + 1}
-									</PaginationLink>
-								</PaginationItem>
-							))}
+							{Array.from({ length: totalPages }, (_, i) => {
+								const pageNumber = i + 1;
+								return (
+									<PaginationItem key={`page-${pageNumber}`}>
+										<PaginationLink
+											href="#"
+											isActive={page === pageNumber}
+											onClick={(e) => handlePageChange({ e, newPage: pageNumber })}
+										>
+											{pageNumber}
+										</PaginationLink>
+									</PaginationItem>
+								);
+							})}
 							<PaginationItem>
 								<PaginationNext
 									href="#"

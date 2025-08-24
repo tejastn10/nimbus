@@ -1,10 +1,8 @@
-import { FC, ReactNode } from "react";
-
-import { Button } from "../ui/Button";
+import type { FC, ReactNode } from "react";
+import { cx } from "@/utils/tailwind";
 
 import { Icons } from "../icons/Icons";
-
-import { cx } from "@/utils/tailwind";
+import { Button } from "../ui/Button";
 
 type BentoGridProps = {
 	children: ReactNode;

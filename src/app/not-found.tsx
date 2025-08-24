@@ -1,10 +1,7 @@
-import { FC } from "react";
-
 import Link from "next/link";
-
-import { Badge } from "@/components/ui/Badge";
-
+import type { FC } from "react";
 import { Icons } from "@/components/icons/Icons";
+import { Badge } from "@/components/ui/Badge";
 
 const NotFound: FC = () => {
 	return (

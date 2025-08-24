@@ -1,12 +1,9 @@
 "use client";
 
+import { type MotionProps, useScroll, useSpring } from "motion/react";
 import { forwardRef } from "react";
-
-import { MotionProps, useScroll, useSpring } from "motion/react";
-
-import { MotionDiv } from "../motion";
-
 import { cx } from "@/utils/tailwind";
+import { MotionDiv } from "../motion";
 
 const ScrollProgress = forwardRef<
 	HTMLDivElement,

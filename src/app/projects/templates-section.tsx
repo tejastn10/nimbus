@@ -1,12 +1,9 @@
 "use client";
 
-import { useState, useMemo, FC, ChangeEvent, MouseEvent } from "react";
+import { type ChangeEvent, type FC, type MouseEvent, useMemo, useState } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-
-import { TemplateCard } from "@/containers/TemplateCard";
-import { ProjectProps } from "@/containers/ProjectCard";
-
+import { Input } from "@/components/ui/Input";
 import {
 	Pagination,
 	PaginationContent,
@@ -15,10 +12,10 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/Pagination";
-import { Input } from "@/components/ui/Input";
-
-import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { POSTS_PER_PAGE } from "@/constants/blog";
+import { BLUR_FADE_DELAY } from "@/constants/ui";
+import type { ProjectProps } from "@/containers/ProjectCard";
+import { TemplateCard } from "@/containers/TemplateCard";
 
 type TemplatesSectionProps = {
 	templates: ProjectProps[];
@@ -107,17 +104,20 @@ const TemplatesSection: FC<TemplatesSectionProps> = ({ templates }) => {
 									onClick={(e) => handlePageChange({ e, newPage: page - 1 })}
 								/>
 							</PaginationItem>
-							{[...Array(totalPages)].map((_, i) => (
-								<PaginationItem key={i}>
-									<PaginationLink
-										href="#"
-										isActive={page === i + 1}
-										onClick={(e) => handlePageChange({ e, newPage: i + 1 })}
-									>
-										{i + 1}
-									</PaginationLink>
-								</PaginationItem>
-							))}
+							{Array.from({ length: totalPages }, (_, i) => {
+								const pageNumber = i + 1;
+								return (
+									<PaginationItem key={`page-${pageNumber}`}>
+										<PaginationLink
+											href="#"
+											isActive={page === pageNumber}
+											onClick={(e) => handlePageChange({ e, newPage: pageNumber })}
+										>
+											{pageNumber}
+										</PaginationLink>
+									</PaginationItem>
+								);
+							})}
 							<PaginationItem>
 								<PaginationNext
 									href="#"

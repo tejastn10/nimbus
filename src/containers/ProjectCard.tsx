@@ -1,10 +1,10 @@
 "use client";
 
-import { FC, useState } from "react";
 import Link from "next/link";
+import { type FC, useState } from "react";
 
 import { GlowingText } from "@/components/animated/GlowingText";
-
+import { Icons } from "@/components/icons/Icons";
 import { Badge } from "@/components/ui/Badge";
 import {
 	Card,
@@ -14,12 +14,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/Card";
-
-import { Icons } from "@/components/icons/Icons";
-
-import { cx } from "@/utils/tailwind";
-
 import { CLIPBOARD_COPY_DELAY } from "@/constants/ui";
+import { cx } from "@/utils/tailwind";
 
 type ProjectProps = {
 	title: string;
@@ -113,7 +109,7 @@ const ProjectCard: FC<ProjectProps> = ({
 							if (link?.href && link?.type === "Curl") {
 								return (
 									<Badge
-										key={idx}
+										key={link.href}
 										className="relative flex items-center gap-2 px-2 py-1 text-[10px] cursor-pointer transition-all duration-300 overflow-hidden"
 										onClick={() => copyToClipboard(link, idx)}
 									>
@@ -150,14 +146,18 @@ const ProjectCard: FC<ProjectProps> = ({
 							}
 
 							return link?.href ? (
-								<Link key={idx} href={link?.href} target="_blank" rel="noopener noreferrer">
-									<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+								<Link key={link.href} href={link?.href} target="_blank" rel="noopener noreferrer">
+									<Badge className="flex gap-2 px-2 py-1 text-[10px]">
 										{link.icon}
 										{link.type}
 									</Badge>
 								</Link>
 							) : (
-								<Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]" noHover>
+								<Badge
+									key={link.href || link.type}
+									className="flex gap-2 px-2 py-1 text-[10px]"
+									noHover
+								>
 									{link.icon}
 									{link.type}
 								</Badge>

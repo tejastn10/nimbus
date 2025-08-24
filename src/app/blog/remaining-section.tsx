@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useMemo, FC, ChangeEvent, MouseEvent } from "react";
+import { type ChangeEvent, type FC, type MouseEvent, useMemo, useState } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
 import { LineGrow } from "@/components/animated/LineGrow";
-
-import { BlogCard } from "@/containers/BlogCard";
-
+import { getLogo } from "@/components/icons/Icons";
+import { Input } from "@/components/ui/Input";
 import {
 	Pagination,
 	PaginationContent,
@@ -15,15 +14,12 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/Pagination";
-import { Input } from "@/components/ui/Input";
-
-import { getLogo } from "@/components/icons/Icons";
-
-import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { POSTS_PER_PAGE } from "@/constants/blog";
 import { TECH } from "@/constants/data";
+import { BLUR_FADE_DELAY } from "@/constants/ui";
+import { BlogCard } from "@/containers/BlogCard";
 
-import { Post } from "@/data/blog";
+import type { Post } from "@/data/blog";
 
 import { sortBlogPosts } from "@/utils/blog";
 
@@ -90,7 +86,7 @@ const RemainingSection: FC<RemainingSectionProps> = ({ remaining }) => {
 							const Icon = getLogo(metadata.about) || TECH.General;
 
 							return (
-								<div key={id} className="relative pl-18 group">
+								<div key={String(id) + post.metadata.title} className="relative pl-18 group">
 									<div className="absolute left-6 -translate-x-1/2 flex items-center justify-center w-10 h-10 bg-background rounded-md transition-all duration-300 group-hover:border-primary group-hover:scale-110">
 										<Icon className="text-muted-foreground transition-all duration-300 group-hover:text-primary" />
 									</div>
@@ -127,17 +123,20 @@ const RemainingSection: FC<RemainingSectionProps> = ({ remaining }) => {
 									onClick={(e) => handlePageChange({ e, newPage: page - 1 })}
 								/>
 							</PaginationItem>
-							{[...Array(totalPages)].map((_, i) => (
-								<PaginationItem key={i}>
-									<PaginationLink
-										href="#"
-										isActive={page === i + 1}
-										onClick={(e) => handlePageChange({ e, newPage: i + 1 })}
-									>
-										{i + 1}
-									</PaginationLink>
-								</PaginationItem>
-							))}
+							{Array.from({ length: totalPages }, (_, i) => {
+								const pageNumber = i + 1;
+								return (
+									<PaginationItem key={`page-${pageNumber}`}>
+										<PaginationLink
+											href="#"
+											isActive={page === pageNumber}
+											onClick={(e) => handlePageChange({ e, newPage: pageNumber })}
+										>
+											{pageNumber}
+										</PaginationLink>
+									</PaginationItem>
+								);
+							})}
 							<PaginationItem>
 								<PaginationNext
 									href="#"

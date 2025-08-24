@@ -1,5 +1,5 @@
-import { FC, HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import type { FC, HTMLAttributes } from "react";
 import { cx } from "@/utils/tailwind";
 
 type BadgeProps = HTMLAttributes<HTMLDivElement> &

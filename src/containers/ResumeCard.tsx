@@ -1,18 +1,13 @@
 "use client";
 
-import { FC, MouseEvent, useState } from "react";
-
 import Link from "next/link";
-
-import { MotionDiv } from "@/components/motion";
-
+import { type FC, type MouseEvent, useState } from "react";
 import { BlurFade } from "@/components/animated/BlurFade";
-
-import { RoleCard } from "@/components/ui/RoleCard";
-import { Card, CardHeader } from "@/components/ui/Card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-
 import { Icons } from "@/components/icons/Icons";
+import { MotionDiv } from "@/components/motion";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+import { Card, CardHeader } from "@/components/ui/Card";
+import { RoleCard } from "@/components/ui/RoleCard";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 

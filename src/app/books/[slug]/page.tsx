@@ -1,18 +1,13 @@
-import { JSX } from "react";
-
 import { notFound } from "next/navigation";
+import type { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-
-import { Badge } from "@/components/ui/Badge";
-
+import { LineGrow } from "@/components/animated/LineGrow";
 import { Icons } from "@/components/icons/Icons";
-
-import { getBooks, getBook } from "@/data/book";
-
+import { Badge } from "@/components/ui/Badge";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
+import { getBook, getBooks } from "@/data/book";
 
 import { cx } from "@/utils/tailwind";
 
@@ -129,6 +124,7 @@ const Book = async ({ params }: BookProps): Promise<JSX.Element> => {
 						`after:bg-gradient-to-br after:${styles.gradient}`,
 						"after:opacity-30"
 					)}
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe JSON-LD structured data
 					dangerouslySetInnerHTML={{ __html: source }}
 				/>
 			</BlurFade>

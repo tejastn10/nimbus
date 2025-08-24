@@ -1,14 +1,10 @@
-import { FC } from "react";
-
 import Link from "next/link";
-
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
-
+import type { FC } from "react";
 import { Icons } from "@/components/icons/Icons";
-
-import { cx } from "@/utils/tailwind";
-import { formatDate } from "@/utils/date";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
 import { calculateReadingTime } from "@/utils/blog";
+import { formatDate } from "@/utils/date";
+import { cx } from "@/utils/tailwind";
 
 type BlogCardProps = {
 	slug: string;

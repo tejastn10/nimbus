@@ -1,7 +1,7 @@
-import { FC, ReactNode, createElement } from "react";
+import Image, { type ImageProps } from "next/image";
 
-import Link, { LinkProps } from "next/link";
-import Image, { ImageProps } from "next/image";
+import Link, { type LinkProps } from "next/link";
+import { createElement, type FC, type ReactNode } from "react";
 
 type TableProps = {
 	headers: string[];
@@ -9,25 +9,23 @@ type TableProps = {
 };
 
 const Table: FC<TableProps> = ({ headers, rows }) => {
-	const tableHeaders = headers.map((header, index) => <th key={index}>{header}</th>);
+	const tableHeaders = headers.map((header) => <th key={header}>{header}</th>);
 
 	const tableRows = rows.map((row, index) => (
-		<tr key={index}>
+		<tr key={`row-${row.join("-")}-${index}`}>
 			{row.map((cell, cellIndex) => (
-				<td key={cellIndex}>{cell}</td>
+				<td key={`${index}-${cellIndex}-${cell}`}>{cell}</td>
 			))}
 		</tr>
 	));
 
 	return (
-		<>
-			<table>
-				<thead>
-					<tr>{tableHeaders}</tr>
-				</thead>
-				<tbody>{tableRows}</tbody>
-			</table>
-		</>
+		<table>
+			<thead>
+				<tr>{tableHeaders}</tr>
+			</thead>
+			<tbody>{tableRows}</tbody>
+		</table>
 	);
 };
 

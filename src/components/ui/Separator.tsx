@@ -1,8 +1,7 @@
 "use client";
 
-import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
-
 import { Root } from "@radix-ui/react-separator";
+import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from "react";
 
 import { cx } from "@/utils/tailwind";
 

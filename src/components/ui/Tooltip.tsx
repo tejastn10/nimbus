@@ -1,8 +1,7 @@
 "use-client";
 
-import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
-
 import { Content, Provider, Root, Trigger } from "@radix-ui/react-tooltip";
+import { type ComponentPropsWithoutRef, type ComponentRef, forwardRef } from "react";
 
 import { cx } from "@/utils/tailwind";
 

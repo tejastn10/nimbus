@@ -1,8 +1,10 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
+import type { FC } from "react";
+import { Icons } from "@/components/icons/Icons";
 
+import { Badge } from "@/components/ui/Badge";
 import {
 	Card,
 	CardContent,
@@ -11,11 +13,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/Card";
-
-import { Badge } from "@/components/ui/Badge";
-
 import { cx } from "@/utils/tailwind";
-import { Icons } from "@/components/icons/Icons";
 
 type TemplateCardProps = {
 	title: string;
