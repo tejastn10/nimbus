@@ -223,7 +223,6 @@ export const DATA = {
 				"Grafana",
 				"Fastify",
 				"BiomeJS",
-				"",
 				"Husky",
 				"Commitlint",
 				"Docker",
@@ -620,7 +619,8 @@ export const DATA = {
 				"React",
 				"NestJS",
 				"ViteJS",
-				"BiomeJS",
+				"ESLint",
+				"Prettier",
 				"Husky",
 			],
 			links: [
