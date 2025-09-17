@@ -109,9 +109,11 @@ export const DATA = {
 					end: "Present",
 					description: [
 						"Spearheaded the creation of a production-grade NestJS service template to standardize and accelerate backend development across teams.",
-						"Defined and documented best practices for scalable microservice architecture, enabling seamless migration of legacy services and ensuring consistent development standards.",
 						"Built a centralized file service for managing uploads and downloads across all microservices, ensuring secure file handling and reducing duplication across codebases.",
 						"Developed an internal campaign-launching tool that allows teams to trigger targeted campaigns via CSV uploads or user selection queries, integrating with both WATI and Cheerio servers for omnichannel delivery.",
+						"Developed a standardized framework for AWS Lambda functions, creating templates for both Node.js and Python-based Lambdas with local testing support via SQS and API Gateway, significantly improving developer productivity and reliability in serverless workflows.",
+						"Set up a robust development environment for all microservices, enabling teams to deploy any branch on the dev environment via GitHub Actions. This streamlined testing and reduced the turnaround time for feature validation.",
+						"Introduced and enforced engineering best practices across services—including security measures, lint checking, code formatting, and standardized PR workflows—while also implementing code coverage tracking and promoting test-driven development (TDD). These initiatives were adopted across all microservices, significantly improving code quality, maintainability, and ensuring that new code met high standards of reliability.",
 					],
 				},
 			],
