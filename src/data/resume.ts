@@ -69,14 +69,6 @@ export const DATA = {
 		email: "tejastn10@gmail.com",
 		tel: "+91 89280 88153",
 		social: {
-			medium: {
-				name: "Medium",
-				url: "https://tejastn10.medium.com/",
-				icon: Icons.medium,
-
-				navbar: true,
-			},
-
 			Twitter: {
 				name: "Twitter",
 				url: "https://x.com/tejastn10",
@@ -207,6 +199,37 @@ export const DATA = {
 	],
 
 	projects: [
+		{
+			title: "Dash",
+			href: "https://github.com/tejastn10/dash",
+			purpose: "Frontend Performance Testing Template",
+			featured: false,
+			isTemplate: false,
+			description:
+				"A sleek Next.js starter template for building performance-focused frontend apps. Dash measures internet speed (download, upload, latency) with a clean, minimal UI.",
+			technologies: [
+				"Next.js",
+				"React",
+				"TypeScript",
+				"TailwindCSS",
+				"BiomeJS",
+				"Husky",
+				"Commitlint",
+				"Vercel",
+			],
+			links: [
+				{
+					type: "Live Demo",
+					href: "https://dash-eight-gamma.vercel.app/",
+					icon: Icons.link(),
+				},
+				{
+					type: "Source",
+					href: "https://github.com/tejastn10/dash",
+					icon: Icons.github(),
+				},
+			],
+		},
 		{
 			title: "Ember",
 			href: "https://github.com/tejastn10/ember",
