@@ -219,14 +219,14 @@ export const DATA = {
 			],
 			links: [
 				{
-					type: "Live Demo",
-					href: "https://dash-eight-gamma.vercel.app/",
-					icon: Icons.link(),
-				},
-				{
 					type: "Source",
 					href: "https://github.com/tejastn10/dash",
 					icon: Icons.github(),
+				},
+				{
+					type: "Website",
+					href: "https://dash-eight-gamma.vercel.app/",
+					icon: Icons.link(),
 				},
 			],
 		},
