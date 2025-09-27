@@ -11,7 +11,7 @@ import { CompletedSection } from "./completed-section";
 export const metadata = {
 	title: "Books",
 	description:
-		"A collection of books I'm currently reading, have read, or plan to read. Each book is a journey into a different world, and I hope to share my thoughts and insights with you.",
+		"Not everything on this site is what it seems. Here lies a quiet corner of books I've loved, am exploring, or might someday open. You weren't really supposed to find this… or were you?",
 };
 
 const BooksPage = async (): Promise<JSX.Element> => {
