@@ -51,7 +51,7 @@ export const DATA = {
 
 	navbar: [
 		{ href: "/blog", icon: Icons.blog, label: "Blog" },
-		{ href: "/books", icon: Icons.books, label: "Books" },
+		{ href: "/work", icon: Icons.work, label: "Work" },
 		{ href: "/projects", icon: Icons.projects, label: "Projects" },
 	],
 
