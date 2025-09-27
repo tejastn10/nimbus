@@ -3,7 +3,7 @@ import { GoContainer } from "react-icons/go";
 import { PiTreeStructure } from "react-icons/pi";
 
 import {
-	RiBook3Line,
+	RiBriefcase4Line,
 	RiDatabase2Line,
 	RiMapPin3Line,
 	RiMoreLine,
@@ -72,7 +72,6 @@ import {
 	SiJsonwebtokens,
 	SiKotlin,
 	SiKubernetes,
-	SiMedium,
 	SiMocha,
 	SiMongodb,
 	SiMysql,
@@ -134,8 +133,7 @@ const Icons = {
 	// * Navbar
 	home: (props?: IconProps) => <RxHome {...props} />,
 	blog: (props?: IconProps) => <RxLayers {...props} />,
-	books: (props?: IconProps) => <RiBook3Line {...props} />,
-	medium: (props?: IconProps) => <SiMedium {...props} />,
+	work: (props?: IconProps) => <RiBriefcase4Line {...props} />,
 	github: (props?: IconProps) => <RxGithubLogo {...props} />,
 	twitter: (props?: IconProps) => <RiTwitterXLine {...props} />,
 	linkedin: (props?: IconProps) => <RxLinkedinLogo {...props} />,
