@@ -20,6 +20,7 @@ type ResumeCardProps = {
 	company: string;
 	href?: string;
 	period: string;
+	expanded?: boolean;
 	roles: readonly {
 		title: string;
 		start: string;
@@ -36,8 +37,9 @@ const ResumeCard: FC<ResumeCardProps> = ({
 	href,
 	period,
 	roles,
+	expanded,
 }) => {
-	const [isExpanded, setIsExpanded] = useState(false);
+	const [isExpanded, setIsExpanded] = useState(expanded ?? false);
 
 	const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
 		if (roles.length > 0) {
