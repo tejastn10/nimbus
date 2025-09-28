@@ -47,9 +47,7 @@ const BooksPage = async (): Promise<JSX.Element> => {
 		<section className="relative">
 			<BlurFade delay={BLUR_FADE_DELAY}>
 				<BoxReveal duration={BOX_REVEAL_DURATION}>
-					<h1 className="font-bold text-6xl mb-4 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-neutral-950 to-neutral-500 dark:from-neutral-50 dark:to-neutral-600">
-						{metadata.title}
-					</h1>
+					<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
 				</BoxReveal>
 				<BoxReveal duration={BOX_REVEAL_DURATION * 1.2}>
 					<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
