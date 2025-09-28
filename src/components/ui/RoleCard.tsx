@@ -8,15 +8,15 @@ type RoleCardProps = {
 
 const RoleCard: FC<RoleCardProps> = ({ title, dates, description }) => {
 	return (
-		<li className="relative ml-8 py-4">
+		<li className="relative ml-2 py-4">
 			<div className="flex flex-1 flex-col justify-start gap-1 pb-2">
 				<h2 className="font-semibold leading-none cursor-pointer">{title}</h2>
 				{dates && <time className="text-xs text-muted-foreground">{dates}</time>}
 			</div>
 
-			<ul className="mb-4 ml-4 border-l">
+			<ul className="mb-4 ml-2 border-l">
 				{description.map((task, index) => (
-					<li className="relative ml-5 py-2 text-xs" key={index + task}>
+					<li className="relative ml-4 py-2 text-xs" key={index + task}>
 						{task}
 					</li>
 				))}

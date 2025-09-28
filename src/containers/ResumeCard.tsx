@@ -63,7 +63,7 @@ const ResumeCard: FC<ResumeCardProps> = ({
 						<AvatarFallback>{altText[0]}</AvatarFallback>
 					</Avatar>
 				</div>
-				<div className="grow ml-4 items-center flex-col group">
+				<div className="grow ml-2 items-center flex-col group">
 					<CardHeader>
 						<div className="flex items-center justify-between gap-x-2 text-base">
 							<h3 className="inline-flex items-center justify-center font-bold leading-none text-md sm:text-md">
@@ -102,7 +102,7 @@ const ResumeCard: FC<ResumeCardProps> = ({
 							}}
 							className="mt-2 text-xs sm:text-sm"
 						>
-							<ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+							<ul className="mb-4 ml-2 divide-y divide-dashed border-l">
 								{roles.map((role, index) => (
 									<BlurFade key={role.title} delay={BLUR_FADE_DELAY * 15 + index * 0.05}>
 										<RoleCard

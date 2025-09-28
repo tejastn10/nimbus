@@ -27,7 +27,7 @@ export default function WorkPage() {
 				<LineGrow className="my-12" />
 			</BlurFade>
 
-			<div className="max-w-5xl mx-auto px-6 lg:px-10 pt-10 pb-16">
+			<div className="max-w-5xl mx-auto pt-10 pb-16">
 				<div className="relative">
 					{DATA.work.map((work, index) => {
 						const period = `${work.start} - ${work.end ?? "Present"}`;
@@ -35,10 +35,10 @@ export default function WorkPage() {
 						return (
 							<div key={work.company} className="relative">
 								<div className="flex flex-col md:flex-row gap-y-6">
-									<div className="flex-1 md:pl-8 relative pb-10">
+									<div className="flex-1 relative pb-10">
 										<div className="relative z-10">
 											<BlurFade delay={BLUR_FADE_DELAY * (4 + index)}>
-												<div className="max-w-2xl">
+												<div>
 													<ResumeCard
 														key={work.company}
 														logoUrl={work.logoUrl}
