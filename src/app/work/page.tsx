@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
 import { LineGrow } from "@/components/animated/LineGrow";
@@ -11,7 +12,7 @@ export const metadata = {
 		"A journey through code, coffee, and countless commits. Here's where pixels meet purpose, and where I've spent my days building digital experiences that (hopefully) don't break when you need them most.",
 };
 
-export default function WorkPage() {
+const Work: FC = () => {
 	return (
 		<section className="relative">
 			<BlurFade delay={BLUR_FADE_DELAY}>
@@ -62,4 +63,6 @@ export default function WorkPage() {
 			</div>
 		</section>
 	);
-}
+};
+
+export default Work;
