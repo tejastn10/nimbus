@@ -202,7 +202,7 @@ export const DATA = {
 		{
 			title: "Dash",
 			href: "https://github.com/tejastn10/dash",
-			purpose: "Frontend Performance Testing Template",
+			purpose: "Network Speedtest tool",
 			featured: false,
 			isTemplate: false,
 			description:
