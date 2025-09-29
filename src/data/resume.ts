@@ -200,6 +200,28 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Cortex",
+			href: "https://github.com/Kosha-Nirman/cortex",
+			purpose: "Subdomain Discovery",
+			featured: true,
+			isTemplate: false,
+			description:
+				"A comprehensive, multi-technique subdomain reconnaissance engine built for modern security operations",
+			technologies: ["Go", "Cobra", "Github Actions", "Sub-domains"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/Kosha-Nirman/cortex",
+					icon: Icons.github(),
+				},
+				{
+					type: "Curl",
+					href: "curl -sSf https://raw.githubusercontent.com/Kosha-Nirman/cortex/main/scripts/install.sh | bash",
+					icon: Icons.bash(),
+				},
+			],
+		},
+		{
 			title: "Dash",
 			href: "https://github.com/tejastn10/dash",
 			purpose: "Network Speedtest tool",
@@ -264,7 +286,7 @@ export const DATA = {
 			title: "Papyrus",
 			href: "https://github.com/tejastn10/papyrus",
 			purpose: "PDF Password Management",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"A minimalist PDF utility that allows you to remove or add password protection to PDF files. Built using Python and FastAPI with a clean React frontend. Ideal for quick, secure, client-side PDF operations without file storage.",
