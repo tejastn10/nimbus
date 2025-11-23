@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { type FC, useEffect, useState } from "react";
 
-import GitHubCalendar from "react-github-calendar";
+import { GitHubCalendar } from "react-github-calendar";
 
 import { Icons } from "@/components/icons/Icons";
 import { getCurrentYear } from "@/utils/date";
