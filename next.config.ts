@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	images: {
-		domains: ["www.tejastn10.com"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "www.tejastn10.com",
+				pathname: "/**",
+			},
+		],
 	},
 };
 
