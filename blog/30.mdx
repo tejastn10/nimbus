@@ -1,0 +1,410 @@
+---
+title: "Understanding AWS CPU Units: The Decimal Mystery Explained 🖥️"
+publishedAt: "2025-12-14"
+description:
+  "Discover how AWS ECS and Fargate use fractional CPU units instead of whole cores, and understand
+  what's really happening under the hood when you assign 0.25 or 0.5 vCPUs to your containers."
+about: AWS
+---
+
+_When configuring AWS ECS tasks or Fargate containers, you might have noticed that CPU can be
+specified in decimal values like 0.25, 0.5, or 1.5. Coming from a traditional server background
+where we think in terms of "cores," this decimal system can be confusing. How does a container
+use 0.5 of a CPU? What's actually happening at the infrastructure level? This article demystifies
+AWS's CPU unit allocation system and explains the mechanics behind fractional CPU assignments._
+
+---
+
+### The Traditional Understanding: CPU Cores
+
+In the traditional computing model, we think of CPUs in terms of physical cores. A 4-core processor
+has 4 independent processing units that can execute instructions simultaneously. When you spin up
+a VM or EC2 instance, you typically get a certain number of vCPUs (virtual CPUs), where 1 vCPU
+usually corresponds to 1 hyperthread on the physical hardware.
+
+```bash
+# Traditional thinking
+t3.medium  = 2 vCPUs
+t3.large   = 2 vCPUs
+t3.xlarge  = 4 vCPUs
+```
+
+This whole-number approach made sense: you either got 1 core, 2 cores, 4 cores, etc. But containers
+changed everything.
+
+---
+
+### The Container Revolution: CPU Shares
+
+Containers introduced a fundamentally different paradigm for resource allocation. Unlike VMs that
+have dedicated resources, containers share the host's kernel and resources. This sharing model
+required a more granular way to allocate CPU time.
+
+#### Enter CPU Units
+
+AWS ECS and Fargate use **CPU units** to specify how much processing power a container gets. Here's
+the key insight:
+
+**1024 CPU units = 1 vCPU = 1 physical core or hyperthread**
+
+This means:
+
+- 256 units = 0.25 vCPU (25% of a core)
+- 512 units = 0.5 vCPU (50% of a core)
+- 1024 units = 1 vCPU (full core)
+- 2048 units = 2 vCPUs (two full cores)
+
+```yaml
+# ECS Task Definition
+containerDefinitions:
+  - name: my-app
+    cpu: 256 # 0.25 vCPU
+    memory: 512 # 512 MB
+```
+
+---
+
+### What Actually Happens: The Linux Kernel's CPU Scheduler
+
+When you assign 0.5 vCPU (512 CPU units) to a container, you're not physically splitting a CPU core
+in half. Instead, you're configuring how the Linux kernel's CPU scheduler allocates processing time
+to your container.
+
+#### CPU Shares and CFS (Completely Fair Scheduler)
+
+Behind the scenes, AWS uses Linux cgroups (control groups) to manage container resources. The
+specific mechanism for CPU is called **cpu.shares** in cgroup v1 or **cpu.weight** in cgroup v2.
+
+Here's what happens:
+
+```
+Container A: 512 CPU units (cpu.shares = 512)
+Container B: 1024 CPU units (cpu.shares = 1024)
+Container C: 256 CPU units (cpu.shares = 256)
+
+Total shares: 512 + 1024 + 256 = 1792
+```
+
+When the CPU is under contention (fully utilized), the kernel allocates time proportionally:
+
+- Container A gets: 512/1792 ≈ 28.6% of CPU time
+- Container B gets: 1024/1792 ≈ 57.1% of CPU time
+- Container C gets: 256/1792 ≈ 14.3% of CPU time
+
+**Critical Understanding**: If the CPU is NOT fully utilized, a container can burst above its
+allocation. The CPU shares only matter when there's contention for resources.
+
+#### CPU Quotas: Hard Limits
+
+For stricter control, AWS also uses **cpu.cfs_quota_us** and **cpu.cfs_period_us** to set hard
+limits:
+
+```bash
+# Example: Container with 0.5 vCPU
+cpu.cfs_period_us = 100000  # 100ms period
+cpu.cfs_quota_us = 50000    # 50ms of CPU time per period
+
+# This means: 50ms / 100ms = 0.5 CPU = 50% of one core
+```
+
+This ensures that even if the CPU is idle, a container with 0.5 vCPU cannot use more than 50% of a
+single core's capacity over time.
+
+---
+
+### ECS on EC2: How It Works
+
+When you launch an ECS task on an EC2 instance, here's the actual workflow:
+
+#### 1. Task Placement
+
+The ECS scheduler examines available EC2 instances in your cluster:
+
+```
+Instance 1 (t3.large): 2048 CPU units total
+  - Running tasks using: 1024 units
+  - Available: 1024 units
+
+Instance 2 (t3.xlarge): 4096 CPU units total
+  - Running tasks using: 3072 units
+  - Available: 1024 units
+```
+
+Your new task requires 512 CPU units. Both instances have sufficient capacity, so ECS places it
+based on your placement strategy (binpack, spread, etc.).
+
+#### 2. Container Runtime Configuration
+
+The ECS agent on the EC2 instance configures Docker/containerd with the appropriate cgroup settings:
+
+```bash
+# Pseudo-representation of what happens
+docker run \
+  --cpu-shares=512 \
+  --cpu-quota=50000 \
+  --cpu-period=100000 \
+  your-container-image
+```
+
+#### 3. Kernel Enforcement
+
+The Linux kernel's CFS scheduler now manages your container's CPU access:
+
+```
+Every 100ms period:
+- Container can use up to 50ms of CPU time
+- If it tries to use more, it's throttled
+- Unused time is given to other containers
+- When idle, other containers can burst above their quotas
+```
+
+---
+
+### Fargate: The Managed Experience
+
+With Fargate, AWS abstracts away the instance management entirely, but the underlying mechanics are
+similar. When you specify CPU and memory:
+
+```yaml
+taskDefinition:
+  cpu: "512" # 0.5 vCPU
+  memory: "1024" # 1 GB
+```
+
+AWS provisions resources from a shared pool and applies the same cgroup-based resource limits.
+However, Fargate enforces stricter isolation and more predictable performance since it manages
+the infrastructure.
+
+#### Fargate CPU/Memory Combinations
+
+Fargate has specific valid combinations:
+
+```
+CPU (vCPU) | Memory (GB)
+-----------|-----------------
+0.25       | 0.5, 1, 2
+0.5        | 1, 2, 3, 4
+1          | 2, 3, 4, 5, 6, 7, 8
+2          | 4 to 16 (1 GB increments)
+4          | 8 to 30 (1 GB increments)
+```
+
+These combinations reflect the resource allocation granularity in AWS's infrastructure.
+
+---
+
+### Spot Instances and CPU Allocation
+
+When using Spot instances with ECS, the CPU allocation mechanism remains the same. The key
+differences are:
+
+#### 1. Instance Interruption
+
+Spot instances can be reclaimed with a 2-minute warning. Your container's CPU allocation is
+unchanged until interruption:
+
+```
+Time 0:00 - Container running with 512 CPU units
+Time 2:00 - Spot interruption notice received
+Time 2:02 - Instance terminated
+         - ECS reschedules task on another instance
+```
+
+#### 2. Variable Instance Types
+
+Spot fleets often mix instance types. Your task's CPU requirement remains constant, but it might
+run on different underlying hardware:
+
+```
+# Same task (512 CPU units) on different instances
+Scenario A: Runs on c5.large (2 vCPU)  = uses 25% of instance
+Scenario B: Runs on c5.xlarge (4 vCPU) = uses 12.5% of instance
+```
+
+#### 3. Performance Variability
+
+Spot instances may experience "noisy neighbor" effects more frequently since they're typically
+oversubscribed. Your 0.5 vCPU allocation is still enforced, but the underlying physical CPU might
+be more contended.
+
+---
+
+### Multi-CPU Allocation: Beyond 1.0
+
+When you allocate more than 1 vCPU, the behavior changes slightly:
+
+```yaml
+cpu: 2048 # 2 vCPUs
+```
+
+Your container can now use:
+
+- Up to 100% of 2 cores simultaneously
+- Multi-threaded applications can parallelize across both cores
+- The cgroup quota is: 200ms per 100ms period (200%)
+
+```bash
+# cgroup settings for 2 vCPUs
+cpu.cfs_period_us = 100000   # 100ms
+cpu.cfs_quota_us = 200000    # 200ms (2x the period)
+```
+
+**Important**: A single-threaded application still can't use more than 1 core, even with a 2 vCPU
+allocation. The additional CPU only helps multi-threaded workloads.
+
+---
+
+### CPU Throttling: When Limits Bite
+
+CPU throttling occurs when your container tries to exceed its allocation. You can observe this
+through metrics:
+
+```bash
+# Check cgroup CPU stats
+cat /sys/fs/cgroup/cpu/cpu.stat
+
+nr_periods: 58529
+nr_throttled: 12034
+throttled_time: 2847293847
+```
+
+This shows:
+
+- **nr_periods**: Number of enforcement periods
+- **nr_throttled**: How many times the container was throttled
+- **throttled_time**: Total nanoseconds the container was prevented from running
+
+High throttling indicates your container needs more CPU or needs optimization.
+
+---
+
+### Real-World Implications
+
+#### 1. Cost Optimization
+
+Decimal CPU allocation enables precise resource allocation:
+
+```
+Traditional VM:     1 vCPU  = $0.05/hour
+Optimized Container: 0.25 vCPU = $0.0125/hour
+
+For 10 microservices: $0.125/hour vs $0.50/hour
+Monthly savings: ~$270
+```
+
+#### 2. Resource Efficiency
+
+Fine-grained allocation reduces waste:
+
+```
+# Inefficient: Overprovisioned VM
+10 microservices × 1 vCPU each = 10 vCPUs
+Actual usage: ~30% = 3 vCPUs utilized, 7 wasted
+
+# Efficient: Right-sized containers
+10 microservices × 0.3 vCPU each = 3 vCPUs
+Actual usage: ~90% = 2.7 vCPUs utilized, minimal waste
+```
+
+#### 3. Performance Predictability
+
+Understanding CPU units helps prevent issues:
+
+```javascript
+// CPU-intensive operation
+function processData(data) {
+  // With 0.25 vCPU: Takes ~4 seconds
+  // With 1 vCPU: Takes ~1 second
+  return heavyComputation(data);
+}
+
+// Solution: Match CPU allocation to workload requirements
+```
+
+---
+
+### Monitoring and Best Practices
+
+#### CloudWatch Metrics
+
+Monitor these key metrics for your ECS tasks:
+
+```
+CPUUtilization       # Percentage of allocated CPU used
+CPUReservation       # CPU units reserved on the instance
+ThrottledTime        # Time container was CPU throttled
+```
+
+#### Best Practices
+
+1. **Start Small, Scale Up**: Begin with 0.25 vCPU and monitor. Increase only if needed.
+
+2. **Load Test Realistically**: Test under production-like load to find the right CPU allocation.
+
+3. **Monitor Throttling**: High throttle counts indicate under-allocation.
+
+4. **Consider Burstable Workloads**: For bursty workloads, lower allocations work since containers
+   can burst when CPU is available.
+
+5. **Use Service Auto Scaling**: Let AWS adjust task counts based on CPU utilization.
+
+6. **Profile Your Application**: Use APM tools to understand actual CPU requirements.
+
+```yaml
+# Example: Optimal task definition
+taskDefinition:
+  cpu: "512" # 0.5 vCPU - right-sized from monitoring
+  memory: "1024" # 1 GB
+
+  # Enable container insights
+  logConfiguration:
+    logDriver: awslogs
+    options:
+      awslogs-group: /ecs/my-app
+      awslogs-stream-prefix: ecs
+```
+
+---
+
+### Debugging CPU Issues
+
+When facing performance problems:
+
+```bash
+# 1. Check cgroup CPU limits
+docker exec container-id cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us
+docker exec container-id cat /sys/fs/cgroup/cpu/cpu.cfs_period_us
+
+# 2. Monitor real-time CPU usage
+docker stats container-id
+
+# 3. Check for throttling
+docker exec container-id cat /sys/fs/cgroup/cpu/cpu.stat | grep throttled
+
+# 4. Profile application CPU usage
+# Use profiling tools like perf, pprof, or language-specific profilers
+```
+
+---
+
+### Conclusion
+
+AWS's decimal CPU unit system represents a paradigm shift from thinking in physical cores to
+thinking in time-based resource allocation. When you assign 0.5 vCPU to a container, you're
+configuring the Linux kernel to allocate proportional CPU time, enforced through cgroups and the
+Completely Fair Scheduler.
+
+This granular control enables:
+
+- **Better resource utilization** - No wasted CPU cycles
+- **Cost efficiency** - Pay only for what you need
+- **Flexible scaling** - Precise resource matching
+- **Multi-tenancy** - Safe workload colocation
+
+Whether running on ECS with EC2 instances or Fargate, understanding that CPU units are about
+time-sharing rather than core-splitting helps you architect more efficient, cost-effective, and
+performant containerized applications. The key is to measure, monitor, and optimize based on your
+actual workload requirements rather than guessing at resource needs based on traditional VM
+thinking.
+
+Remember: In the container world, 0.5 + 0.5 = optimal utilization, not a fractured core!
