@@ -200,6 +200,23 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Tether",
+			href: "https://github.com/Kosha-Nirman/tether",
+			purpose: "Short Link Service",
+			featured: true,
+			isTemplate: false,
+			description:
+				"A production-ready short URL service demonstrating clean architecture and industry best practices.",
+			technologies: ["Go", "Gin", "Github Actions", "Short-Link"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/Kosha-Nirman/tether",
+					icon: Icons.github(),
+				},
+			],
+		},
+		{
 			title: "Cortex",
 			href: "https://github.com/Kosha-Nirman/cortex",
 			purpose: "Subdomain Discovery",
