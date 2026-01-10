@@ -200,6 +200,23 @@ export const DATA = {
 
 	projects: [
 		{
+			title: "Slate",
+			href: "https://github.com/Kosha-Nirman/slate",
+			purpose: "CLI Presentations",
+			featured: true,
+			isTemplate: false,
+			description:
+				"A powerful command-line presentation tool that lets you create, manage, and deliver presentations directly from your terminal",
+			technologies: ["Go", "Cobra", "CLI", "Presentations"],
+			links: [
+				{
+					type: "Source",
+					href: "https://github.com/Kosha-Nirman/slate",
+					icon: Icons.github(),
+				},
+			],
+		},
+		{
 			title: "Tether",
 			href: "https://github.com/Kosha-Nirman/tether",
 			purpose: "Short Link Service",
@@ -369,7 +386,7 @@ export const DATA = {
 			title: "AWS-Lambda-Radar",
 			href: "https://github.com/tejastn10/aws-lambda-radar",
 			purpose: "Serverless Monitoring",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"Streamlined middleware for enhanced Lambda logging and error handling with automatic context capture for better traceability.",
@@ -484,7 +501,7 @@ export const DATA = {
 			title: "Gaia",
 			href: "https://github.com/tejastn10/gaia",
 			purpose: "Git Tools",
-			featured: true,
+			featured: false,
 			isTemplate: false,
 			description:
 				"CLI tool to seamlessly update the first commit message in a Git repository without manual intervention.",
