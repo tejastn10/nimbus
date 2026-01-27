@@ -85,6 +85,7 @@ enum TECH {
 	JWT = "JWT",
 	SSO = "SSO",
 	Encryption = "Encryption",
+	Security = "Security",
 	SOC2 = "SOC2",
 	PenTesting = "PenTesting",
 	CSP = "CSP",

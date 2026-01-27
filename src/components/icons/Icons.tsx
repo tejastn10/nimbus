@@ -7,6 +7,7 @@ import {
 	RiDatabase2Line,
 	RiMapPin3Line,
 	RiMoreLine,
+	RiRotateLockLine,
 	RiTimer2Line,
 	RiTwitterXLine,
 } from "react-icons/ri";
@@ -231,6 +232,7 @@ const Icons = {
 	jwt: (props?: IconProps) => <SiJsonwebtokens {...props} />,
 	sso: (props?: IconProps) => <SiOkta {...props} />,
 	encryption: (props?: IconProps) => <SiSecurityscorecard {...props} />,
+	security: (props?: IconProps) => <RiRotateLockLine {...props} />,
 	soc2: (props?: IconProps) => <SiCivicrm {...props} />,
 	pentesting: (props?: IconProps) => <SiBurpsuite {...props} />,
 	csp: (props?: IconProps) => <SiDatadog {...props} />,
@@ -341,6 +343,7 @@ const logos: Record<TECH, (props?: IconProps) => JSX.Element> = {
 	JWT: Icons.jwt,
 	SSO: Icons.sso,
 	Encryption: Icons.encryption,
+	Security: Icons.security,
 	SOC2: Icons.soc2,
 	PenTesting: Icons.pentesting,
 	CSP: Icons.csp,
