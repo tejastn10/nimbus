@@ -32,7 +32,6 @@ import {
 	RxSun,
 } from "react-icons/rx";
 import {
-	SiAmazonwebservices,
 	SiAndroid,
 	SiAngular,
 	SiAnsible,
@@ -108,7 +107,7 @@ import {
 	SiVuedotjs,
 	SiYarn,
 } from "react-icons/si";
-
+import { FaAws } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
 
 import type { TECH } from "@/constants/data";
@@ -197,7 +196,7 @@ const Icons = {
 	cypress: (props?: IconProps) => <SiCypress {...props} />,
 
 	// * Cloud & DevOps
-	aws: (props?: IconProps) => <SiAmazonwebservices {...props} />,
+	aws: (props?: IconProps) => <FaAws {...props} />,
 	azure: (props?: IconProps) => <VscAzure {...props} />,
 	gcp: (props?: IconProps) => <SiGooglecloud {...props} />,
 	docker: (props?: IconProps) => <SiDocker {...props} />,
