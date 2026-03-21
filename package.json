@@ -28,7 +28,7 @@
 	"engines": {
 		"node": ">=22"
 	},
-	"packageManager": "npm@11.11.0",
+	"packageManager": "npm@11.12.0",
 	"dependencies": {
 		"@radix-ui/react-avatar": "^1.1.11",
 		"@radix-ui/react-separator": "^1.1.8",
@@ -39,8 +39,8 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"gray-matter": "^4.0.3",
-		"motion": "^12.35.1",
-		"next": "16.1.6",
+		"motion": "^12.38.0",
+		"next": "16.2.1",
 		"next-themes": "^0.4.6",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
@@ -56,19 +56,19 @@
 		"unified": "^11.0.5"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.6",
-		"@commitlint/cli": "^20.4.3",
-		"@commitlint/config-conventional": "^20.4.3",
-		"@tailwindcss/postcss": "^4.2.1",
+		"@biomejs/biome": "^2.4.8",
+		"@commitlint/cli": "^20.5.0",
+		"@commitlint/config-conventional": "^20.5.0",
+		"@tailwindcss/postcss": "^4.2.2",
 		"@tailwindcss/typography": "^0.5.19",
-		"@types/node": "^25.3.5",
+		"@types/node": "^25.5.0",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
 		"globals": "^17.4.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^16.3.2",
+		"lint-staged": "^16.4.0",
 		"postcss": "^8.5.8",
-		"tailwindcss": "^4.2.1",
+		"tailwindcss": "^4.2.2",
 		"typescript": "^5.9.3"
 	}
 }
