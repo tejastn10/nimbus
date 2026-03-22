@@ -22,7 +22,7 @@ const AvatarImage = forwardRef<ComponentRef<typeof Image>, ComponentPropsWithout
 			ref={ref}
 			alt={alt}
 			className={cx(
-				"aspect-square h-full w-full object-contain grayscale transition-all duration-300 p-2",
+				"aspect-square h-full w-full object-cover object-top grayscale transition-all duration-300",
 				className
 			)}
 			{...props}
@@ -43,4 +43,4 @@ const AvatarFallback = forwardRef<
 ));
 AvatarFallback.displayName = Fallback.displayName;
 
-export { Avatar, AvatarImage, AvatarFallback };
+export { Avatar, AvatarFallback, AvatarImage };
