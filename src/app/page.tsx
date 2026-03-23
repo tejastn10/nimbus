@@ -1,61 +1,83 @@
 import Link from "next/link";
 import type { FC } from "react";
+import { BentoCard, type BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
 import { GlowingText } from "@/components/animated/GlowingText";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { Marquee } from "@/components/animated/Marquee";
-import { Icons } from "@/components/icons/Icons";
+import { getLogo } from "@/components/icons/Icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
 import { CourseCard } from "@/containers/CourseCard";
 import { GitHubContributions } from "@/containers/GithubContributions";
-import { ProjectCard } from "@/containers/ProjectCard";
 import { DATA } from "@/data/resume";
 
+const SectionLabel: FC<{ label: string }> = ({ label }) => (
+	<span className="section-label">[ {label} ]</span>
+);
+
 const Home: FC = () => {
+	const featuredProjects: BentoCardProps[] = DATA.projects
+		.filter((project) => project.featured)
+		.slice(0, PROJECT_SLICE_NUMBER)
+		.map((project, index) => ({
+			name: project.title,
+			className:
+				index % 4 === 0 || index % 4 === 3
+					? "col-span-3 lg:col-span-2"
+					: "col-span-3 lg:col-span-1",
+			Icon: getLogo(project.technologies[0] as Parameters<typeof getLogo>[0]),
+			description: project.description,
+			href: project.links[0]?.href ?? "#",
+			cta: "View Project",
+		}));
+
 	return (
-		<main className="flex flex-col min-h-[100dvh] space-y-10">
-			<section>
+		<main className="flex flex-col min-h-[100dvh] space-y-16">
+			{/* ── Hero ──────────────────────────────────────────────── */}
+			<section className="pt-8">
 				<div className="mx-auto w-full space-y-8">
-					<div className="gap-2 flex justify-between">
-						<div className="flex-col flex flex-1 space-y-1.5">
+					<div className="flex items-start gap-6">
+						{/* Avatar — left side */}
+						<BlurFade delay={BLUR_FADE_DELAY}>
+							<Avatar className="size-32 sm:size-36 border border-border shrink-0">
+								<AvatarImage
+									alt={DATA.name}
+									src={DATA.avatarUrl}
+									className="object-cover object-top"
+								/>
+								<AvatarFallback className="font-mono">{DATA.initials}</AvatarFallback>
+							</Avatar>
+						</BlurFade>
+
+						{/* Text — right side */}
+						<div className="flex flex-col flex-1 space-y-1.5 min-w-0">
 							<BlurFade delay={BLUR_FADE_DELAY}>
 								<BoxReveal>
 									<GlowingText
 										text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
-										className="text-3xl font-bold tracking-tighter mr-2 sm:text-5xl xl:text-6xl/none"
+										className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
 									/>
 								</BoxReveal>
-								<h2 className="max-w-[600px] md:text-xl">{DATA.description}</h2>
+								<h2 className="max-w-[600px] md:text-xl text-muted-foreground mt-2">
+									{DATA.description}
+								</h2>
 							</BlurFade>
 						</div>
-						<BlurFade delay={BLUR_FADE_DELAY}>
-							<Avatar className="size-36 border">
-								<AvatarImage
-									alt={DATA.name}
-									src={DATA.avatarUrl}
-									className="cursor-pointer transition-transform duration-200 hover:scale-105 hover:grayscale-0 p-0"
-								/>
-								<AvatarFallback>{DATA.initials}</AvatarFallback>
-							</Avatar>
-						</BlurFade>
 					</div>
 				</div>
-
-				<BlurFade delay={BLUR_FADE_DELAY}>
-					<LineGrow className="my-0" />
-				</BlurFade>
 			</section>
 
-			<section>
+			{/* ── About ─────────────────────────────────────────────── */}
+			<section className="border-t border-border pt-8">
 				<BlurFade delay={BLUR_FADE_DELAY * 3}>
-					<h2 className="text-xl font-bold">About</h2>
+					<SectionLabel label="About" />
+					<h2 className="text-xl font-bold tracking-tight mb-4">Who I am</h2>
 				</BlurFade>
 				<BlurFade delay={BLUR_FADE_DELAY * 4}>
-					<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
+					<p className="text-muted-foreground leading-relaxed md:text-base">
 						{DATA.about.content.map((item) =>
 							item.isLink ? (
 								<Link
@@ -63,7 +85,7 @@ const Home: FC = () => {
 									target="_blank"
 									rel="noopener noreferrer"
 									href={item.url}
-									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+									className="font-semibold text-foreground underline-slide"
 								>
 									{item.text}
 								</Link>
@@ -75,10 +97,12 @@ const Home: FC = () => {
 				</BlurFade>
 			</section>
 
-			<section className="relative overflow-hidden">
-				<div className="flex min-h-0 flex-col gap-y-3">
+			{/* ── Skills ────────────────────────────────────────────── */}
+			<section className="border-t border-border pt-8 relative overflow-hidden">
+				<div className="flex min-h-0 flex-col gap-y-4">
 					<BlurFade delay={BLUR_FADE_DELAY * 5}>
-						<h2 className="text-xl font-bold">Skills</h2>
+						<SectionLabel label="Skills" />
+						<h2 className="text-xl font-bold tracking-tight mb-2">Tech stack</h2>
 					</BlurFade>
 
 					{DATA.skills.map((skill) => {
@@ -88,15 +112,14 @@ const Home: FC = () => {
 								<Marquee reverse={skillKey.length % 2 === 0}>
 									{skill.map((s, i) => (
 										<BlurFade key={s.name} delay={BLUR_FADE_DELAY * 7 + i * 0.05} yOffset={0}>
-											<Badge key={s.name}>
+											<Badge key={s.name} variant="outline">
 												{s.icon}
-												<span className="ml-2">{s.name}</span>{" "}
+												<span className="ml-2">{s.name}</span>
 											</Badge>
 										</BlurFade>
 									))}
 								</Marquee>
 
-								{/* Shadow Effect on the left and right */}
 								<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-l from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
 								<div className="absolute top-0 left-0 right-0 bottom-0 bg-linear-to-r from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent" />
 							</div>
@@ -105,53 +128,34 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section>
-				<div className="space-y-12 w-full py-12">
+			{/* ── Projects ──────────────────────────────────────────── */}
+			<section className="border-t border-border pt-8">
+				<div className="space-y-10 w-full">
 					<BlurFade delay={BLUR_FADE_DELAY * 9}>
-						<div className="flex flex-col items-center justify-center space-y-4 text-center">
-							<div className="space-y-2">
-								<Badge
-									noHover
-									className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm"
-								>
-									{Icons.projects()}
-									<span className="ml-2">My Projects</span>
-								</Badge>
-								<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl pt-2 text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-									Check out my latest work
-								</h2>
-								<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-									I've worked on a variety of projects, from simple websites to complex web
-									applications. Here are a few of my favorites.
-								</p>
-							</div>
+						<div className="flex flex-col space-y-2">
+							<SectionLabel label="Projects" />
+							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Latest work</h2>
+							<p className="text-muted-foreground md:text-base max-w-lg">
+								A variety of projects — from developer tools to complex web applications.
+							</p>
 						</div>
 					</BlurFade>
-					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
-						{DATA.projects
-							.filter((project) => project.featured)
-							.slice(0, PROJECT_SLICE_NUMBER)
-							.map((project, id) => (
-								<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-									<ProjectCard
-										href={project.href}
-										key={project.title}
-										title={project.title}
-										description={project.description}
-										purpose={project.purpose}
-										tags={project.technologies}
-										links={project.links}
-									/>
-								</BlurFade>
+					<BlurFade delay={BLUR_FADE_DELAY * 10}>
+						<BentoGrid className="auto-rows-[14rem]">
+							{featuredProjects.map((card) => (
+								<BentoCard key={card.name} {...card} />
 							))}
-					</div>
+						</BentoGrid>
+					</BlurFade>
 				</div>
 			</section>
 
-			<section>
-				<div className="flex min-h-0 flex-col gap-y-3">
+			{/* ── GitHub Activity ───────────────────────────────────── */}
+			<section className="border-t border-border pt-8">
+				<div className="flex min-h-0 flex-col gap-y-4">
 					<BlurFade delay={BLUR_FADE_DELAY * 11}>
-						<h2 className="text-xl font-bold">GitHub Activity</h2>
+						<SectionLabel label="Activity" />
+						<h2 className="text-xl font-bold tracking-tight">GitHub contributions</h2>
 					</BlurFade>
 					<BlurFade delay={BLUR_FADE_DELAY * 12}>
 						<GitHubContributions />
@@ -159,10 +163,12 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section>
-				<div className="flex min-h-0 flex-col gap-y-3">
+			{/* ── Education ─────────────────────────────────────────── */}
+			<section className="border-t border-border pt-8">
+				<div className="flex min-h-0 flex-col gap-y-4">
 					<BlurFade delay={BLUR_FADE_DELAY * 13}>
-						<h2 className="text-xl font-bold">Education</h2>
+						<SectionLabel label="Education" />
+						<h2 className="text-xl font-bold tracking-tight mb-2">Academic background</h2>
 					</BlurFade>
 					{DATA.education.map((education, index) => (
 						<BlurFade key={education.school} delay={BLUR_FADE_DELAY * 16 + index * 0.05}>
@@ -181,43 +187,31 @@ const Home: FC = () => {
 				</div>
 			</section>
 
-			<section>
-				<div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
+			{/* ── Contact ───────────────────────────────────────────── */}
+			<section className="border-t border-border pt-8 pb-16">
+				<div className="w-full">
 					<BlurFade delay={BLUR_FADE_DELAY * 15}>
-						<div className="space-y-3">
-							<Badge
-								noHover
-								className="inline-flex items-center justify-center rounded-lg bg-foreground text-background px-3 py-1 text-sm"
-							>
-								{Icons.contact()}
-								<span className="ml-2">Contact</span>
-							</Badge>
-							<h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-								Get in Touch
-							</h2>
-							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-								If you'd like to connect, Twitter is an efficient way to reach me. Feel free to send
-								me a message{" "}
+						<div className="space-y-4 max-w-lg">
+							<SectionLabel label="Contact" />
+							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Get in touch</h2>
+							<p className="text-muted-foreground md:text-base leading-relaxed">
+								X is the fastest way to reach me. Feel free to send a message{" "}
 								<Link
 									target="_blank"
 									rel="noopener noreferrer"
-									href={DATA.contact.social.Twitter.url}
-									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+									href={DATA.contact.social.X.url}
+									className="font-semibold text-foreground underline-slide"
 								>
-									on Twitter
+									on X
 								</Link>
-								, and I will respond as soon as possible. Please note that unsolicited messages will
-								not receive a response.
-							</p>
-							<p className="text-muted-foreground md:text-l/relaxed lg:text-base/relaxed xl:text-l/relaxed">
-								Prefer email communication? You can also reach out to me via{" "}
+								, and I'll respond as soon as possible. Prefer email? Reach out{" "}
 								<Link
 									href={`mailto:${DATA.contact.email}`}
-									className="font-semibold text-gray-800 dark:text-gray-300 underline-slide"
+									className="font-semibold text-foreground underline-slide"
 								>
-									email
-								</Link>
-								, and I'll get back to you promptly.
+									via email
+								</Link>{" "}
+								instead.
 							</p>
 						</div>
 					</BlurFade>
