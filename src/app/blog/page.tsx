@@ -2,7 +2,6 @@ import type { JSX } from "react";
 import { BentoCard, type BentoCardProps, BentoGrid } from "@/components/animated/BentoGrid";
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { LineGrow } from "@/components/animated/LineGrow";
 
 import { getLogo } from "@/components/icons/Icons";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
@@ -30,8 +29,8 @@ const BlogPage = async (): Promise<JSX.Element> => {
 			name: post.metadata.about,
 			className:
 				index % 4 === 0 || index % 4 === 3
-					? "col-span-3 lg:col-span-2 grayscale hover:grayscale-0"
-					: "col-span-3 lg:col-span-1 grayscale hover:grayscale-0",
+					? "col-span-3 lg:col-span-2"
+					: "col-span-3 lg:col-span-1",
 			Icon: getLogo(post.metadata.about),
 			description: post.metadata.title,
 			subDescription: formatDate(post.metadata.publishedAt, true),
@@ -52,14 +51,9 @@ const BlogPage = async (): Promise<JSX.Element> => {
 				</BoxReveal>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY}>
-				<LineGrow className="my-12" />
-			</BlurFade>
-
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Recent Posts
-				</h2>
+				<span className="section-label">[ Recent ]</span>
+				<h2 className="font-bold text-3xl mb-4 tracking-tighter">Recent Posts</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
@@ -68,10 +62,6 @@ const BlogPage = async (): Promise<JSX.Element> => {
 						<BentoCard key={post.description} {...post} />
 					))}
 				</BentoGrid>
-			</BlurFade>
-
-			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<LineGrow className="my-12" />
 			</BlurFade>
 
 			<RemainingSection remaining={remainingPosts} />

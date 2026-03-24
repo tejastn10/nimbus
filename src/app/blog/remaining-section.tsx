@@ -3,7 +3,6 @@
 import { type ChangeEvent, type FC, type MouseEvent, useMemo, useState } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { getLogo } from "@/components/icons/Icons";
 import { Input } from "@/components/ui/Input";
 import {
@@ -61,10 +60,9 @@ const RemainingSection: FC<RemainingSectionProps> = ({ remaining }) => {
 
 	return (
 		<>
-			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Remaining Posts
-				</h2>
+			<BlurFade delay={BLUR_FADE_DELAY * 8} className="border-t border-border pt-8 mt-8 block">
+				<span className="section-label">[ All ]</span>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Remaining Posts</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10} className="flex w-full items-center mb-8 gap-2">
@@ -77,7 +75,6 @@ const RemainingSection: FC<RemainingSectionProps> = ({ remaining }) => {
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 12}>
-				<LineGrow className="absolute left-6 top-0 bottom-0" direction="vertical" duration={2} />
 				<div className="space-y-10">
 					{paginated.length > 0 ? (
 						paginated.map((post, id) => {
@@ -87,8 +84,8 @@ const RemainingSection: FC<RemainingSectionProps> = ({ remaining }) => {
 
 							return (
 								<div key={String(id) + post.metadata.title} className="relative pl-18 group">
-									<div className="absolute left-6 -translate-x-1/2 flex items-center justify-center w-10 h-10 bg-background rounded-md transition-all duration-300 group-hover:border-primary group-hover:scale-110">
-										<Icon className="text-muted-foreground transition-all duration-300 group-hover:text-primary" />
+									<div className="absolute left-6 -translate-x-1/2 flex items-center justify-center w-10 h-10 bg-background border border-border transition-colors duration-300 group-hover:border-foreground/40">
+										<Icon className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground" />
 									</div>
 
 									<BlurFade key={slug} delay={BLUR_FADE_DELAY * 2 + id * 0.05}>
