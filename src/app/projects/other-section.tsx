@@ -58,10 +58,9 @@ const OtherSection: FC<OtherSectionProps> = ({ projects }) => {
 
 	return (
 		<>
-			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Other Projects
-				</h2>
+			<BlurFade delay={BLUR_FADE_DELAY * 8} className="border-t border-border pt-8 mt-8 block">
+				<span className="section-label">[ Other ]</span>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Other Projects</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10} className="flex w-full items-center mb-8 gap-2">
@@ -73,7 +72,7 @@ const OtherSection: FC<OtherSectionProps> = ({ projects }) => {
 				/>
 			</BlurFade>
 
-			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto">
+			<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 mx-auto">
 				{paginated.length > 0 ? (
 					paginated.map((project, id) => (
 						<BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05}>

@@ -7,7 +7,6 @@ import { GlowingText } from "@/components/animated/GlowingText";
 import { Icons } from "@/components/icons/Icons";
 import { Badge } from "@/components/ui/Badge";
 import {
-	Card,
 	CardContent,
 	CardDescription,
 	CardFooter,
@@ -48,53 +47,51 @@ const ProjectCard: FC<ProjectProps> = ({
 		if (link.href) {
 			navigator.clipboard.writeText(link.href);
 			setCopiedIndex(index);
-
 			setTimeout(() => setCopiedIndex(null), CLIPBOARD_COPY_DELAY);
 		}
 	};
 
 	return (
-		<Card
+		<div
 			className={cx(
-				"flex flex-col space-y-2 mb-6 p-4 rounded-lg overflow-hidden ease-out h-full transition-all duration-300",
-				"hover:shadow-lg hover:scale-105 filter grayscale hover:grayscale-0",
-				// light styles
-				"bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
-				// dark styles
-				"transform-gpu dark:bg-black dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
-				// Extra effects
-				"transform-gpu underline-slide group"
+				"flex flex-col space-y-3 p-6 h-full transition-all duration-300",
+				// Light mode
+				"bg-white border border-border",
+				// Dark mode — sharp, border brightens on hover
+				"dark:bg-background",
+				"group",
+				className
 			)}
 		>
 			<Link
 				target="_blank"
 				href={href || "#"}
 				rel="noopener noreferrer"
-				className={cx("block cursor-pointer", className)}
-			></Link>
-			<CardHeader className="px-2">
-				<div className="space-y-1">
-					<CardTitle className="mt-1 text-pretty text-lg font-semibold text-neutral-700 dark:text-neutral-300">
+				className="block cursor-pointer"
+			/>
+			<CardHeader className="px-0">
+				<div className="space-y-1.5">
+					<CardTitle className="mt-1 text-base font-semibold text-foreground group-hover:text-primary transition-colors">
 						{title}
 					</CardTitle>
 					<GlowingText
 						text={purpose}
-						className="text-xs text-muted-foreground dark:text-muted-foreground"
+						className="text-xs text-muted-foreground font-mono tracking-wide truncate"
 					/>
-					<div className="hidden font-outfit text-xs underline print:visible">
+					<div className="hidden font-mono text-xs underline print:visible">
 						{link?.replace("https://", "").replace("www.", "").replace("/", "")}
 					</div>
-					<CardDescription className="prose max-w-full text-pretty text-xs text-muted-foreground dark:prose-invert py-2">
+					<CardDescription className="text-xs text-muted-foreground py-1 leading-relaxed">
 						{description}
 					</CardDescription>
 				</div>
 			</CardHeader>
 
-			<CardContent className="mt-auto flex flex-col px-2">
+			<CardContent className="mt-auto flex flex-col px-0">
 				{tags && tags.length > 0 && (
 					<div className="flex flex-wrap gap-1">
-						{tags?.map((tag) => (
-							<Badge className="px-2 py-1 text-[10px]" variant="secondary" key={tag}>
+						{tags.map((tag) => (
+							<Badge className="px-2 py-0.5 text-[10px]" variant="outline" key={tag}>
 								{tag}
 							</Badge>
 						))}
@@ -102,7 +99,7 @@ const ProjectCard: FC<ProjectProps> = ({
 				)}
 			</CardContent>
 
-			<CardFooter className="px-2 pb-2 pt-6">
+			<CardFooter className="px-0 pb-0 pt-4">
 				{links && links.length > 0 && (
 					<div className="flex flex-row flex-wrap items-start gap-1">
 						{links.map((link, idx) => {
@@ -110,7 +107,7 @@ const ProjectCard: FC<ProjectProps> = ({
 								return (
 									<Badge
 										key={link.href}
-										className="relative flex items-center gap-2 px-2 py-1 text-[10px] cursor-pointer transition-all duration-300 overflow-hidden"
+										className="relative flex items-center gap-2 px-3 py-1 text-xs cursor-pointer transition-all duration-300 overflow-hidden"
 										onClick={() => copyToClipboard(link, idx)}
 									>
 										<span
@@ -146,8 +143,8 @@ const ProjectCard: FC<ProjectProps> = ({
 							}
 
 							return link?.href ? (
-								<Link key={link.href} href={link?.href} target="_blank" rel="noopener noreferrer">
-									<Badge className="flex gap-2 px-2 py-1 text-[10px]">
+								<Link key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+									<Badge className="flex gap-2 px-3 py-1 text-xs">
 										{link.icon}
 										{link.type}
 									</Badge>
@@ -155,7 +152,7 @@ const ProjectCard: FC<ProjectProps> = ({
 							) : (
 								<Badge
 									key={link.href || link.type}
-									className="flex gap-2 px-2 py-1 text-[10px]"
+									className="flex gap-2 px-3 py-1 text-xs"
 									noHover
 								>
 									{link.icon}
@@ -166,9 +163,9 @@ const ProjectCard: FC<ProjectProps> = ({
 					</div>
 				)}
 			</CardFooter>
-		</Card>
+		</div>
 	);
 };
 
-export { ProjectCard };
 export type { ProjectProps };
+export { ProjectCard };
