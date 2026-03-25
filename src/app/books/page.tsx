@@ -1,9 +1,7 @@
 import type { JSX } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { BoxReveal } from "@/components/animated/BoxReveal";
-import { LineGrow } from "@/components/animated/LineGrow";
-import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
+import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { BookCard } from "@/containers/BookCard";
 import { getBooks } from "@/data/book";
 import { CompletedSection } from "./completed-section";
@@ -46,25 +44,16 @@ const BooksPage = async (): Promise<JSX.Element> => {
 	return (
 		<section className="relative">
 			<BlurFade delay={BLUR_FADE_DELAY}>
-				<BoxReveal duration={BOX_REVEAL_DURATION}>
-					<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
-				</BoxReveal>
-				<BoxReveal duration={BOX_REVEAL_DURATION * 1.2}>
-					<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
-				</BoxReveal>
-			</BlurFade>
-
-			<BlurFade delay={BLUR_FADE_DELAY}>
-				<LineGrow className="my-12" />
+				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
+				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Currently Reading
-				</h2>
+				<span className="section-label">[ Now ]</span>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Currently Reading</h2>
 			</BlurFade>
 
-			<div className="grid grid-cols-1 gap-8">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{currentlyReading.length > 0 ? (
 					currentlyReading.map((book, index) => (
 						<BlurFade key={book.slug} delay={BLUR_FADE_DELAY * 4 + index * 0.05}>
@@ -80,19 +69,14 @@ const BooksPage = async (): Promise<JSX.Element> => {
 				)}
 			</div>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 6}>
-				<LineGrow className="my-12" />
-			</BlurFade>
-
 			<CompletedSection completed={completed} />
 
-			<BlurFade delay={BLUR_FADE_DELAY * 18}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Reading List
-				</h2>
+			<BlurFade delay={BLUR_FADE_DELAY * 18} className="mt-12 block">
+				<span className="section-label">[ Up Next ]</span>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Reading List</h2>
 			</BlurFade>
 
-			<div className="grid grid-cols-1 gap-8">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{toRead.length > 0 ? (
 					toRead.map((book, index) => (
 						<BlurFade key={book.slug} delay={BLUR_FADE_DELAY * 20 + index * 0.05}>

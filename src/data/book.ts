@@ -61,13 +61,13 @@ const getBooks = async (): Promise<Book[]> => {
 };
 
 export {
-	getBook,
-	getMDXFiles,
-	getAllBooks,
-	getBooks,
-	markdownToHTML,
+	type AllBooks,
 	// ? Types
 	type Book,
 	type BookMetadata,
-	type AllBooks,
+	getAllBooks,
+	getBook,
+	getBooks,
+	getMDXFiles,
+	markdownToHTML,
 };
