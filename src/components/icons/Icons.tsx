@@ -1,7 +1,7 @@
 import type { JSX } from "react";
+import { FaAws } from "react-icons/fa6";
 import { GoContainer } from "react-icons/go";
 import { PiTreeStructure } from "react-icons/pi";
-
 import {
 	RiBriefcase4Line,
 	RiDatabase2Line,
@@ -107,7 +107,6 @@ import {
 	SiVuedotjs,
 	SiYarn,
 } from "react-icons/si";
-import { FaAws } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
 
 import type { TECH } from "@/constants/data";
@@ -135,7 +134,7 @@ const Icons = {
 	blog: (props?: IconProps) => <RxLayers {...props} />,
 	work: (props?: IconProps) => <RiBriefcase4Line {...props} />,
 	github: (props?: IconProps) => <RxGithubLogo {...props} />,
-	twitter: (props?: IconProps) => <RiTwitterXLine {...props} />,
+	X: (props?: IconProps) => <RiTwitterXLine {...props} />,
 	linkedin: (props?: IconProps) => <RxLinkedinLogo {...props} />,
 
 	// * Home Page
@@ -352,4 +351,4 @@ const getLogo = (language: keyof typeof logos): React.ElementType => {
 	return logos[language] || null;
 };
 
-export { Icons, getLogo };
+export { getLogo, Icons };

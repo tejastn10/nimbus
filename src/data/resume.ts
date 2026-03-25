@@ -3,6 +3,7 @@ import { Icons } from "@/components/icons/Icons";
 export const DATA = {
 	initials: "TN",
 	name: "Tejas Nikhar",
+	logoName: "tn10",
 
 	url: "https://www.tejastn10.com",
 
@@ -69,10 +70,10 @@ export const DATA = {
 		email: "tejastn10@gmail.com",
 		tel: "+91 89280 88153",
 		social: {
-			Twitter: {
-				name: "Twitter",
+			X: {
+				name: "X",
 				url: "https://x.com/tejastn10",
-				icon: Icons.twitter,
+				icon: Icons.X,
 
 				navbar: true,
 			},
@@ -604,7 +605,7 @@ export const DATA = {
 			featured: false,
 			isTemplate: false,
 			description:
-				"An AI-driven Twitter bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
+				"An AI-driven X bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
 			technologies: ["Python", "Tweepy", "Hugging Face", "GPT-2", "Poetry"],
 			links: [
 				{
