@@ -4,21 +4,19 @@ import { cx } from "@/utils/tailwind";
 
 type BadgeProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof badgeVariants> & {
-		noHover?: boolean; // Prop to disable hover
+		noHover?: boolean;
 	};
 
 const badgeVariants = cva(
-	"inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2",
+	"inline-flex items-center border px-2.5 py-0.5 text-xs font-mono font-medium tracking-wide transition-colors focus:outline-hidden focus:ring-1 focus:ring-ring",
 	{
 		variants: {
 			variant: {
-				default:
-					"border-transparent bg-primary text-primary-foreground shadow-sm hover:bg-primary/80",
-				secondary:
-					"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+				default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+				secondary: "border-border bg-secondary text-secondary-foreground hover:bg-secondary/70",
 				destructive:
-					"border-transparent bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/80",
-				outline: "text-foreground hover:bg-muted",
+					"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+				outline: "border-border text-foreground hover:bg-muted",
 			},
 		},
 		defaultVariants: {
@@ -28,16 +26,15 @@ const badgeVariants = cva(
 );
 
 const Badge: FC<BadgeProps> = ({ className, variant, noHover, ...props }) => {
-	// If noHover is true, completely remove hover styles by applying `no-hover` class dynamically
 	const computedClassName = cx(
 		badgeVariants({ variant }),
 		noHover
-			? "hover:bg-[initial]! hover:text-[inherit]! hover:shadow-none! hover:border-[inherit]! pointer-events-none" // Fully override hover styles
+			? "hover:bg-[initial]! hover:text-[inherit]! hover:shadow-none! hover:border-[inherit]! pointer-events-none"
 			: "",
 		className
 	);
 
-	return <div className={computedClassName} {...props}></div>;
+	return <div className={computedClassName} {...props} />;
 };
 
 export { Badge, badgeVariants };

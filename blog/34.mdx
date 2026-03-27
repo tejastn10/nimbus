@@ -1,0 +1,456 @@
+---
+title: "The Day I Discovered Trigrams in PostgreSQL (While Trying to Speed Up a Simple Search) 🔍"
+publishedAt: "2026-03-24"
+description: |
+  We were adding indexes to speed up name searches with LIKE queries. Then someone mentioned trigrams.
+  We didn't end up using them, but what I learned changed how I think about text search in PostgreSQL.
+about: PostgreSQL
+---
+
+_It was a routine schema optimization task. Nothing exciting. We had a `users` table with millions
+of rows, and searches on the `name` field were getting slow. The query was simple:_
+
+```sql
+SELECT * FROM users
+WHERE name LIKE '%john%';
+```
+
+_"Let's just add an index on the name column," I suggested during our sprint planning. Easy win, right?_
+
+_Our senior dev paused. "Regular B-tree indexes won't help with LIKE queries that start with a
+wildcard. Have you heard of trigrams?"_
+
+_Trigrams? I'd been working with PostgreSQL for two years and had never encountered this. "No, what
+are those?"_
+
+_"Oh, it's a PostgreSQL extension called `pg_trgm`. It can index partial text matches. Perfect for
+LIKE queries with wildcards."_
+
+_That sentence opened a rabbit hole. I spent the next hour diving into documentation, testing
+queries, and realizing there was an entire text search paradigm I'd been completely unaware of._
+
+_We ultimately decided to stick with our `LIKE` queries — the added complexity wasn't worth it for
+our use case. But learning about trigrams changed how I approach text search problems._
+
+---
+
+## 🤔 The Problem: Why Regular Indexes Don't Work
+
+We had this query running hundreds of times per day:
+
+```sql
+SELECT id, name, email
+FROM users
+WHERE name LIKE '%john%';
+
+-- Execution time: 2.3 seconds 😰
+```
+
+**First instinct:** Add an index!
+
+```sql
+CREATE INDEX idx_users_name ON users(name);
+```
+
+**Result:** No improvement. Still 2.3 seconds.
+
+### The B-tree Index Problem
+
+Standard B-tree indexes work great for:
+
+```sql
+-- ✅ Exact matches
+WHERE name = 'John Smith'
+
+-- ✅ Prefix searches
+WHERE name LIKE 'John%'
+```
+
+But they're useless for:
+
+```sql
+-- ❌ Wildcard at the start
+WHERE name LIKE '%john%'
+
+-- ❌ Pattern anywhere in string
+WHERE name LIKE '%smith%'
+```
+
+**Why?** B-tree indexes store data sorted alphabetically. They can quickly find entries that
+_start with_ specific characters, but can't efficiently search for patterns in the middle or end
+of strings.
+
+To find `'%john%'`, PostgreSQL must scan every row. That's where trigrams come in.
+
+---
+
+## 🧩 What Are Trigrams?
+
+Trigrams are simple: **consecutive groups of three characters from a string**.
+
+### Breaking Down a String
+
+Let's take "John":
+
+```
+Original: "John"
+Padded:   "  John  "
+
+Trigrams:
+"  J"
+" Jo"
+"Joh"
+"ohn"
+"hn "
+"n  "
+
+Result: {" J", " Jo", "Joh", "ohn", "hn ", "n  "}
+```
+
+That's it. Six trigrams from one four-letter word.
+
+### Why This Matters
+
+When PostgreSQL creates a trigram index, it stores **all trigrams** from each string.
+
+Searching for "john" means:
+
+1. Extract trigrams: {" jo", "joh", "ohn", "hn "}
+2. Find rows containing all these trigrams
+3. Return matches
+
+No full table scan needed.
+
+---
+
+## 🛠️ Setting Up Trigrams
+
+### Enable the Extension
+
+```sql
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+```
+
+### Create a Trigram Index
+
+Two options:
+
+```sql
+-- GIN: Faster searches, larger size, read-heavy workloads
+CREATE INDEX idx_users_name_gin
+ON users USING gin (name gin_trgm_ops);
+
+-- GiST: Faster writes, smaller size, write-heavy workloads
+CREATE INDEX idx_users_name_gist
+ON users USING gist (name gist_trgm_ops);
+```
+
+### Test the Query
+
+```sql
+SELECT id, name, email
+FROM users
+WHERE name LIKE '%john%';
+
+-- With trigram index: 0.3 seconds ⚡
+-- Without index: 2.3 seconds 🐌
+-- 7.6x faster!
+```
+
+---
+
+## 🎯 How It Works Behind the Scenes
+
+### Without Trigram Index
+
+```sql
+1. Scan every row (5,000,000 rows)
+2. Check if 'john' appears in name
+3. Return matches
+
+Time: 2.3 seconds
+```
+
+### With Trigram Index
+
+```sql
+1. Extract trigrams from 'john': {" jo", "joh", "ohn", "hn "}
+2. Look up these trigrams in index
+3. Find rows containing ALL trigrams (intersection)
+4. Fetch only those rows (~hundreds instead of millions)
+5. Verify exact match
+6. Return results
+
+Time: 0.3 seconds
+```
+
+Instead of scanning 5 million rows, we only check a few thousand candidates.
+
+---
+
+## 🔬 Bonus: Fuzzy Matching
+
+Trigrams enable typo-tolerant search out of the box:
+
+```sql
+-- Similarity score (0 = different, 1 = identical)
+SELECT similarity('John', 'Johnny');
+-- Result: 0.5
+
+SELECT similarity('John', 'Joan');
+-- Result: 0.4
+
+-- Find names similar to 'John' (even with typos)
+SELECT name, similarity(name, 'John') as sim
+FROM users
+WHERE name % 'John'  -- % means "is similar to"
+ORDER BY sim DESC
+LIMIT 10;
+
+Results:
+John    → 1.0
+Johnny  → 0.5
+Jon     → 0.5
+Joan    → 0.4
+Johhn   → 0.6  (typo still matches!)
+```
+
+This blew my mind. Free fuzzy search!
+
+---
+
+## 📊 Real Performance Numbers
+
+```
+Table: users (5 million rows)
+Query: WHERE name LIKE '%john%'
+
+No index:
+- Query time: 2,300ms
+- Index size: 0 MB
+
+GIN index:
+- Query time: 180ms (12.7x faster)
+- Index size: 420 MB
+
+GiST index:
+- Query time: 280ms (8.2x faster)
+- Index size: 180 MB
+```
+
+---
+
+## 🚫 Why We Didn't Use It
+
+After all this research, we made a decision: **stick with regular B-tree indexes**.
+
+### Our Reasoning
+
+**1. Query Patterns**
+
+```sql
+-- Our actual queries were mostly:
+WHERE name LIKE 'John%'  -- prefix search
+
+-- B-tree indexes handle this perfectly
+-- No trigrams needed
+```
+
+Most searches were **prefix searches**, not infix. Users typed the beginning of names, not random
+substrings.
+
+**2. Index Size**
+
+```
+B-tree index: 180 MB
+GIN trigram: 420 MB
+
+2.3x larger for functionality we rarely needed
+```
+
+**3. Write Performance**
+
+Every `INSERT/UPDATE` on `name` would:
+
+- Update B-tree (fast)
+- Regenerate trigrams (slower)
+- Update GIN index (slower)
+
+We had high write volume. Not worth the penalty.
+
+**4. Complexity**
+
+Why add complexity for edge cases? 95% of our searches were prefix-based.
+
+### What We Did Instead
+
+```sql
+-- Simple B-tree index
+CREATE INDEX idx_users_name ON users(name);
+
+-- Fast for common cases:
+WHERE name LIKE 'John%'  -- ✅
+WHERE name = 'John Smith'  -- ✅
+
+-- Slow for rare cases (acceptable):
+WHERE name LIKE '%john%'  -- ❌ (5% of queries)
+```
+
+We optimized for the common case and accepted slower performance for the rare case.
+
+---
+
+## 🎯 When You SHOULD Use Trigrams
+
+Even though we didn't use them, trigrams are perfect for:
+
+### 1. Full-Text Search
+
+```sql
+-- Log analysis, document search
+WHERE content LIKE '%error%'
+WHERE description LIKE '%urgent%'
+```
+
+### 2. Fuzzy Matching
+
+```sql
+-- Autocomplete with typos
+WHERE name % 'Jhon'  -- Still matches 'John'
+```
+
+### 3. E-commerce Search
+
+```sql
+-- Product search
+WHERE product_name LIKE '%laptop%'
+```
+
+### 4. Address/Email Search
+
+```sql
+-- Search any part
+WHERE address LIKE '%main st%'
+WHERE email LIKE '%gmail%'
+```
+
+---
+
+## 💡 Quick Tips If You Use Trigrams
+
+### 1. Choose the Right Index
+
+```sql
+-- Read-heavy → GIN
+CREATE INDEX USING gin (name gin_trgm_ops);
+
+-- Write-heavy → GiST
+CREATE INDEX USING gist (name gist_trgm_ops);
+```
+
+### 2. Verify Index Usage
+
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM users WHERE name LIKE '%john%';
+
+-- Look for:
+"Bitmap Index Scan using idx_users_name_gin"  -- ✅
+
+-- Avoid:
+"Seq Scan on users"  -- ❌
+```
+
+### 3. Case-Insensitive Search
+
+```sql
+-- Index on LOWER
+CREATE INDEX idx_users_name_lower
+ON users USING gin (LOWER(name) gin_trgm_ops);
+
+-- Query
+WHERE LOWER(name) LIKE '%john%';
+```
+
+---
+
+## 🧪 Try It Yourself
+
+```sql
+-- 1. Enable extension
+CREATE EXTENSION pg_trgm;
+
+-- 2. Create test data
+CREATE TABLE products (id SERIAL PRIMARY KEY, name TEXT);
+INSERT INTO products (name) VALUES
+  ('iPhone 15 Pro Max'),
+  ('MacBook Pro 16-inch'),
+  ('Dell XPS 15 Laptop');
+
+-- 3. Create index
+CREATE INDEX idx_products_gin
+ON products USING gin (name gin_trgm_ops);
+
+-- 4. Test searches
+SELECT * FROM products WHERE name LIKE '%laptop%';
+-- Returns: Dell XPS 15 Laptop
+
+-- 5. Fuzzy search
+SELECT name, similarity(name, 'mackbook') as sim
+FROM products
+WHERE name % 'mackbook'  -- Typo!
+ORDER BY sim DESC;
+-- Returns: MacBook Pro 16-inch (sim: 0.6)
+```
+
+---
+
+## 📚 Key Takeaways
+
+1. **B-tree indexes don't help `LIKE '%pattern%'`**
+   - Only work for prefix: `'pattern%'`
+   - Trigrams solve this
+
+2. **Trigrams = 3-character sequences**
+   - "John" → {" jo", "joh", "ohn", "hn "}
+   - Enables fast substring matching
+
+3. **Two flavors: GIN and GiST**
+   - GIN: Faster reads, larger
+   - GiST: Faster writes, smaller
+
+4. **Bonus: Free fuzzy matching**
+   - Handles typos automatically
+   - `similarity()` function included
+
+5. **Not always necessary**
+   - Evaluate your query patterns first
+   - Consider size and complexity
+   - Simple solutions often win
+
+---
+
+## ✨ Final Thoughts
+
+We discovered trigrams while optimizing our schema, learned a ton, and ultimately decided we didn't
+need them. And that's totally fine.
+
+**The real value wasn't in using trigrams — it was in understanding when NOT to use them.**
+
+Not every optimization is right for every use case. Sometimes the simple solution (`LIKE 'John%'`
+with a B-tree index) is the best solution.
+
+But now when I encounter a real substring search problem — when users need `'%pattern%'` searches
+in millions of rows — I have a tool in my toolbox.
+
+**Remember:**
+
+- Prefix searches → B-tree index
+- Substring/fuzzy search → Trigrams
+- Not sure → Profile first
+
+The best optimization is the one you actually need. Don't add complexity just because something is
+cool.
+
+Next time you see `WHERE name LIKE '%something%'` taking seconds, remember: trigrams exist. Whether
+you use them or not, at least you'll know your options.

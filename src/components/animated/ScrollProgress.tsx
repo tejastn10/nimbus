@@ -20,11 +20,7 @@ const ScrollProgress = forwardRef<
 	return (
 		<MotionDiv
 			ref={ref}
-			className={cx(
-				"fixed inset-x-0 top-0 z-[1000] h-0.5 origin-left",
-				"bg-gradient-to-l from-[#000000] to-transparent dark:from-[#ffffff]",
-				className
-			)}
+			className={cx("fixed inset-x-0 top-0 z-[1000] h-px origin-left", "bg-border", className)}
 			style={{
 				scaleX,
 			}}

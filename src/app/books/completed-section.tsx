@@ -3,7 +3,6 @@
 import { type ChangeEvent, type FC, type MouseEvent, useMemo, useState } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { Input } from "@/components/ui/Input";
 
 import {
@@ -53,10 +52,9 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 
 	return (
 		<>
-			<BlurFade delay={BLUR_FADE_DELAY * 8}>
-				<h2 className="font-bold text-3xl mb-8 tracking-tighter w-fit text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 to-neutral-100 dark:from-white dark:to-white/10">
-					Completed Books
-				</h2>
+			<BlurFade delay={BLUR_FADE_DELAY * 8} className="border-t border-border pt-8 mt-8 block">
+				<span className="section-label">[ Completed ]</span>
+				<h2 className="font-bold text-3xl mb-8 tracking-tighter">Completed Books</h2>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 10} className="flex w-full items-center mb-8 gap-2">
@@ -118,10 +116,6 @@ const CompletedSection: FC<CompletedSectionProps> = ({ completed }) => {
 					</Pagination>
 				</BlurFade>
 			)}
-
-			<BlurFade delay={BLUR_FADE_DELAY * 16}>
-				<LineGrow className="my-12" />
-			</BlurFade>
 		</>
 	);
 };

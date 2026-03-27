@@ -4,8 +4,6 @@ import { Icons } from "@/components/icons/Icons";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
 
-import { cx } from "@/utils/tailwind";
-
 type BookCardProps = {
 	slug: string;
 	title: string;
@@ -16,29 +14,10 @@ type BookCardProps = {
 	finishedOn?: string;
 };
 
-const getStatusStyles = (readingStatus: BookCardProps["readingStatus"]) => {
-	const statusColors = {
-		reading: {
-			badge: "bg-amber-500/80 hover:bg-amber-500",
-			gradient: "from-amber-500/10 to-amber-600/10",
-			border: "border-amber-500/50",
-			text: "text-amber-500",
-		},
-		completed: {
-			badge: "bg-emerald-500/80 hover:bg-emerald-500",
-			gradient: "from-emerald-500/10 to-emerald-600/10",
-			border: "border-emerald-500/50",
-			text: "text-emerald-500",
-		},
-		"to-read": {
-			badge: "bg-blue-500/80 hover:bg-blue-500",
-			gradient: "from-blue-500/10 to-blue-600/10",
-			border: "border-blue-500/50",
-			text: "text-blue-500",
-		},
-	};
-
-	return statusColors[readingStatus];
+const statusLabel: Record<BookCardProps["readingStatus"], string> = {
+	reading: "Reading",
+	completed: "Completed",
+	"to-read": "To Read",
 };
 
 const BookCard: FC<BookCardProps> = ({
@@ -50,63 +29,39 @@ const BookCard: FC<BookCardProps> = ({
 	readingStatus,
 	finishedOn,
 }) => {
-	const dateOptions: Intl.DateTimeFormatOptions = {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	};
-
-	// Format the finished date to a more readable format
 	const formattedFinishedDate = finishedOn
-		? new Date(finishedOn).toLocaleDateString("en-US", dateOptions)
+		? new Date(finishedOn).toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "short",
+			})
 		: null;
 
-	const styles = getStatusStyles(readingStatus);
-
 	return (
-		<Card
-			className={cx(
-				"relative isolate group",
-				"flex flex-col space-y-2 mb-6 p-8 rounded-lg overflow-hidden h-full transition-all duration-500",
-				"bg-gradient-to-br from-background to-background/80",
-				"hover:shadow-xl hover:scale-[1.02]",
-				"border border-border/50",
-				// Animated border
-				"after:absolute after:inset-0 after:-z-10",
-				"after:p-[1px] after:rounded-lg",
-				`after:bg-gradient-to-br after:${styles.gradient}`,
-				"after:opacity-0 hover:after:opacity-100",
-				"after:transition-opacity after:duration-500",
-				// Greyscale by default, color on hover
-				"filter grayscale hover:filter-none"
-			)}
-		>
+		<Card className="flex flex-col p-4 h-full transition-colors duration-200 hover:bg-accent/20 group border border-border/50">
 			<Link href={`/books/${slug}`} className="flex flex-col flex-1">
-				<CardHeader className="flex-1 ">
-					<div className="flex items-start justify-between gap-4">
-						<CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors duration-500">
+				<CardHeader className="p-0 mb-3">
+					<div className="flex items-start justify-between gap-3">
+						<CardTitle className="text-sm font-bold tracking-tight group-hover:text-foreground transition-colors duration-200 leading-snug">
 							{title}
 						</CardTitle>
-						<Badge className={cx("shrink-0 pointer-events-auto", styles.badge)}>
-							{readingStatus === "reading" && "Reading"}
-							{readingStatus === "completed" && "Completed"}
-							{readingStatus === "to-read" && "To Read"}
+						<Badge variant="outline" noHover className="shrink-0 font-mono text-[10px]">
+							{statusLabel[readingStatus]}
 						</Badge>
 					</div>
-					<p className="text-sm text-muted-foreground mt-2">by {author}</p>
+					<p className="font-mono text-xs text-muted-foreground mt-1 tracking-wide">by {author}</p>
 				</CardHeader>
 
-				<CardDescription className="flex-1 text-sm text-muted-foreground leading-relaxed ">
+				<CardDescription className="text-xs text-muted-foreground leading-relaxed flex-1">
 					{description}
 				</CardDescription>
 
-				<CardFooter className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mt-6 pt-6 border-t border-border/10 ">
-					<p className="inline-flex items-center gap-2">
-						<Icons.template className="w-4 h-4" /> {category}
+				<CardFooter className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mt-4 pt-3 font-mono p-0">
+					<p className="inline-flex items-center gap-1.5">
+						<Icons.template className="w-3 h-3" /> {category}
 					</p>
 					{formattedFinishedDate && (
-						<p className="inline-flex items-center gap-2">
-							<Icons.check className="w-4 h-4" /> Finished: {formattedFinishedDate}
+						<p className="inline-flex items-center gap-1.5">
+							<Icons.check className="w-3 h-3" /> {formattedFinishedDate}
 						</p>
 					)}
 				</CardFooter>
@@ -115,5 +70,5 @@ const BookCard: FC<BookCardProps> = ({
 	);
 };
 
-export { BookCard };
 export type { BookCardProps };
+export { BookCard };

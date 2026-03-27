@@ -106,13 +106,13 @@ const getBlogPosts = async (): Promise<Post[]> => {
 };
 
 export {
-	getPost,
-	getMDXFiles,
 	getAllPosts,
 	getBlogPosts,
+	getMDXFiles,
+	getPost,
+	type MarkdownToHTML,
 	markdownToHTML,
 	// ? Types
 	type Post,
 	type PostMetadata,
-	type MarkdownToHTML,
 };

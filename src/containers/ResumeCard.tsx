@@ -6,7 +6,7 @@ import { BlurFade } from "@/components/animated/BlurFade";
 import { Icons } from "@/components/icons/Icons";
 import { MotionDiv } from "@/components/motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { Card, CardHeader } from "@/components/ui/Card";
+import { Card } from "@/components/ui/Card";
 import { RoleCard } from "@/components/ui/RoleCard";
 
 import { BLUR_FADE_DELAY } from "@/constants/ui";
@@ -53,56 +53,62 @@ const ResumeCard: FC<ResumeCardProps> = ({
 			target="_blank"
 			href={href || "#"}
 			rel="noopener noreferrer"
-			className="block cursor-pointer"
+			className="block"
 			onClick={handleClick}
 		>
-			<Card className="flex">
-				<div className="flex-none">
-					<Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
+			<Card className="p-5 group border-0">
+				{/* Header: logo + company info + period */}
+				<div className="flex items-start gap-4">
+					<Avatar className="border border-border size-11 shrink-0">
 						<AvatarImage src={logoUrl} alt={altText} className="object-contain" />
-						<AvatarFallback>{altText[0]}</AvatarFallback>
+						<AvatarFallback className="text-xs font-mono">{altText[0]}</AvatarFallback>
 					</Avatar>
-				</div>
-				<div className="grow ml-2 items-center flex-col group">
-					<CardHeader>
-						<div className="flex items-center justify-between gap-x-2 text-base">
-							<h3 className="inline-flex items-center justify-center font-bold leading-none text-md sm:text-md">
+
+					<div className="flex-1 min-w-0">
+						<div className="flex items-start justify-between gap-2 flex-wrap">
+							<h3
+								className={cx("font-bold text-sm leading-tight inline-flex items-center gap-1.5")}
+							>
 								{company}
 								<Icons.chevron
 									className={cx(
-										"size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
+										"size-3.5 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100",
 										isExpanded ? "rotate-90" : "rotate-0"
 									)}
 								/>
 							</h3>
-							<div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+							<span className="text-xs font-mono text-muted-foreground shrink-0 tabular-nums">
 								{period}
-								{Icons.duration()}
-							</div>
+							</span>
 						</div>
+
 						{location && (
-							<div className="inline-flex items-center gap-2 text-[0.75rem] font-light text-gray-600 dark:text-gray-400 mt-1">
+							<p className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground mt-1">
 								{Icons.location()}
 								{location}
-							</div>
+							</p>
 						)}
-					</CardHeader>
+					</div>
+				</div>
 
-					{roles.length > 0 && (
-						<MotionDiv
-							initial={{ opacity: 0, height: 0 }}
-							animate={{
-								opacity: isExpanded ? 1 : 0,
-
-								height: isExpanded ? "auto" : 0,
-							}}
-							transition={{
-								duration: 0.7,
-								ease: [0.16, 1, 0.3, 1],
-							}}
-							className="mt-2 text-xs sm:text-sm"
-						>
-							<ul className="mb-4 ml-2 divide-y divide-dashed border-l">
+				{/* Roles — aligned with company name, single left border */}
+				{roles.length > 0 && (
+					<MotionDiv
+						initial={{ opacity: 0, height: 0 }}
+						animate={{
+							opacity: isExpanded ? 1 : 0,
+							height: isExpanded ? "auto" : 0,
+						}}
+						transition={{
+							duration: 0.7,
+							ease: [0.16, 1, 0.3, 1],
+						}}
+						className="overflow-hidden"
+					>
+						<div className="mt-5 flex gap-4">
+							{/* Spacer matching the avatar column */}
+							<div className="size-11 shrink-0" />
+							<div className="flex-1 border-l border-border pl-4">
 								{roles.map((role, index) => (
 									<BlurFade key={role.title} delay={BLUR_FADE_DELAY * 15 + index * 0.05}>
 										<RoleCard
@@ -112,10 +118,10 @@ const ResumeCard: FC<ResumeCardProps> = ({
 										/>
 									</BlurFade>
 								))}
-							</ul>
-						</MotionDiv>
-					)}
-				</div>
+							</div>
+						</div>
+					</MotionDiv>
+				)}
 			</Card>
 		</Link>
 	);

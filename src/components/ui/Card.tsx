@@ -3,12 +3,14 @@ import { forwardRef, type HTMLAttributes } from "react";
 import { cx } from "@/utils/tailwind";
 
 const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-	({ className, ...props }, ref) => (
+	({ className, children, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={cx("rounded-lg bg-card text-card-foreground", className)}
+			className={cx("bg-card text-card-foreground border border-border", className)}
 			{...props}
-		/>
+		>
+			{children}
+		</div>
 	)
 );
 Card.displayName = "Card";
@@ -46,7 +48,7 @@ const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
 	({ className, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={cx("text-pretty font-outfit text-sm text-muted-foreground font-normal", className)}
+			className={cx("text-pretty font-mono text-sm text-muted-foreground font-normal", className)}
 			{...props}
 		/>
 	)
@@ -60,4 +62,4 @@ const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
 );
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
+export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle };

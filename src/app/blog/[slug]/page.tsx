@@ -4,10 +4,10 @@ import { type JSX, Suspense } from "react";
 
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { ScrollProgress } from "@/components/animated/ScrollProgress";
 
 import { getLogo, Icons } from "@/components/icons/Icons";
+import { ArticleContent } from "@/components/ui/ArticleContent";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { getBlogPosts, getPost } from "@/data/blog";
 import { DATA } from "@/data/resume";
@@ -103,7 +103,10 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 				}}
 			/>
 
-			<BlurFade delay={BLUR_FADE_DELAY}>
+			<BlurFade delay={BLUR_FADE_DELAY} className="flex items-start gap-4">
+				<div className="size-10 shrink-0 border border-border flex items-center justify-center mt-1">
+					<Icon className="size-5 text-muted-foreground" />
+				</div>
 				<BoxReveal duration={BOX_REVEAL_DURATION}>
 					<h1 className="title font-bold text-4xl tracking-tighter max-w-[650px]">
 						{post.metadata.title}
@@ -111,30 +114,29 @@ const Blog = async ({ params }: BlogProps): Promise<JSX.Element> => {
 				</BoxReveal>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY * 2} className="flex items-center gap-4">
-				<Icon className="text-neutral-500 dark:text-neutral-400" />
-				<LineGrow className="my-12" />
+			<BlurFade delay={BLUR_FADE_DELAY * 2}>
+				<hr className="border-border mt-6" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 3}>
-				<div className="flex justify-between items-center mt-2 mb-8 text-sm">
+				<div className="flex justify-between items-center py-4 text-sm">
 					<Suspense fallback={<p className="h-5" />}>
-						<p className="inline-flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-400">
+						<p className="inline-flex items-center gap-2 text-xs text-muted-foreground">
 							{Icons.calendar()}
 							{formattedDate}
 						</p>
-						<p className="inline-flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-400">
+						<p className="inline-flex items-center gap-2 text-xs text-muted-foreground">
 							{readingTime} min read {Icons.reader()}
 						</p>
 					</Suspense>
 				</div>
+				<hr className="border-border mb-6" />
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 4}>
-				<article
+				<ArticleContent
+					html={post.source}
 					className="prose dark:prose-invert leading-[1.5] w-full max-w-none"
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: Safe JSON-LD structured data
-					dangerouslySetInnerHTML={{ __html: post.source }}
 				/>
 			</BlurFade>
 		</section>

@@ -12,7 +12,7 @@
 [![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 ![License](https://img.shields.io/badge/License-MIT-yellow?logo=open-source-initiative&logoColor=white)
 
-**Nimbus** is a sleek and interactive portfolio website built with [Next.js](https://nextjs.org). It showcases your projects, skills, and experience in an elegant way while incorporating dynamic content and animations. The project draws inspiration from the [Magic UI Portfolio Template](https://portfolio-magicui.vercel.app/) and is tailored for uniqueness.
+**Nimbus** is a sleek and interactive portfolio website built with [Next.js](https://nextjs.org). It showcases projects, skills, and experience with a refined black-and-white aesthetic — featuring sharp corners, animated dot grids, monospace typography, and motion-rich interactions.
 
 ---
 
@@ -22,7 +22,7 @@
 - **Custom Animations**: Smooth transitions and modern animations enhance UX.
 - **Responsive Design**: Fully optimized for desktops, tablets, and mobile devices.
 - **Theming**: Built-in light and dark mode toggle.
-- **Optimized Fonts**: Includes `Outfit` font, optimized via `next/font`.
+- **Optimized Fonts**: Includes `Outfit` and `Geist Mono` fonts, optimized via `next/font`.
 - **Effortless Deployment**: Designed for seamless deployment on Vercel.
 - **Blogging**: Support for blogging (Markdown-based).
 
@@ -107,6 +107,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) fi
 
 ## Acknowledgments 🙌
 
-- Nimbus was inspired by the excellent [Magic UI Portfolio Template](https://portfolio-magicui.vercel.app/). A big thanks to the creators for providing a foundation to build upon.
-- Inspired by the mythological **Nimbus**, a radiant cloud often associated with divine presence.
+- Named after the mythological **Nimbus**, a radiant cloud often associated with divine presence.
 - Built with ❤️ and Next.js.

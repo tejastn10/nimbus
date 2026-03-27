@@ -3,6 +3,7 @@ import { Icons } from "@/components/icons/Icons";
 export const DATA = {
 	initials: "TN",
 	name: "Tejas Nikhar",
+	logoName: "tn10",
 
 	url: "https://www.tejastn10.com",
 
@@ -69,10 +70,10 @@ export const DATA = {
 		email: "tejastn10@gmail.com",
 		tel: "+91 89280 88153",
 		social: {
-			Twitter: {
-				name: "Twitter",
+			X: {
+				name: "X",
 				url: "https://x.com/tejastn10",
-				icon: Icons.twitter,
+				icon: Icons.X,
 
 				navbar: true,
 			},
@@ -100,12 +101,17 @@ export const DATA = {
 					start: "May 2025",
 					end: "Present",
 					description: [
+						"Established standardized naming conventions across AWS resources, bringing consistency and clarity to cloud infrastructure management.",
+						"Initiated a new Link service in Go, laying the architectural foundation before ownership was transitioned to another team.",
+						"Overhauled the authentication layer across the platform and unified the registration flow for all frontends, replacing separate sign-up paths for free and paid members with a single source of truth.",
+						"Designed and implemented an OTP delivery strategy to support global users, including the setup of a WhatsApp Business Account (WABA) for OTP delivery via WhatsApp.",
+						"Implemented a rate limiting layer across all major APIs, securing previously open endpoints that were serving multiple consumers without throttling.",
+						"Configured read replicas for both PostgreSQL and Redis, improving read throughput and reducing load on primary database instances.",
+						"Centralized GitHub Actions workflows for linting, formatting, and unit tests across all major repositories using a shared organization-level workflow folder, ensuring consistent CI standards without duplicating pipeline configuration.",
 						"Spearheaded the creation of a production-grade NestJS service template to standardize and accelerate backend development across teams.",
 						"Built a centralized file service for managing uploads and downloads across all microservices, ensuring secure file handling and reducing duplication across codebases.",
-						"Developed an internal campaign-launching tool that allows teams to trigger targeted campaigns via CSV uploads or user selection queries, integrating with both WATI and Cheerio servers for omnichannel delivery.",
 						"Developed a standardized framework for AWS Lambda functions, creating templates for both Node.js and Python-based Lambdas with local testing support via SQS and API Gateway, significantly improving developer productivity and reliability in serverless workflows.",
 						"Set up a robust development environment for all microservices, enabling teams to deploy any branch on the dev environment via GitHub Actions. This streamlined testing and reduced the turnaround time for feature validation.",
-						"Introduced and enforced engineering best practices across services—including security measures, lint checking, code formatting, and standardized PR workflows—while also implementing code coverage tracking and promoting test-driven development (TDD). These initiatives were adopted across all microservices, significantly improving code quality, maintainability, and ensuring that new code met high standards of reliability.",
 					],
 				},
 			],
@@ -604,7 +610,7 @@ export const DATA = {
 			featured: false,
 			isTemplate: false,
 			description:
-				"An AI-driven Twitter bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
+				"An AI-driven X bot that delivers daily personalized motivational messages to different audiences. It ensures a dose of positivity and inspiration every day!",
 			technologies: ["Python", "Tweepy", "Hugging Face", "GPT-2", "Poetry"],
 			links: [
 				{

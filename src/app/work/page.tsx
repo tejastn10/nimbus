@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
-import { LineGrow } from "@/components/animated/LineGrow";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { ResumeCard } from "@/containers/ResumeCard";
 import { DATA } from "@/data/resume";
@@ -24,19 +23,15 @@ const Work: FC = () => {
 				</BoxReveal>
 			</BlurFade>
 
-			<BlurFade delay={BLUR_FADE_DELAY}>
-				<LineGrow className="my-12" />
-			</BlurFade>
-
-			<div className="max-w-5xl mx-auto pt-10 pb-16">
-				<div className="relative">
+			<div className="max-w-5xl mx-auto border-t border-border pt-10 pb-16">
+				<div className="relative flex flex-col gap-6">
 					{DATA.work.map((work, index) => {
 						const period = `${work.start} - ${work.end ?? "Present"}`;
 
 						return (
 							<div key={work.company} className="relative">
-								<div className="flex flex-col md:flex-row gap-y-6">
-									<div className="flex-1 relative pb-10">
+								<div className="flex flex-col md:flex-row">
+									<div className="flex-1 relative">
 										<div className="relative z-10">
 											<BlurFade delay={BLUR_FADE_DELAY * (4 + index)}>
 												<div>
