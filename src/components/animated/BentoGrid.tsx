@@ -95,7 +95,7 @@ const BentoCard: FC<BentoCardProps> = ({
 				variant="outline"
 				asChild
 				size="sm"
-				className="pointer-events-auto text-[11px] group/cta"
+				className="pointer-events-auto text-[11px] group/cta dark:bg-secondary dark:hover:bg-secondary/70"
 			>
 				<a href={href} target="_blank" rel="noopener noreferrer">
 					{cta}
