@@ -188,7 +188,7 @@ const Home: FC = () => {
 			<section className="border-t border-border pt-8 pb-16">
 				<div className="w-full">
 					<BlurFade delay={BLUR_FADE_DELAY * 15}>
-						<div className="space-y-4 max-w-lg">
+						<div className="space-y-4">
 							<SectionLabel label="Contact" />
 							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Get in touch</h2>
 							<p className="text-muted-foreground md:text-base leading-relaxed">
