@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 import { cx } from "@/utils/tailwind";
 
@@ -11,37 +9,21 @@ type PixelAvatarProps = {
 	className?: string;
 };
 
-const PixelAvatar = ({ src, alt = "", pixelSize = 16, className }: PixelAvatarProps) => {
-	const canvasRef = useRef<HTMLCanvasElement>(null);
-
-	useEffect(() => {
-		const canvas = canvasRef.current;
-		if (!canvas) return;
-
-		const img = new Image();
-		img.onload = () => {
-			const ctx = canvas.getContext("2d");
-			if (!ctx) return;
-
-			// Crop to square from the top (same as object-top)
-			const srcSize = Math.min(img.naturalWidth, img.naturalHeight);
-			ctx.imageSmoothingEnabled = false;
-			ctx.drawImage(img, 0, 0, srcSize, srcSize, 0, 0, pixelSize, pixelSize);
-		};
-		img.src = src;
-	}, [src, pixelSize]);
-
-	return (
-		<canvas
-			ref={canvasRef}
-			width={pixelSize}
-			height={pixelSize}
-			aria-label={alt}
-			role="img"
-			style={{ imageRendering: "pixelated" }}
-			className={cx("aspect-square h-full w-full grayscale", className)}
-		/>
-	);
-};
+// Renders the image at `pixelSize` resolution, then CSS scales it up with
+// image-rendering: pixelated — same visual effect as the canvas approach but
+// without any JS/useEffect delay. `priority` emits a <link rel="preload"> in
+// the <head> so the browser fetches the image before JS even runs.
+const PixelAvatar = ({ src, alt = "", pixelSize = 48, className }: PixelAvatarProps) => (
+	<Image
+		src={src}
+		alt={alt}
+		width={pixelSize}
+		height={pixelSize}
+		priority
+		sizes={`${pixelSize}px`}
+		style={{ imageRendering: "pixelated" }}
+		className={cx("aspect-square h-full w-full object-cover object-top grayscale", className)}
+	/>
+);
 
 export { PixelAvatar };
