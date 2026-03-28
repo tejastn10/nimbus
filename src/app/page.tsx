@@ -7,8 +7,8 @@ import { GlowingText } from "@/components/animated/GlowingText";
 import { Marquee } from "@/components/animated/Marquee";
 import { getLogo } from "@/components/icons/Icons";
 import { Avatar, AvatarFallback } from "@/components/ui/Avatar";
-import { PixelAvatar } from "@/components/ui/PixelAvatar";
 import { Badge } from "@/components/ui/Badge";
+import { PixelAvatar } from "@/components/ui/PixelAvatar";
 import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { PROJECT_SLICE_NUMBER } from "@/constants/values";
 import { CourseCard } from "@/containers/CourseCard";
@@ -44,7 +44,7 @@ const Home: FC = () => {
 						{/* Avatar — left side */}
 						<BlurFade delay={BLUR_FADE_DELAY}>
 							<Avatar className="size-32 sm:size-36 border border-border shrink-0">
-								<PixelAvatar src={DATA.avatarUrl} alt={DATA.name} pixelSize={128} />
+								<PixelAvatar src={DATA.avatarUrl} alt={DATA.name} pixelSize={64} />
 								<AvatarFallback className="font-mono">{DATA.initials}</AvatarFallback>
 							</Avatar>
 						</BlurFade>
