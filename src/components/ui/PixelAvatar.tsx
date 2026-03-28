@@ -17,12 +17,11 @@ const PixelAvatar = ({ src, alt = "", pixelSize = 48, className }: PixelAvatarPr
 	<Image
 		src={src}
 		alt={alt}
-		width={pixelSize}
-		height={pixelSize}
+		fill
 		priority
 		sizes={`${pixelSize}px`}
-		style={{ imageRendering: "pixelated" }}
-		className={cx("aspect-square h-full w-full object-cover object-top grayscale", className)}
+		style={{ imageRendering: "pixelated", objectFit: "cover", objectPosition: "top" }}
+		className={cx("grayscale", className)}
 	/>
 );
 
