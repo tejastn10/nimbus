@@ -5,6 +5,7 @@ import { BLUR_FADE_DELAY } from "@/constants/ui";
 import { BookCard } from "@/containers/BookCard";
 import { getBooks } from "@/data/book";
 import { CompletedSection } from "./completed-section";
+import { ReadingXP } from "./reading-xp";
 
 export const metadata = {
 	title: "Books",
@@ -41,11 +42,34 @@ const BooksPage = async (): Promise<JSX.Element> => {
 			slug: book.slug,
 		}));
 
+	const currentYear = new Date().getFullYear();
+	const lastYear = currentYear - 1;
+
+	const completedBooks = books.filter((b) => b.metadata.readingStatus === "completed");
+
+	const countByYear = (year: number) =>
+		completedBooks.filter((b) => b.metadata.finishedOn?.startsWith(String(year))).length;
+
+	const thisYearCount = countByYear(currentYear);
+	const lastYearCount = countByYear(lastYear);
+
 	return (
 		<section className="relative">
 			<BlurFade delay={BLUR_FADE_DELAY}>
 				<h1 className="font-bold text-6xl mb-4 tracking-tighter">{metadata.title}</h1>
 				<h3 className="text-sm text-muted-foreground pb-6">{metadata.description}</h3>
+			</BlurFade>
+
+			<BlurFade delay={BLUR_FADE_DELAY * 1.5}>
+				<div className="pb-8">
+					<span className="section-label">[ Reading Progress ]</span>
+					<ReadingXP
+						lastYear={lastYear}
+						lastYearCount={lastYearCount}
+						currentYear={currentYear}
+						currentYearCount={thisYearCount}
+					/>
+				</div>
 			</BlurFade>
 
 			<BlurFade delay={BLUR_FADE_DELAY * 2}>
