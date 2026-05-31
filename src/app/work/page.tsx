@@ -1,9 +1,13 @@
+import Link from "next/link";
 import type { FC } from "react";
 import { BlurFade } from "@/components/animated/BlurFade";
 import { BoxReveal } from "@/components/animated/BoxReveal";
+import { Icons } from "@/components/icons/Icons";
+import { Button } from "@/components/ui/Button";
 import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { ResumeCard } from "@/containers/ResumeCard";
 import { DATA } from "@/data/resume";
+
 
 export const metadata = {
 	title: "Work",
@@ -23,7 +27,12 @@ const Work: FC = () => {
 				</BoxReveal>
 			</BlurFade>
 
-			<div className="max-w-5xl mx-auto border-t border-border pt-10 pb-16">
+			<BlurFade delay={BLUR_FADE_DELAY * 2}>
+				<span className="section-label">[ Experience ]</span>
+				<h2 className="font-bold text-3xl mb-4 tracking-tighter">Work History</h2>
+			</BlurFade>
+
+			<div className="max-w-5xl mx-auto pt-4">
 				<div className="relative flex flex-col gap-6">
 					{DATA.work.map((work, index) => {
 						const period = `${work.start} - ${work.end ?? "Present"}`;
@@ -56,6 +65,35 @@ const Work: FC = () => {
 					})}
 				</div>
 			</div>
+
+			<section className="border-t border-border pt-8 pb-16">
+				<BlurFade delay={BLUR_FADE_DELAY * 10}>
+					<div className="space-y-4">
+						<span className="section-label">[ Resume ]</span>
+						<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+							Want the full picture?
+						</h2>
+						<p className="text-muted-foreground md:text-base leading-relaxed max-w-lg">
+							Everything in one place — roles, impact, and the stack behind it all. Download the
+							PDF or open it directly in your browser.
+						</p>
+						<div className="flex gap-3 pt-2">
+							<a href="/resume.pdf" download="Tejas Nikhar - Resume.pdf">
+								<Button variant="outline" className="gap-2 cursor-pointer">
+									<Icons.file className="size-4" />
+									Download PDF
+								</Button>
+							</a>
+							<Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+								<Button variant="ghost" className="gap-2 cursor-pointer">
+									<Icons.link className="size-4" />
+									View Online
+								</Button>
+							</Link>
+						</div>
+					</div>
+				</BlurFade>
+			</section>
 		</section>
 	);
 };
