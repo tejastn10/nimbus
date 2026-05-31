@@ -28,7 +28,7 @@
 	"engines": {
 		"node": ">=22"
 	},
-	"packageManager": "npm@11.15.0",
+	"packageManager": "npm@11.16.0",
 	"dependencies": {
 		"@radix-ui/react-avatar": "^1.1.11",
 		"@radix-ui/react-separator": "^1.1.8",
@@ -57,9 +57,9 @@
 		"unified": "^11.0.5"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.15",
-		"@commitlint/cli": "^21.0.1",
-		"@commitlint/config-conventional": "^21.0.1",
+		"@biomejs/biome": "^2.4.16",
+		"@commitlint/cli": "^21.0.2",
+		"@commitlint/config-conventional": "^21.0.2",
 		"@tailwindcss/postcss": "^4.3.0",
 		"@tailwindcss/typography": "^0.5.19",
 		"@types/node": "^25.9.1",
@@ -67,7 +67,7 @@
 		"@types/react-dom": "^19.2.3",
 		"globals": "^17.6.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^17.0.5",
+		"lint-staged": "^17.0.6",
 		"postcss": "^8.5.15",
 		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.3"
