@@ -97,7 +97,7 @@ export const DATA = {
 			end: "Present",
 			roles: [
 				{
-					title: "Technical Lead",
+					title: "Technical Lead | Software Development Engineer III",
 					start: "May 2025",
 					end: "Present",
 					description: [
