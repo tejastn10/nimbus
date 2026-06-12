@@ -77,6 +77,16 @@
 					}
 				}
 			}
+		},
+		{
+			"includes": ["src/containers/GithubContributions.tsx"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"useSemanticElements": "off"
+					}
+				}
+			}
 		}
 	]
 }

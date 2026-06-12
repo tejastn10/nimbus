@@ -8,7 +8,6 @@ import { BLUR_FADE_DELAY, BOX_REVEAL_DURATION } from "@/constants/ui";
 import { ResumeCard } from "@/containers/ResumeCard";
 import { DATA } from "@/data/resume";
 
-
 export const metadata = {
 	title: "Work",
 	description:
@@ -74,8 +73,8 @@ const Work: FC = () => {
 							Want the full picture?
 						</h2>
 						<p className="text-muted-foreground md:text-base leading-relaxed max-w-lg">
-							Everything in one place — roles, impact, and the stack behind it all. Download the
-							PDF or open it directly in your browser.
+							Everything in one place — roles, impact, and the stack behind it all. Download the PDF
+							or open it directly in your browser.
 						</p>
 						<div className="flex gap-3 pt-2">
 							<a href="/resume.pdf" download="Tejas Nikhar - Resume.pdf">

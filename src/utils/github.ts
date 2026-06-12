@@ -1,9 +1,7 @@
 import type { Contribution, ContributionData } from "@/data/github";
 
 const fetchContributions = async (username: string, year: number): Promise<ContributionData> => {
-	const res = await fetch(
-		`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`,
-	);
+	const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`);
 	if (!res.ok) throw new Error("fetch failed");
 	return res.json() as Promise<ContributionData>;
 };
