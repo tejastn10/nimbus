@@ -24,13 +24,55 @@ const LIGHT_PALETTE: [string, string, string][] = [
 
 const DARK_STROKE = "rgba(255,255,255,0.08)";
 const LIGHT_STROKE = "rgba(0,0,0,0.07)";
+const STROKE_WIDTH = "0.2";
+
+// Grid layout
+const GRID_PADDING = 20;
+const GRID_ROWS = 7;
+
+// Shared label font
+const LABEL_FONT_FAMILY = "var(--font-geist-mono), monospace";
+
+// Total count label
+const TOTAL_LABEL_Y = 70;
+const TOTAL_LABEL_FONT_SIZE = 48;
+const TOTAL_LABEL_FONT_WEIGHT = "800";
+const TOTAL_LABEL_FILL = "var(--color-foreground)";
+const TOTAL_LABEL_OPACITY = 0.88;
+
+// Sub-label ("CONTRIBUTIONS · year")
+const SUBLABEL_Y = 86;
+const SUBLABEL_FONT_SIZE = 8;
+const SUBLABEL_FONT_WEIGHT = "500";
+const SUBLABEL_OPACITY = 0.45;
+const SUBLABEL_LETTER_SPACING = 3;
+
+// Tooltip positioning
+const TOOLTIP_OFFSET_X = 12;
+const TOOLTIP_OFFSET_Y = 52;
 
 export {
 	DARK_PALETTE,
 	DARK_STROKE,
+	GRID_PADDING,
+	GRID_ROWS,
+	LABEL_FONT_FAMILY,
 	LIGHT_PALETTE,
 	LIGHT_STROKE,
+	STROKE_WIDTH,
+	SUBLABEL_FONT_SIZE,
+	SUBLABEL_FONT_WEIGHT,
+	SUBLABEL_LETTER_SPACING,
+	SUBLABEL_OPACITY,
+	SUBLABEL_Y,
 	TILE_HALF_WIDTH,
 	TILE_QUARTER_HEIGHT,
+	TOOLTIP_OFFSET_X,
+	TOOLTIP_OFFSET_Y,
+	TOTAL_LABEL_FILL,
+	TOTAL_LABEL_FONT_SIZE,
+	TOTAL_LABEL_FONT_WEIGHT,
+	TOTAL_LABEL_OPACITY,
+	TOTAL_LABEL_Y,
 	WALL_HEIGHTS,
 };

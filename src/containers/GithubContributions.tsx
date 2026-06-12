@@ -8,10 +8,26 @@ import { Icons } from "@/components/icons/Icons";
 import {
 	DARK_PALETTE,
 	DARK_STROKE,
+	GRID_PADDING,
+	GRID_ROWS,
+	LABEL_FONT_FAMILY,
 	LIGHT_PALETTE,
 	LIGHT_STROKE,
+	STROKE_WIDTH,
+	SUBLABEL_FONT_SIZE,
+	SUBLABEL_FONT_WEIGHT,
+	SUBLABEL_LETTER_SPACING,
+	SUBLABEL_OPACITY,
+	SUBLABEL_Y,
 	TILE_HALF_WIDTH,
 	TILE_QUARTER_HEIGHT,
+	TOOLTIP_OFFSET_X,
+	TOOLTIP_OFFSET_Y,
+	TOTAL_LABEL_FILL,
+	TOTAL_LABEL_FONT_SIZE,
+	TOTAL_LABEL_FONT_WEIGHT,
+	TOTAL_LABEL_OPACITY,
+	TOTAL_LABEL_Y,
 	WALL_HEIGHTS,
 } from "@/constants/github";
 import type { Contribution, ContributionData } from "@/data/github";
@@ -45,15 +61,13 @@ const GitHubContributions: FC = () => {
 	const palette = isDark ? DARK_PALETTE : LIGHT_PALETTE;
 	const weekColumns = groupIntoWeeks(data.contributions);
 	const cols = weekColumns.length;
-	const rows = 7;
 
-	const PAD = 20;
 	const TW = TILE_HALF_WIDTH;
 	const TH = TILE_QUARTER_HEIGHT;
-	const originX = rows * TW + PAD;
-	const originY = PAD + WALL_HEIGHTS[4] + TH;
-	const svgW = (cols + rows) * TW + PAD * 2;
-	const svgH = originY + (cols + rows - 1) * TH + PAD;
+	const originX = GRID_ROWS * TW + GRID_PADDING;
+	const originY = GRID_PADDING + WALL_HEIGHTS[4] + TH;
+	const svgW = (cols + GRID_ROWS) * TW + GRID_PADDING * 2;
+	const svgH = originY + (cols + GRID_ROWS - 1) * TH + GRID_PADDING;
 
 	const tiles = weekColumns
 		.flatMap((week, col) => week.map((c, row) => ({ col, row, c })))
@@ -100,25 +114,25 @@ const GitHubContributions: FC = () => {
 					xmlns="http://www.w3.org/2000/svg"
 					aria-label={`${total} contributions in ${year}`}
 				>
-					<g textAnchor="end" fontFamily="var(--font-geist-mono), monospace">
+					<g textAnchor="end" fontFamily={LABEL_FONT_FAMILY}>
 						<text
-							x={svgW - PAD}
-							y={70}
-							fontSize={48}
-							fontWeight="800"
-							fill="var(--color-foreground)"
-							opacity={0.88}
+							x={svgW - GRID_PADDING}
+							y={TOTAL_LABEL_Y}
+							fontSize={TOTAL_LABEL_FONT_SIZE}
+							fontWeight={TOTAL_LABEL_FONT_WEIGHT}
+							fill={TOTAL_LABEL_FILL}
+							opacity={TOTAL_LABEL_OPACITY}
 						>
 							{total.toLocaleString()}
 						</text>
 						<text
-							x={svgW - PAD}
-							y={86}
-							fontSize={8}
-							fontWeight="500"
+							x={svgW - GRID_PADDING}
+							y={SUBLABEL_Y}
+							fontSize={SUBLABEL_FONT_SIZE}
+							fontWeight={SUBLABEL_FONT_WEIGHT}
 							fill={palette[4][0]}
-							opacity={0.45}
-							letterSpacing={3}
+							opacity={SUBLABEL_OPACITY}
+							letterSpacing={SUBLABEL_LETTER_SPACING}
 						>
 							{`CONTRIBUTIONS · ${year}`}
 						</text>
@@ -146,11 +160,11 @@ const GitHubContributions: FC = () => {
 							>
 								{wh > 0 && (
 									<>
-										<polygon points={leftWall} fill={leftC} stroke={stroke} strokeWidth="0.2" />
-										<polygon points={rightWall} fill={rightC} stroke={stroke} strokeWidth="0.2" />
+										<polygon points={leftWall} fill={leftC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
+										<polygon points={rightWall} fill={rightC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
 									</>
 								)}
-								<polygon points={topFace} fill={topC} stroke={stroke} strokeWidth="0.2" />
+								<polygon points={topFace} fill={topC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
 							</g>
 						);
 					})}
@@ -160,7 +174,7 @@ const GitHubContributions: FC = () => {
 			{tooltip && (
 				<div
 					className="absolute z-10 pointer-events-none border border-border bg-card px-2.5 py-1.5 font-mono text-xs whitespace-nowrap"
-					style={{ left: tooltip.x + 12, top: tooltip.y - 52 }}
+					style={{ left: tooltip.x + TOOLTIP_OFFSET_X, top: tooltip.y - TOOLTIP_OFFSET_Y }}
 				>
 					<p className="font-semibold text-foreground">
 						{tooltip.contribution.count === 0
