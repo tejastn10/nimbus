@@ -160,8 +160,18 @@ const GitHubContributions: FC = () => {
 							>
 								{wh > 0 && (
 									<>
-										<polygon points={leftWall} fill={leftC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
-										<polygon points={rightWall} fill={rightC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
+										<polygon
+											points={leftWall}
+											fill={leftC}
+											stroke={stroke}
+											strokeWidth={STROKE_WIDTH}
+										/>
+										<polygon
+											points={rightWall}
+											fill={rightC}
+											stroke={stroke}
+											strokeWidth={STROKE_WIDTH}
+										/>
 									</>
 								)}
 								<polygon points={topFace} fill={topC} stroke={stroke} strokeWidth={STROKE_WIDTH} />
