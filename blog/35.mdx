@@ -1,275 +1,217 @@
 ---
-title: "Why = NULL Never Works in PostgreSQL (And What SQL is Actually Doing) 🕳️"
-publishedAt: "2026-06-13"
+title: "The QR Code: A Gift to the World From a Toyota Engineer 📱"
+publishedAt: "2026-04-27"
 description: |
-  I wrote WHERE status = NULL and got zero rows back. No error, no warning — just silence.
-  Here's why that happens, what NULL actually is in SQL, and the subtle traps that follow
-  once you understand three-valued logic.
-about: PostgreSQL
+  QR codes can hold thousands of characters, survive being 30% destroyed, and work when blurry.
+  One engineer at a Toyota subsidiary invented all of this in 1994 — and then gave it away for free.
+  Here's how QR codes actually work, and how India turned them into a payment revolution.
+about: General
 ---
 
-_I was debugging a query that was supposed to return unprocessed jobs — rows where the
-`processed_at` column hadn't been set yet. Simple enough._
+_I was paying for paan at a roadside stall. The vendor held up a laminated printout — a QR code,
+sun-bleached, slightly crumpled at one corner. My phone scanned it in under a second. UPI
+confirmed. Payment done._
 
-_I wrote:_
+_I stood there looking at that battered piece of paper. One corner was visibly torn. There was a
+grease stain across the middle. And my phone had read it perfectly._
 
-```sql
-SELECT * FROM jobs WHERE processed_at = NULL;
-```
+_I'd been using QR codes for years without once thinking about how they actually work. How does
+a grid of black and white squares encode enough information for a payment? How does the scanner
+know which way is up? And how — specifically — did my phone read a code with a literal hole torn
+out of it?_
 
-_Zero rows. Every time. Even when I could see unprocessed jobs sitting in the table._
-
-_I'd made this mistake before. I knew the fix — `IS NULL` instead of `= NULL`. I changed it,
-got my results, and moved on. But this time I stopped and actually looked up why. Why does
-`= NULL` silently return nothing instead of throwing an error? Why does `IS NULL` work when
-`= NULL` doesn't? And what does that say about how SQL thinks about data?_
-
-_The answer turned out to be more interesting — and more consequential — than I expected._
+_The answers are one of the better engineering stories I've come across._
 
 ---
 
-## 📜 Where NULL Came From
+## 🎁 Who Gave Us This Gift
 
-NULL wasn't an accident or an oversight. It was a deliberate design decision made by Edgar F.
-Codd, the mathematician who invented the relational model in his landmark 1970 paper
-_"A Relational Model of Data for Large Shared Data Banks."_
+QR codes were invented in 1994 by **Masahiro Hara** and his team at **Denso Wave**, a subsidiary
+of Toyota. The original problem had nothing to do with payments or smartphones. Toyota's factories
+were tracking automotive parts using barcodes, and barcodes had hit their limit — they could only
+hold about 20 characters and required precise alignment to scan. As manufacturing grew more
+complex, the bottleneck became real.
 
-Codd's problem was straightforward: real-world data is incomplete. A person's middle name might
-not be known. A delivery date might not be set yet. A measurement might not have been taken.
-Any honest data model needs a way to represent "this information is missing" — and
-Codd didn't want that to be an empty string, or a zero, or a magic sentinel value like `-1`.
-Those all carry meaning of their own and corrupt the data's semantics.
+Hara's team spent two years building something better. They wanted a code that could hold hundreds
+of characters, scan from any angle, and work even when partially damaged. In September 1994, they
+landed on the design we still use today: a two-dimensional matrix of black and white squares,
+with three distinctive corner patterns that let any camera orient the code instantly.
 
-His solution was NULL: a marker meaning "value unknown or inapplicable." And to make it
-consistent, he argued that comparisons involving an unknown value must themselves produce an
-unknown result — which gave SQL its three-valued logic: `TRUE`, `FALSE`, and `UNKNOWN`.
+They called it **QR** — Quick Response. The name referred to how fast it could be decoded compared
+to a barcode.
 
-Codd actually went further than SQL did. In later work he proposed two distinct kinds of NULL:
-"missing but applicable" (a phone number that exists but isn't recorded) and "missing and
-inapplicable" (a phone number for someone who doesn't have one). SQL collapsed both into a
-single NULL, which Codd himself criticised. His collaborator C.J. Date went further and argued
-that NULL was a mistake entirely — that missing information should be handled at the application
-layer, not embedded in the type system of the database.
+Here's the part that changed everything: **Denso Wave held the patent but chose not to enforce it.**
 
-That debate never fully resolved. But SQL kept NULL, and the three-valued logic it requires is
-now fundamental to every relational database in use today — which is why understanding it
-isn't optional.
+They made the QR code standard openly available. Anyone could use it, implement it, build on it —
+no licensing fees, no royalties, no permission required. In an era when technology companies
+were aggressively protecting intellectual property, a Toyota subsidiary quietly handed the world
+one of the most useful inventions of the decade.
 
----
-
-## 🤔 The Rule and the Reason
-
-In SQL, `NULL` is not a value. It's the **absence of a known value**. It means "I don't know
-what this is." And that distinction changes everything.
-
-When you write `processed_at = NULL`, SQL evaluates: "Is this unknown value equal to unknown?"
-The answer isn't yes or no. It's **also unknown**. You're asking whether something you don't
-know equals something else you don't know. There's no way to determine that.
-
-So the expression `processed_at = NULL` doesn't return `TRUE` or `FALSE`. It returns `NULL`.
-And a `WHERE` clause only keeps rows where the condition evaluates to `TRUE`. `NULL` is not
-`TRUE`, so those rows are silently discarded.
-
-```sql
--- This compares a value to "unknown" — result is always NULL
-WHERE processed_at = NULL    -- ❌ returns NULL, not TRUE or FALSE
-
--- This asks "does this column have no value?" — that's a known fact
-WHERE processed_at IS NULL   -- ✅ returns TRUE or FALSE
-```
-
-`IS NULL` is not a comparison operator. It's a test for the presence or absence of a value.
-That's why it works where `=` doesn't.
+This decision is why QR codes became universal. A proprietary QR code would have fragmented into
+competing standards or been squeezed out by licensing costs. The open patent meant every phone
+manufacturer, every app developer, every payment network could adopt it freely. Hara's team built
+the rocket and then gave away the launch codes.
 
 ---
 
-## 🧩 Three-Valued Logic
+## 🧩 What a QR Code Actually Contains
 
-Standard boolean logic has two values: `TRUE` and `FALSE`. SQL has three: `TRUE`, `FALSE`, and
-`NULL` (also called `UNKNOWN`). This is called **three-valued logic** and it's the root of
-almost every NULL-related surprise in SQL.
+A QR code looks like noise but it has a very precise structure. Every element serves a specific
+function.
 
-Here's the truth table for `AND` and `OR` with `NULL`:
+**Finder patterns** — the three identical square rings sitting in three corners of the code —
+are the first thing any scanner looks for. They are always the same size relative to the code,
+and always the same ratio of outer ring to inner square. No matter what angle you hold your
+phone at, the scanner locates these three shapes, calculates their positions, and immediately
+knows which way is up, what the module size is, and whether the image is skewed or warped.
+The fourth corner is intentionally left blank so the scanner knows which corner is missing.
 
-```
-AND          TRUE    FALSE   NULL
-TRUE      →  TRUE    FALSE   NULL
-FALSE     →  FALSE   FALSE   FALSE
-NULL      →  NULL    FALSE   NULL
+**Format information** sits in a strip adjacent to the top-left finder. It encodes two things:
+the error correction level being used and which mask pattern was applied to the data. It is
+stored twice in different parts of the code so that even if one copy is damaged, the other
+can be read.
 
-OR           TRUE    FALSE   NULL
-TRUE      →  TRUE    TRUE    TRUE
-FALSE     →  TRUE    FALSE   NULL
-NULL      →  TRUE    NULL    NULL
-```
+**Timing patterns** are alternating black-and-white strips running between the finder patterns,
+both horizontally and vertically. Their job is to help the scanner count modules precisely —
+they act as a ruler so the decoder knows exactly where one cell ends and the next begins, even
+on a slightly curved or distorted surface.
 
-Two things stand out:
-
-**`FALSE AND NULL` = `FALSE`** — because regardless of what `NULL` turns out to be, `AND`
-with a known `FALSE` can never be `TRUE`. SQL can determine the outcome without resolving the
-unknown.
-
-**`TRUE OR NULL` = `TRUE`** — same logic. Regardless of what `NULL` is, the `OR` with a
-known `TRUE` is always `TRUE`.
-
-But `NULL AND NULL` = `NULL`. `NULL OR NULL` = `NULL`. And critically, `NULL = NULL` = `NULL`.
-
-This is why you can never test for NULL equality — including testing whether two NULL values
-are equal to each other.
+**Data codewords** fill the remaining area, encoded in one of four modes: numeric (most compact
+for digits), alphanumeric, binary, or Kanji.
 
 ---
 
-## 💣 The NOT IN Trap
+## 📊 Versions, Capacity, and the Combinations
 
-This is where three-valued logic causes real production bugs. Consider a query to find users
-who are not in a list of suspended accounts:
+QR codes come in 40 versions. Version 1 is a 21×21 grid. Each version adds 4 modules per side,
+so Version 40 reaches 177×177.
 
-```sql
-SELECT id FROM users
-WHERE id NOT IN (SELECT user_id FROM suspensions);
-```
+| Version | Grid size | Numeric | Alphanumeric | Binary bytes |
+|---------|-----------|---------|--------------|--------------|
+| 1       | 21 × 21   | 41      | 25           | 17           |
+| 10      | 57 × 57   | 652     | 395          | 271          |
+| 40      | 177 × 177 | 7,089   | 4,296        | 2,953        |
 
-This works fine until the `suspensions` table has a row where `user_id` is `NULL`. At that
-point, the query returns **no rows at all**.
+For a Version 40 code at the lowest error correction level, a 177×177 grid contains 31,329
+modules. Subtract the fixed structural elements (finders, timing, format, alignment), and
+roughly 18,672 modules remain as data. Each module is one bit. The total number of distinct
+QR codes at Version 40 is astronomically large — comfortably more combinations than atoms in
+the observable universe.
 
-Here's why. `NOT IN` expands to a series of `!=` comparisons `AND`'d together:
-
-```sql
--- NOT IN (1, 2, NULL) expands to:
-WHERE id != 1 AND id != 2 AND id != NULL
-```
-
-`id != NULL` evaluates to `NULL` for any value of `id`. And any value `AND NULL` where the
-rest of the chain is `TRUE` gives you `NULL`. So the entire predicate evaluates to `NULL` for
-every row, and the `WHERE` clause eliminates everything.
-
-```sql
--- Safe version: use NOT EXISTS instead
-SELECT id FROM users u
-WHERE NOT EXISTS (
-  SELECT 1 FROM suspensions s
-  WHERE s.user_id = u.id
-);
-
--- Or filter NULLs out explicitly
-SELECT id FROM users
-WHERE id NOT IN (
-  SELECT user_id FROM suspensions
-  WHERE user_id IS NOT NULL
-);
-```
-
-`NOT EXISTS` handles `NULL` gracefully because it tests for the existence of a matching row,
-not for value equality. If `user_id` is `NULL`, the inner query finds no matching row and
-`NOT EXISTS` returns `TRUE`.
-
-This is the kind of bug that's invisible until production data contains a `NULL` that your
-test data didn't.
+There's also a **mask pattern**: one of 8 templates XOR'd onto the data area to prevent large
+solid blocks of the same colour, which can confuse scanners. The encoder tries all 8 masks and
+picks the one that produces the most balanced distribution of light and dark modules. You see the
+result but never the intermediate step.
 
 ---
 
-## 📊 How Aggregates Handle NULL
+## 🛡️ Why a Torn, Blurry QR Code Still Works
 
-NULL has consistent — but often surprising — behaviour inside aggregate functions. The rule is
-simple: **most aggregates ignore NULLs entirely**.
+This is the most technically remarkable part of QR codes, and it comes from an algorithm
+that predates them by 34 years.
 
-```sql
--- Table: scores (values: 10, 20, NULL, 30)
+In 1960, mathematicians **Irving S. Reed** and **Gustave Solomon** published a paper describing
+a method for detecting and correcting errors in transmitted data. The **Reed-Solomon algorithm**
+works by adding structured redundancy — extra codewords derived from the original data — in a
+way that lets a decoder reconstruct missing or corrupted information even when part of the
+message is gone.
 
-SELECT COUNT(*)        FROM scores;  -- 4  (counts all rows)
-SELECT COUNT(score)    FROM scores;  -- 3  (ignores NULL)
-SELECT SUM(score)      FROM scores;  -- 60 (ignores NULL)
-SELECT AVG(score)      FROM scores;  -- 20 (60 / 3, not 60 / 4)
-SELECT MAX(score)      FROM scores;  -- 30
-SELECT MIN(score)      FROM scores;  -- 10
+QR codes use Reed-Solomon error correction at one of four levels:
+
+```
+Level L — corrects up to  7% of damaged codewords
+Level M — corrects up to 15% of damaged codewords
+Level Q — corrects up to 25% of damaged codewords
+Level H — corrects up to 30% of damaged codewords
 ```
 
-The `AVG` behaviour is the one that bites people. If you're averaging a column where NULL
-means "zero" in your domain, the result will be wrong. You need to make that explicit:
+The trade-off: higher correction means more of the code is redundancy and less is actual data.
+A Level H code can have 30% of its modules physically missing, torn, or obscured and still be
+fully decoded — but it holds less data than a Level L code of the same size.
 
-```sql
--- If NULL should be treated as 0
-SELECT AVG(COALESCE(score, 0)) FROM scores;  -- 15 (60 / 4)
-```
+The reason Reed-Solomon works mathematically is that it encodes data as coefficients of a
+polynomial and derives check codewords by evaluating that polynomial at specific points. A
+decoder can reconstruct the original polynomial — and therefore the original data — even with
+some of its points missing, as long as the number of valid points exceeds the degree of the
+polynomial. Missing modules correspond to missing points. The algorithm fills them in.
 
-`COUNT(*)` vs `COUNT(column)` is the other common trap. They look similar but mean different
-things — one counts rows, the other counts non-NULL values in a specific column.
+The same Reed-Solomon algorithm appears in CDs, DVDs, Blu-ray discs, QR codes, NASA's deep
+space communications, and RAID storage systems. It's one of the most quietly deployed algorithms
+in existence.
+
+That chai vendor's torn, grease-stained QR code had roughly 15% of its modules unreadable.
+Reed-Solomon reconstructed them from the remaining intact data, the decoder produced the
+original codewords, and the payment went through without the scanner ever "knowing" the
+code was damaged.
 
 ---
 
-## 🛠️ The Tools for Handling NULL
+## 🇮🇳 How UPI Turned QR Codes Into Infrastructure
 
-**`COALESCE`** returns the first non-NULL argument. Use it to substitute a default value
-wherever NULL would cause problems:
+When India's National Payments Corporation of India (NPCI) launched **UPI in 2016**, they needed
+a mechanism that would work for a street vendor with no card terminal, no reliable internet, and
+a feature phone. QR codes were the answer.
 
-```sql
--- Fallback chain
-SELECT COALESCE(nickname, first_name, 'Anonymous') AS display_name
-FROM users;
+The design was elegant: a merchant generates a QR code encoding their UPI ID and amount (or
+amount-blank for flexible payments). The customer scans it. The UPI app resolves the ID, the
+customer confirms, and the transfer settles — in seconds, between any two banks.
 
--- Safe arithmetic (NULL + anything = NULL)
-SELECT COALESCE(discount, 0) + base_price AS total FROM orders;
+The distribution cost was essentially zero. A merchant needed a single printed QR code. No
+hardware, no terminal, no monthly fee. A laminated printout from a ₹10 photocopy shop was
+sufficient. This is what made the network reach chai stalls, auto-rickshaw drivers, and temple
+donation boxes in a way that card infrastructure never could.
+
+```
+2016  UPI launches with QR code support
+2017  50 million monthly transactions
+2020  2.2 billion monthly transactions
+2023  10+ billion monthly transactions
+2024  India accounts for ~50% of all real-time payments globally
 ```
 
-**`NULLIF`** is the inverse — it returns `NULL` if two expressions are equal. Useful for
-converting sentinel values to proper NULLs:
+The volumes are difficult to comprehend. India now processes more real-time digital payments
+than the rest of the world combined, and QR codes are the physical interface that made that
+possible at the bottom of the market. PhonePe, Google Pay, and Paytm all converged on the
+same scan-to-pay experience because the standard was open and the technology was free.
 
-```sql
--- Treat empty string as NULL
-SELECT NULLIF(description, '') FROM products;
-
--- Avoid division by zero
-SELECT total / NULLIF(divisor, 0) FROM calculations;
-```
-
-**`IS DISTINCT FROM`** is PostgreSQL-specific and treats `NULL` as a known, comparable value
-rather than unknown. It returns `FALSE` when both sides are `NULL`:
-
-```sql
--- Regular equality — NULL = NULL is NULL, not TRUE
-SELECT NULL = NULL;              -- NULL
-
--- IS DISTINCT FROM — NULL treated as a value
-SELECT NULL IS DISTINCT FROM NULL;      -- FALSE (they are the same)
-SELECT 1    IS DISTINCT FROM NULL;      -- TRUE  (they are different)
-SELECT 1    IS NOT DISTINCT FROM NULL;  -- FALSE (they are different)
-```
-
-`IS NOT DISTINCT FROM` is useful when you want to compare two columns that might both be
-`NULL` and treat that as a match — something `=` cannot do:
-
-```sql
--- Find rows where old and new status are the same (including both NULL)
-WHERE old_status IS NOT DISTINCT FROM new_status
-```
+Masahiro Hara built this for Toyota's car parts. He could not have imagined that thirty years
+later it would be settling fruit vendor payments in Mumbai at 8am on a Tuesday.
 
 ---
 
-## 🎯 The Rules to Internalize
+## 🎯 Key Takeaways
 
-1. **`NULL = NULL` is `NULL`, not `TRUE`.** Nothing equals `NULL`. Not even `NULL` itself.
+**1. QR codes were built for factories, not phones.**
+The original problem was tracking automotive parts. The smartphone use case came two decades later.
 
-2. **`WHERE` filters on `TRUE`.** Any `NULL` result from a condition silently excludes the row.
+**2. The open patent made it universal.**
+Denso Wave's decision not to enforce the patent is the single biggest reason QR codes became
+global infrastructure. A proprietary equivalent would never have reached this scale.
 
-3. **`NOT IN` with a subquery containing `NULL` returns nothing.** Use `NOT EXISTS` instead.
+**3. Reed-Solomon is why damaged codes still work.**
+Up to 30% of a QR code can be destroyed and it remains decodable. The algorithm was published
+in 1960, long before QR codes existed.
 
-4. **Aggregates ignore `NULL`.** `COUNT(*)` and `COUNT(column)` are not the same thing.
+**4. Every element of the QR structure is deliberate.**
+The finder squares, timing strips, mask patterns, format information — each solves a specific
+scanning problem. Nothing in the design is decorative.
 
-5. **`COALESCE` for defaults. `NULLIF` for sentinel-to-NULL conversion.**
-   `IS DISTINCT FROM` when you need NULL-safe equality.
+**5. UPI used QR codes as physical infrastructure.**
+The genius of India's payment revolution was using a free, open standard that required no
+hardware to distribute. A printed piece of paper became a payment terminal.
 
 ---
 
 ## ✨ Final Thoughts
 
-The `= NULL` mistake is one of those things that feels like a gotcha until you understand
-the reasoning behind it — and then it becomes completely logical. NULL is unknown. Comparing
-unknown to anything produces unknown. The `WHERE` clause, which only wants `TRUE`, discards
-the row. No error, because nothing broke. SQL did exactly what three-valued logic required.
+What I find most striking about QR codes is how much engineering is packed into something that
+looks like static. Three corner squares to orient a camera. Reed-Solomon polynomials to survive
+damage. Mask patterns to prevent the scanner from getting confused by solid blocks. Forty
+versions scaling from a business card to a billboard. All of it working in under a second on
+a phone camera, silently, billions of times a day.
 
-What I find interesting is how consistent this model is once you accept it. The `NOT IN`
-trap, the aggregate behaviour, the `COALESCE` patterns — they all follow from the same
-underlying principle. NULL is not a value. It's the absence of one. Every rule about NULL
-in SQL flows from that single decision.
+And all of it free — because one engineer at a Toyota subsidiary, sitting on a patent that
+could have been extremely valuable, decided the world would be better served if it wasn't.
 
-The trap isn't the rule. The trap is not knowing the rule exists.
+That's not a small decision. It's the kind of decision that determines whether a technology
+becomes infrastructure or a footnote.
